@@ -9,7 +9,7 @@ interface Props {
   song: any
   img: any
 }
-export default function MediaControlCard({ song, img }: Props) {
+export default function MediaControlCardComponent({ song, img }: Props) {
   const theme = useTheme()
   return (
     <div
@@ -73,7 +73,7 @@ export default function MediaControlCard({ song, img }: Props) {
             </IconButton>
           }
         /> */}
-        <IconButton
+        {/* <IconButton
           aria-label='play/pause'
           sx={{
             position: 'absolute',
@@ -89,16 +89,8 @@ export default function MediaControlCard({ song, img }: Props) {
           }}
         >
           <PlayArrowIcon sx={{ height: 38, width: 38 }} />
-        </IconButton>
+        </IconButton> */}
       </Card>
-      <div className='flex items-center '>
-        <Typography variant='subtitle1' color='white' component='div'>
-          {song.title} | {song.artistsNames}
-        </Typography>
-        {/* <Typography variant='subtitle1' color='white' component='div'>
-           {song.artistsNames}
-        </Typography> */}
-      </div>
     </div>
   )
 }

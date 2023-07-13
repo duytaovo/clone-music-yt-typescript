@@ -7,13 +7,14 @@ import getBreakpoint from 'src/utils/getBreakpoint'
 import { Item, List } from 'src/types/types.type'
 import MediaControlCard from '../Card'
 import { Key } from 'react'
+import MediaControlCardComponent from './component'
 
 interface Item2 {
   img: any,
   numberItem:number
 }
 
-export default function Carousel({
+export default function Banner({
   song,
   img,
   sectionType,
@@ -29,7 +30,7 @@ export default function Carousel({
   const settings = {
     speed: 500,
     infinite: false,
-    slidesToShow: numberItem,
+    slidesToShow: 3,
     autoplay:true,
    //  fade:true,
     autoplaySpeed:4000,
@@ -77,7 +78,7 @@ export default function Carousel({
                   '
           >
             {' '}
-            <MediaControlCard img={img} song={song} />
+            <MediaControlCardComponent img={img} song={song} />
           </div>
         ))}
       </Slider>

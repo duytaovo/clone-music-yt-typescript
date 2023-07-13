@@ -7,14 +7,17 @@ import { payloadCreator } from 'src/utils/utils';
 
 
 export const getSongs = createAsyncThunk('task/getTasks', payloadCreator(songApi.getSongs))
+export const getChart = createAsyncThunk('task/getChart', payloadCreator(songApi.getChart))
 
 interface SongState {
   error?: string | null,
-  songs: any
+  songs: any,
+  chart:any
 }
 
 const initialState: SongState = {
   songs: [],
+  chart:[],
   error: null
 }
 
@@ -29,11 +32,10 @@ const userSlice = createSlice({
     builder.addCase(getSongs.fulfilled, (state, { payload }) => {
       state.songs = payload.data.data.data.items
     })
-    builder.addCase(getSongs.rejected, (state, action) => {
-      if (action.payload) {
-     
-      } else {
-      }
+    builder.addCase(getChart.fulfilled, (state, { payload }) => {
+      console.log(payload)
+      state.chart = payload.data.data.data.RTChart
+
     })
   }
 });

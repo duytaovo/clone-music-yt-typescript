@@ -28,7 +28,7 @@ export default function Header() {
         },
         {
           tiltle: 'Nâng cấp',
-          id: 1,
+          id: 4,
           to: '/'
         }
       ]
