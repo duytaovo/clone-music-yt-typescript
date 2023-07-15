@@ -9,7 +9,6 @@ import {
   setProfileToLS,
   setRefreshTokenToLS
 } from './auth'
-import { URL_LOGIN, URL_LOGOUT, URL_REFRESH_TOKEN, URL_REGISTER } from 'src/apis/auth.api'
 import { isAxiosExpiredTokenError, isAxiosUnauthorizedError } from './utils'
 import { ErrorResponse } from 'src/types/utils.type'
 import { DOMAIN } from 'src/constants/config'
@@ -85,22 +84,7 @@ export class Http {
           const { url } = config
           // Trường hợp Token hết hạn và request đó không phải là của request refresh token
           // thì chúng ta mới tiến hành gọi refresh token
-          if (isAxiosExpiredTokenError(error) && url !== URL_REFRESH_TOKEN) {
-            // Hạn chế gọi 2 lần handleRefreshToken
-            // this.refreshTokenRequest = this.refreshTokenRequest
-            //   ? this.refreshTokenRequest
-            //   : this.handleRefreshToken().finally(() => {
-            //       // Giữ refreshTokenRequest trong 10s cho những request tiếp theo nếu có 401 thì dùng
-            //       setTimeout(() => {
-            //         this.refreshTokenRequest = null
-            //       }, 10000)
-            //     })
-            // return this.refreshTokenRequest.then((access_token) => {
-            //   // Nghĩa là chúng ta tiếp tục gọi lại request cũ vừa bị lỗi
-            //   return this.instance({ ...config, headers: { ...config.headers, authorization: access_token } })
-            // })
-          }
-
+          
           // Còn những trường hợp như token không đúng
           // không truyền token,
           // token hết hạn nhưng gọi refresh token bị fail

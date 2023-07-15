@@ -7,7 +7,8 @@ interface NextArrowProps {
   props?: CustomArrowProps;
   breakpoints?: Array<Object>;
   customClassName?: string;
-  currentSlide?:number
+  currentSlide?:number;
+  numberItem?:number
 }
 
 const NextArrow: React.FC<NextArrowProps> = (props) => {
@@ -18,10 +19,10 @@ const NextArrow: React.FC<NextArrowProps> = (props) => {
     slideCount,
     breakpoints,
     customClassName,
+    numberItem
   } = props;
   // const item = useBreakpoint(breakpoints);
-  const disabled =
-    currentSlide && (slideCount as number) === currentSlide && "bg-[#000000]";
+  const disabled = slideCount - numberItem === currentSlide;
 
   return (
     <div
@@ -30,7 +31,7 @@ const NextArrow: React.FC<NextArrowProps> = (props) => {
       }
       style={{ ...style }}
     >
-      <div className="h-full w-full flex items-center bg-transparent">
+      <div className={`h-full w-full flex items-center bg-transparent ${disabled && 'hidden'}`}>
         {!disabled && (
           <div
             onClick={onClick}

@@ -34,7 +34,7 @@ export default function Banner({
     autoplay:true,
    //  fade:true,
     autoplaySpeed:4000,
-    nextArrow: <NextArrow currentSlide={song?.items.length}/>,
+    nextArrow: <NextArrow numberItem={3} currentSlide={song?.items.length}/>,
     prevArrow: <PrevArrow />,
    //  responsive: [
    //    {

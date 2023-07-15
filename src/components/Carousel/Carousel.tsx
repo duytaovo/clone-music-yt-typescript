@@ -33,7 +33,7 @@ export default function Carousel({
     autoplay:true,
    //  fade:true,
     autoplaySpeed:4000,
-    nextArrow: <NextArrow currentSlide={song?.items.length}/>,
+    nextArrow: <NextArrow numberItem={4} currentSlide={song?.items.length}/>,
     prevArrow: <PrevArrow />,
    //  responsive: [
    //    {
@@ -59,12 +59,12 @@ export default function Carousel({
    //    }
    //  ]
   }
-
+  
   return (
     <div className='mt-3'>
       <h4 className='text-[#fff]  font-sans font-semibold text-[28px] p-6 pl-3 line-clamp-1'>{song.title}</h4>
       <Slider {...settings}>
-        {song?.items?.map((song: { src: Key | null | any }, index: number) => (
+        {song?.items?.map((_song: { src: Key | null | any }, index: number) => (
           <div
             key={index}
             className='
@@ -77,7 +77,7 @@ export default function Carousel({
                   '
           >
             {' '}
-            <MediaControlCard img={img} song={song} />
+            <MediaControlCard img={img} song={_song} />
           </div>
         ))}
       </Slider>

@@ -1,5 +1,7 @@
 import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
+import HOME_VI from 'src/locales/vi/home.json'
+import HOME_EN from 'src/locales/en/home.json'
 
 
 export const locales = {
@@ -7,20 +9,23 @@ export const locales = {
   vi: 'Tiếng Việt'
 } as const
 
+
 export const resources = {
   en: {
+    home: HOME_EN,
   },
   vi: {
+    home: HOME_VI,
   }
 } as const
 
-export const defaultNS = 'product'
+export const defaultNS = 'home'
 
 // eslint-disable-next-line import/no-named-as-default-member
 i18n.use(initReactI18next).init({
   resources,
   lng: 'vi',
-  ns: ['home', 'product'],
+  ns: ['home'],
   fallbackLng: 'vi',
   defaultNS,
   interpolation: {

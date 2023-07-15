@@ -1,7 +1,7 @@
 // src/features/userSlice.ts
 
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import songApi from 'src/apis/song.api';
+import songApi from 'src/apis/home.api';
 import { List, Song } from 'src/types/types.type';
 import { payloadCreator } from 'src/utils/utils';
 
@@ -33,7 +33,6 @@ const userSlice = createSlice({
       state.songs = payload.data.data.data.items
     })
     builder.addCase(getChart.fulfilled, (state, { payload }) => {
-      console.log(payload)
       state.chart = payload.data.data.data.RTChart
 
     })

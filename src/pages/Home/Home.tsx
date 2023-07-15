@@ -10,6 +10,7 @@ import { useAppDispatch } from 'src/hooks/useRedux'
 import { getChart, getSongs } from 'src/store/slices/song'
 import { AppDispatch, RootState } from 'src/store/store'
 import { List, Song } from 'src/types/types.type'
+import Partner from 'src/components/Partner'
 
 export default function Home() {
   const { songs, error,chart } = useSelector((state: RootState) => state.songs)
@@ -31,8 +32,8 @@ export default function Home() {
           {song.sectionType === 'new-release' &&  <ItemSongHome song={song} />}
           </div>
       ))}
-      <Chart chartHome={chart}/>
-     
+      {/* {chart && <Chart chartHome={chart}/> } */}
+      <Partner/>
     </div>
   )
 }

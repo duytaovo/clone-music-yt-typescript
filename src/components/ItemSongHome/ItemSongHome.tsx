@@ -15,8 +15,8 @@ const ItemSongHome = ({ song }: any) => {
         {song?.items.all?.slice(a, b)?.map(
           (song: PropsSong, index: number) => (
             (
-              <div className='flex items-center justify-between flex-wrap w-max text-[#c3cada] ml-3.5 hover:text-blue-500 cursor-pointer' key={index}>
-                <img src={song.thumbnail} alt='' className='w-12 h-12 rounded object-contain hover:opacity-50'/>
+              <div className='flex items-center justify-between flex-wrap w-max text-[#c3cada] ml-3.5 group hover:text-blue-500 cursor-pointer' key={index}>
+                <img src={song.thumbnail} alt='' className='w-12 h-12 rounded object-contain group-hover:opacity-50'/>
                 <CardContent>
                   <Typography variant='body2' color='' sx={{
                   }}>

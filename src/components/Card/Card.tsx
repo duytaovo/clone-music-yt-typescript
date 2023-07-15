@@ -1,22 +1,29 @@
-import { useTheme } from '@mui/material/styles'
+import { makeStyles, useTheme } from '@mui/material/styles'
 import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
 import CardMedia from '@mui/material/CardMedia'
 import { CardContent, CardHeader, IconButton, Typography } from '@mui/material'
 import PlayArrowIcon from '@mui/icons-material/PlayArrow'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
+import { StyleHTMLAttributes } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useParams } from "react-router-dom";
+
 interface Props {
   song: any
   img: any
 }
+
+
 export default function MediaControlCard({ song, img }: Props) {
-  const theme = useTheme()
+  const navigate = useNavigate()
+  
   return (
     <div
-      className='
-    '
     >
-      <Card sx={{ display: 'flex', cursor: 'pointer' }}>
+      <Card sx={{ display: 'flex', cursor: 'pointer' }} onClick={() =>{
+        navigate(`/player/${song.encodeId}`)
+      }}>
         <CardMedia
           component='img'
           sx={{
@@ -38,6 +45,8 @@ export default function MediaControlCard({ song, img }: Props) {
           image={song.banner || song.thumbnail}
           alt='Live from space album cover'
         ></CardMedia>
+        <div className=''>
+
         <IconButton
           sx={{
             display: 'none',
@@ -54,25 +63,7 @@ export default function MediaControlCard({ song, img }: Props) {
         >
           <MoreVertIcon />
         </IconButton>
-        {/* <CardHeader
-          sx={{
-            position: 'absolute',
-            // transform: 'translate(210%,0)',
-            // right: '0%',
-            margin: 'auto',
-            color: 'white',
-            '&:hover': {
-              backgroundColor: 'Black',
-              opacity: [0.9, 0.8, 0.7],
-              color: 'white'
-            }
-          }}
-          action={
-            <IconButton aria-label='settings'>
-              <MoreVertIcon />
-            </IconButton>
-          }
-        /> */}
+        </div>
         <IconButton
           aria-label='play/pause'
           sx={{
@@ -95,9 +86,6 @@ export default function MediaControlCard({ song, img }: Props) {
         <Typography variant='subtitle1' color='white' component='div'>
           {song.title} | {song.artistsNames}
         </Typography>
-        {/* <Typography variant='subtitle1' color='white' component='div'>
-           {song.artistsNames}
-        </Typography> */}
       </div>
     </div>
   )

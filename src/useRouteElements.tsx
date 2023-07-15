@@ -1,10 +1,10 @@
 import path from 'src/constants/path'
 import { useContext, lazy, Suspense } from 'react'
 import { Navigate, Outlet, useRoutes } from 'react-router-dom'
-import { AppContext } from './contexts/app.context'
 import MainLayout from './layouts/MainLayout'
 
 const Home = lazy(() => import('./pages/Home'))
+const Player = lazy(() => import('./pages/Player'))
 const NotFound = lazy(() => import('./pages/NotFound'))
 
 
@@ -19,6 +19,14 @@ export default function useRouteElements() {
           element: (
             <Suspense>
               <Home />
+            </Suspense>
+          )
+        },
+        {
+          path: path.player,
+          element: (
+            <Suspense>
+              <Player />
             </Suspense>
           )
         },
