@@ -16,20 +16,12 @@ interface Item2 {
 export default function Carousel({
   song,
   img,
-  sectionType,
-  viewType,
-  title,
-  link,
-  sectionId,
-  items,
-  itemType,
   numberItem
 }: Item & Item2) {
-  const breakpoints = getBreakpoint([1, 1, 2, 2, 3, 3])
   const settings = {
     speed: 500,
     infinite: false,
-    slidesToShow: numberItem,
+    slidesToShow: 5,
     autoplay:true,
    //  fade:true,
     autoplaySpeed:4000,

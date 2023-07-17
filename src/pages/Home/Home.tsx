@@ -1,4 +1,3 @@
-import { unwrapResult } from '@reduxjs/toolkit'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Banner from 'src/components/Banner/Banner'
@@ -28,12 +27,12 @@ export default function Home() {
         >
           {' '}
           {song.sectionType === 'banner' && <Banner numberItem= {3} song={song} img={''} />}
-          {song.sectionType === 'playlist' &&  <Carousel numberItem={4} song={song} img={''}/>}
+          {song.sectionType === 'playlist' &&  <Carousel numberItem={5} song={song} img={''}/>}
           {song.sectionType === 'new-release' &&  <ItemSongHome song={song} />}
           </div>
       ))}
-      {/* {chart && <Chart chartHome={chart}/> } */}
-      <Partner/>
+      {chart !== undefined && <Chart chartHome={chart}/> }
+      {songs && <Partner/>}
     </div>
   )
 }

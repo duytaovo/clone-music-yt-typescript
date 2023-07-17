@@ -5,9 +5,13 @@ import CardMedia from '@mui/material/CardMedia'
 import { CardContent, CardHeader, IconButton, Typography } from '@mui/material'
 import PlayArrowIcon from '@mui/icons-material/PlayArrow'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
-import { StyleHTMLAttributes } from 'react'
+import { StyleHTMLAttributes, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useParams } from "react-router-dom";
+import { useSelector } from 'react-redux'
+import { RootState } from 'src/store/store'
+import { useAppDispatch } from 'src/hooks/useRedux'
+import { getPlayList } from 'src/store/slices/playlist'
 
 interface Props {
   song: any
@@ -15,8 +19,9 @@ interface Props {
 }
 
 
-export default function MediaControlCard({ song, img }: Props) {
+export default function MediaControlCard({ song}: Props) {
   const navigate = useNavigate()
+
   
   return (
     <div
@@ -27,7 +32,8 @@ export default function MediaControlCard({ song, img }: Props) {
         <CardMedia
           component='img'
           sx={{
-            height: '200px',
+            // height: '200px',
+            // width:"200px",
             objectFit: 'revert',
             borderColor: '#DEDEDE',
             display: 'inline-block',
@@ -68,7 +74,7 @@ export default function MediaControlCard({ song, img }: Props) {
           aria-label='play/pause'
           sx={{
             position: 'absolute',
-            transform: `${`translate(210%,0)`} `,
+            transform: `${`translate(170%,0)`} `,
             top: '35%',
             margin: 'auto',
             color: 'white',

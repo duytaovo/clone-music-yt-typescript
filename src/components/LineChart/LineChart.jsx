@@ -12,41 +12,39 @@ import {
 
 
 const LineChart = ({ dataChart }) => {
+  let first = []
+  let second = []
+  let third = []
+  if (dataChart !== undefined && dataChart !== null) {
+    const values = Object?.values(dataChart);
+    first = values[0];
+    second = values[1];
+    third = values[2];
+
+  } else {
+  }
+  
   let arrTimes = [];
   for (let i = 0; i < dataChart?.chart?.times.length; i = i + 2) {
     arrTimes.push(`${dataChart?.chart.times[i].hour}.00`);
   }
-
-  // let idItems1 = []
-  // for (let i = 0; i < 1; i++) {
-  //   idItems1.push(dataChart?.items[i].encodeId)
-  // }
-  // let idItems2 = []
-  // for (let i = 0; i < 1; i++) {
-  //   idItems2.push(dataChart?.items[i].encodeId)
-  // }
-  // let idItems3 = []
-  // for (let i = 0; i < 1; i++) {
-  //   idItems3.push(dataChart?.items[i].encodeId)
-  // }
-  // let a = idItems1[0]
-
-
   let timeMili = [];
-  for (let i = 0; i < 24; i++) {
-    timeMili.push(dataChart?.chart?.items.Z6CUFFZA[i].counter);
-  }
-
   let timeMili2 = [];
-  for (let i = 0; i < 24; i++) {
-    timeMili2.push(dataChart?.chart?.items.Z6AABFU6[i].counter);
-  }
-
   let timeMili3 = [];
-  for (let i = 0; i < 24; i++) {
-    timeMili3.push(dataChart?.chart?.items.Z6BADFAZ[i].counter);
-  }
+  
+  if(first?.length > 0) {
+    for (let i = 0; i < 24; i++) {
+      timeMili.push(first[i]?.counter);
+    }
 
+    for (let i = 0; i < 24; i++) {
+      timeMili2.push(second[i].counter);
+    }
+  
+    for (let i = 0; i < 24; i++) {
+      timeMili3.push(third[i]?.counter);
+    }
+  }
   ChartJs.register(
     CategoryScale,
     LinearScale,
@@ -58,7 +56,7 @@ const LineChart = ({ dataChart }) => {
   );
   const chartData = {
     data: {
-      labels: arrTimes,
+      labels: ["1","2","3","4","5","6","7","8","9","10","11","12"],
       datasets: [
         {
           // label: 'abcccccccc',

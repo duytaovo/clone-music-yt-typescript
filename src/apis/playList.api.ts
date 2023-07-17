@@ -7,8 +7,12 @@ const playListApi = {
     return http.get<SuccessResponse<any>>(`/api/get/playlist/info?id=${params}`, {
     })
   },
-  getSongFromPlayList(params: string) {
+  getDetailSongFromPlayList(params: string) {
     return http.get<SuccessResponse<any>>(`/api/get/song/info?id=${params}`, {
+    })
+  },
+  getSongSound(params: string) {
+    return http.get<SuccessResponse<any>>(`/api/get/song/sound?id=${params}`, {
     })
   },
 }

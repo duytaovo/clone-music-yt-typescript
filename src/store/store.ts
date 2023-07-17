@@ -1,11 +1,16 @@
 import { AnyAction, Store, ThunkDispatch, configureStore } from '@reduxjs/toolkit'
 import songReducer from './slices/song'
 import appReducer from 'src/app.slice'
+import playListReducer from './slices/playlist'
+import audioReducer from './slices/audio'
 
 export const store = configureStore({
   reducer: {
     songs: songReducer,
-    loading: appReducer
+    playlist: playListReducer,
+    loading: appReducer,
+    audio: audioReducer,
+
   },
   devTools: process.env.NODE_ENV === 'development',
   middleware: (getDefaultMiddleware) => [...getDefaultMiddleware({ serializableCheck: false })]

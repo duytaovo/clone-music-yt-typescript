@@ -1,6 +1,8 @@
-import { CardContent, Grid, Typography } from '@mui/material'
-import React from 'react'
+import { Grid } from '@mui/material'
 import ItemSongPlayer from 'src/components/ItemSongPlayer'
+import QueueMusicIcon from '@mui/icons-material/QueueMusic';
+import AlbumIcon from '@mui/icons-material/Album';
+import AccessTimeFilledIcon from '@mui/icons-material/AccessTimeFilled';
 interface Props {
   onClick: (value: string) => void;
   playListData:any
@@ -10,26 +12,29 @@ export const ListPlayer = ({playListData,onClick}:Props) => {
 
 
   return (
-    <div className="h-[65vh] overflow-y-auto scrollbar-thumb-rounded">
+    <div className="h-[70vh] overflow-y-auto scrollbar-thumb-rounded">
       <div className='flex items-center justify-between text-white'>
-        <Grid container spacing={2}>
-          <Grid item xs={4}>
-            <p className="mb-3">BÀI HÁT</p>
+        <Grid container spacing={2} sx={{mb:2,ml:""}}>
+          <Grid item xs={5.5} sx={{display:"flex", alignItems:"center"}}>
+            <QueueMusicIcon/>
+            <p className=" text-[#8C8891] ml-2">BÀI HÁT</p>
           </Grid>
-          <Grid item xs={4}>
-            <p className="mb-3">ALBUM</p>
+          <Grid item xs={4.5} sx={{display:"flex", alignItems:"center"}}>
+            <AlbumIcon/>
+            <p className="text-[#8C8891] ml-2">ALBUM</p>
           </Grid>
-          <Grid item xs={4}>
-            <p className="mb-3">THỜI GIAN</p>
+          <Grid item xs={2} sx={{display:"flex", alignItems:"center"}}>
+            <AccessTimeFilledIcon/>
+            <p className="text-[#8C8891] ml-2">THỜI GIAN</p>
           </Grid>
         </Grid>
       </div>
       <div>
-      {playListData?.data.data.data.song.items?.map((_song: any , index: number) => (
+      {playListData?.data?.data?.data?.song?.items?.map((_song: any , index: number) => (
           <div
             key={_song.encodeId}
           >
-            <ItemSongPlayer bg="hover:bg-[#302639] rounded pl-2 pb-[1px]" onClick={onClick} songDetail={_song}/>
+            <ItemSongPlayer bg="hover:bg-[#302639] rounded ml-1 pb-[1px]" onClick={onClick} songDetail={_song}/>
           </div>
         ))}
       </div>

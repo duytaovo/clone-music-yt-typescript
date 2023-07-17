@@ -54,7 +54,8 @@
     "react-toastify": "^9.1.1",
     "react-use-audio-player": "^2.1.0",
     "slick-carousel": "^1.8.1",
-    "yup": "^0.32.11"
+    "yup": "^0.32.11",
+    "zustand": "^4.3.9"
   },
   "devDependencies": {
     "@babel/core": "^7.20.5",
