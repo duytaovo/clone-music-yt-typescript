@@ -9,7 +9,6 @@ import { useAppDispatch, useAppSelector } from 'src/hooks/useRedux'
 import { RootState } from 'src/store/store'
 import { getPlayList, getSongDetail, getSongSound } from 'src/store/slices/playlist'
 import { changeIconPlay, setPlaylistSong, setSongId } from 'src/store/slices/audio'
-import { unwrapResult } from '@reduxjs/toolkit'
 interface Props {
   children?: React.ReactNode
 }
