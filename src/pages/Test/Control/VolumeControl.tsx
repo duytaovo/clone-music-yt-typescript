@@ -32,11 +32,11 @@ const VolumeControl: React.FC<{auRef: HTMLAudioElement | null}> = ({auRef}) => {
       {
         false
         ?
-          <button className="mx-2 my-0 style__buttons" title="Mute">
+          <button className="mx-2 my-0 " title="Mute">
             <VolumeMuteIcon />
           </button>
         :
-          <button className="mx-2 my-0 style__buttons" title="Mute">
+          <button className="mx-2 my-0 " title="Mute">
             <VolumeUpIcon />
           </button>
       }

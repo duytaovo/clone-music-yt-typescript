@@ -3,14 +3,13 @@ import ItemSongPlayer from 'src/components/ItemSongPlayer'
 import QueueMusicIcon from '@mui/icons-material/QueueMusic';
 import AlbumIcon from '@mui/icons-material/Album';
 import AccessTimeFilledIcon from '@mui/icons-material/AccessTimeFilled';
+import { useAppSelector } from 'src/hooks/useRedux';
 interface Props {
   onClick: (value: string) => void;
   playListData:any
 }
 export const ListPlayer = ({playListData,onClick}:Props) => {
-
-
-
+  const indexCardActive = useAppSelector((state) => state.audio.indexCardActive)
   return (
     <div className="h-[70vh] overflow-y-auto scrollbar-thumb-rounded">
       <div className='flex items-center justify-between text-white'>
@@ -34,7 +33,7 @@ export const ListPlayer = ({playListData,onClick}:Props) => {
           <div
             key={_song.encodeId}
           >
-            <ItemSongPlayer bg="hover:bg-[#302639] rounded ml-1 pb-[1px]" onClick={onClick} songDetail={_song}/>
+            <ItemSongPlayer index={index} active={indexCardActive} bg="hover:bg-[#302639] rounded ml-1 pb-[1px]" onClick={onClick} songDetail={_song}/>
           </div>
         ))}
       </div>

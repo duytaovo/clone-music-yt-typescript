@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useAppDispatch, useAppSelector } from 'src/hooks/useRedux'
 import Control from './Control'
 
@@ -8,31 +8,23 @@ import {
   setCurrnetIndexPlaylist,
   setDuration,
   setInfoSongPlayer,
+  setSongDetail,
   setSongId,
   setSrcAudio
 } from 'src/store/slices/audio'
-
-//
-interface songType {
-  [key: number]: string
-  title: string
-  infoSong: string
-  thumbnail: string
-  artistsNames: string
-  artists: []
-}
+import { getSongDetail, getSongSound } from 'src/store/slices/playlist'
+import { unwrapResult } from '@reduxjs/toolkit'
+import Lyric from './Lyric'
 
 interface Props {
-  audioUrl: string
-  idSongDetail: string
-  playlist: any
-  songDetail: any
+  songDetail:any,
 }
 
-const BarPlayer = ({ audioUrl, idSongDetail, playlist, songDetail }: Props) => {
+const BarPlayer = ({ songDetail}: Props) => {
   const srcAudio = useAppSelector((state) => state.audio.srcAudio)
   const isLoop = useAppSelector((state) => state.audio.isLoop)
-  const dispath = useAppDispatch()
+  const songId = useAppSelector((state) => state.audio.songId)
+  // const songDetail = useAppSelector((state) => state.audio.songDetail)
   const currnetIndexPlaylist = useAppSelector((state) => state.audio.currnetIndexPlaylist)
   const playlistSong: any = useAppSelector((state) => state.audio.playlistSong)
 
@@ -43,17 +35,18 @@ const BarPlayer = ({ audioUrl, idSongDetail, playlist, songDetail }: Props) => {
   useEffect(() => {
     ;(async () => {
       try {
-        if (idSongDetail === '') {
+        if (songId === '') {
           console.log('Song id not found')
         } else {
-          audioUrl !== undefined ? dispath(setSrcAudio(audioUrl)) : dispath(setSrcAudio(''))
-          dispatch(changeIconPlay(true))
-          dispath(
+          await dispatch(getSongSound(songId)).then(unwrapResult).then(res =>  dispatch(setSrcAudio(res?.data?.data?.data['128'])))
+          await dispatch(getSongDetail(songId)).then(unwrapResult).then(res => dispatch(setSongDetail(res?.data?.data?.data)))
+          // await dispatch(changeIconPlay(true))
+          dispatch(
             setInfoSongPlayer({
-              title: songDetail.title,
-              thumbnail: songDetail.thumbnail,
-              artistsNames: songDetail.artistsNames,
-              artists: songDetail.artists
+              title: songDetail?.title,
+              thumbnail: songDetail?.thumbnail,
+              artistsNames: songDetail?.artistsNames,
+              artists: songDetail?.artists
             })
           )
         }
@@ -61,13 +54,12 @@ const BarPlayer = ({ audioUrl, idSongDetail, playlist, songDetail }: Props) => {
         console.log(err)
       }
     })()
-  }, [songDetail, dispath, idSongDetail])
-  // console.log(songDetail)
-  // console.log(idSongDetail)
+  }, [dispatch,songId])
+
   return (
     <>
       {
-        <div className='fixed inset-x-0 bottom-0 z-[100] flex h-16 flex-col justify-around bg-white backdrop-blur-[30px] backdrop-saturate-[180%]'>
+        <div className='fixed inset-x-0 bottom-0 font-normal text-white z-[100] flex h-16 flex-col justify-around bg-[#4F1F6F] backdrop-blur-[30px] backdrop-saturate-[180%]'>
           <Control auRef={audioRef.current} />
         </div>
       }
@@ -81,18 +73,18 @@ const BarPlayer = ({ audioUrl, idSongDetail, playlist, songDetail }: Props) => {
         hidden
         onTimeUpdate={() => {
           if (audioRef.current) {
-            dispath(setCurrentTime(audioRef.current.currentTime))
+            dispatch(setCurrentTime(audioRef.current.currentTime))
           }
         }}
         onLoadedData={() => {
           if (audioRef.current) {
-            dispath(setDuration(audioRef.current.duration))
+            dispatch(setDuration(audioRef.current.duration))
           }
         }}
         onEnded={() => {
           if (!isLoop) {
-            dispath(setCurrentTime(0))
-            dispath(changeIconPlay(false))
+            dispatch(setCurrentTime(0))
+            dispatch(changeIconPlay(false))
 
             if (playlistSong !== undefined && playlistSong.length > 0) {
               let currentIndex
@@ -102,7 +94,6 @@ const BarPlayer = ({ audioUrl, idSongDetail, playlist, songDetail }: Props) => {
               } else {
                 currentIndex = currnetIndexPlaylist + 1
               }
-
               dispatch(setCurrnetIndexPlaylist(currentIndex))
 
               dispatch(setSongId(playlistSong[currentIndex].encodeId))
@@ -113,7 +104,7 @@ const BarPlayer = ({ audioUrl, idSongDetail, playlist, songDetail }: Props) => {
         }}
       />
 
-      {/* <Lyric auRef={audioRef.current}/> */}
+      <Lyric auRef={audioRef.current}/>
     </>
   )
 }

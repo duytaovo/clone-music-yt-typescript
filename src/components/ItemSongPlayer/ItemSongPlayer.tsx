@@ -1,18 +1,28 @@
 import { Grid } from '@mui/material'
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { useAppDispatch } from 'src/hooks/useRedux';
+import { changeIconVolume, setCurrnetIndexPlaylist, updateIndexCardActive } from 'src/store/slices/audio';
 import getDuration from 'src/utils/getDuration'
 interface Props {
   bg:any,
   songDetail:any,
   onClick: (value: string) => void;
+  index:number,
+  active:number
 }
-export const ItemSongPlayer = ({ bg, songDetail,onClick }: Props ) => {
-  const getIdSong = () =>{
+export const ItemSongPlayer = ({ bg, songDetail,onClick,index,active }: Props ) => {
+  const dispatch = useAppDispatch()
+
+  const getIdSong = async() =>{
     onClick && onClick(songDetail.encodeId)
+    dispatch(updateIndexCardActive(index));
+    
   }
+  
+
   return (
-    <div className={`${bg}`} onClick={getIdSong}>
+    <div className={`${bg} ${index === active ? 'bg-[#302639]':""}`} onClick={getIdSong}>
       <Link to={``}>
         <Grid container spacing={2} sx={{ mb: 3 }}>
           <Grid item xs={5.5}>

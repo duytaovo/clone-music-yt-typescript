@@ -2,12 +2,14 @@
 
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import songApi from 'src/apis/home.api';
+import lyricApi from 'src/apis/lyric.api';
 import { List, Song } from 'src/types/types.type';
 import { payloadCreator } from 'src/utils/utils';
 
 
 export const getSongs = createAsyncThunk('song/getSongs', payloadCreator(songApi.getSongs))
 export const getChart = createAsyncThunk('song/getChart', payloadCreator(songApi.getChart))
+export const getLyric = createAsyncThunk('song/getLyric', payloadCreator(lyricApi.getLyric))
 
 interface SongState {
   error?: string | null,

@@ -7,7 +7,7 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
 import { StyleHTMLAttributes, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useParams } from "react-router-dom";
+import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { RootState } from 'src/store/store'
 import { useAppDispatch } from 'src/hooks/useRedux'
@@ -18,41 +18,38 @@ interface Props {
   img: any
 }
 
-
-export default function MediaControlCard({ song}: Props) {
+export default function MediaControlCard({ song }: Props) {
   const navigate = useNavigate()
 
-  
   return (
-    <div
-    >
-      <Card sx={{ display: 'flex', cursor: 'pointer' }} onClick={() =>{
-        navigate(`/player/${song.encodeId}`)
-      }}>
-        <CardMedia
-          component='img'
-          sx={{
-            // height: '200px',
-            // width:"200px",
-            objectFit: 'revert',
-            borderColor: '#DEDEDE',
-            display: 'inline-block',
-            pd: 0,
-            cursor: 'pointer',
-            position: 'relative',
-            boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);',
-            // zIndex:100,
-            '&:hover': {
-              display: 'block',
-              backgroundColor: 'DEDEDE',
-              opacity: [0.9, 0.8, 0.7]
-            }
-          }}
-          image={song.banner || song.thumbnail}
-          alt='Live from space album cover'
-        ></CardMedia>
-        <div className=''>
-
+    <div>
+      <Card
+        sx={{ display: 'flex', cursor: 'pointer' }}
+        onClick={() => {
+          navigate(`/player/${song.encodeId}`)
+        }}
+      >
+        <div className='relative inline-block'>
+          <img src={song.banner || song.thumbnail} className='relative cursor-pointer ' alt='' />
+          <IconButton
+            aria-label='play/pause'
+            sx={{
+              position: 'absolute',
+              transform: 'translate(-50%, -50%)',
+              margin: 'auto',
+              top: '50%',
+              left: '50%',
+              color: 'white',
+              '&:hover': {
+                backgroundColor: 'Black',
+                opacity: [0.9, 0.8, 0.7],
+                color: 'white'
+              }
+            }}
+          >
+            <PlayArrowIcon sx={{ height: 38, width: 38 }} />
+          </IconButton>
+        </div>
         <IconButton
           sx={{
             display: 'none',
@@ -68,24 +65,6 @@ export default function MediaControlCard({ song}: Props) {
           }}
         >
           <MoreVertIcon />
-        </IconButton>
-        </div>
-        <IconButton
-          aria-label='play/pause'
-          sx={{
-            position: 'absolute',
-            transform: `${`translate(170%,0)`} `,
-            top: '35%',
-            margin: 'auto',
-            color: 'white',
-            '&:hover': {
-              backgroundColor: 'Black',
-              opacity: [0.9, 0.8, 0.7],
-              color: 'white'
-            }
-          }}
-        >
-          <PlayArrowIcon sx={{ height: 38, width: 38 }} />
         </IconButton>
       </Card>
       <div className='flex items-center '>

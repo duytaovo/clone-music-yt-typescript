@@ -26,7 +26,6 @@ const VolumeControl: React.FC<{auRef: HTMLAudioElement | null}> = ({auRef}) => {
       }
     }
   }
-
   return (
     <div
       onClick={handleMuteVolume}
@@ -34,23 +33,23 @@ const VolumeControl: React.FC<{auRef: HTMLAudioElement | null}> = ({auRef}) => {
       {
         isMute
         ?
-          <button className="mx-2 my-0 style__buttons" title="Mute">
+          <button className="mx-2 my-0" title="Mute">
             <VolumeMuteIcon 
             sx={{
               // color:'white',
-              width:"16px",
-              height:"16px"
+              width:"24px",
+              height:"24px"
             }}
             
             />
           </button>
         :
-          <button className="mx-2 my-0 style__buttons" title="Mute">
+          <button className="mx-2 my-0" title="Mute">
             <VolumeUpIcon 
             sx={{
               // color:'white',
-              width:"16px",
-              height:"16px"
+              width:"24px",
+              height:"24px"
             }}
             />
           </button>

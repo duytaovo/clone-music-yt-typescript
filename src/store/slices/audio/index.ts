@@ -1,5 +1,14 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 
+interface songType {
+  [key: number]: string
+  title: string
+  infoSong: string
+  thumbnail: string
+  artistsNames: string
+  artists: []
+}
+
 interface AudioState {
   isPlay: boolean
   isMute: boolean
@@ -18,7 +27,10 @@ interface AudioState {
   isLoop: boolean
   autoPlay: boolean
   playlistSong: Array<object>
-  isLyric: boolean
+  isLyric: boolean,
+  songDetail:any,
+  indexCardActive: number,
+
 }
 
 const initialState: AudioState = {
@@ -39,7 +51,9 @@ const initialState: AudioState = {
   isLoop: false,
   autoPlay: false,
   playlistSong: [],
-  isLyric: false
+  isLyric: false,
+  songDetail:{},
+  indexCardActive:0
 }
 
 const audioSlice = createSlice({
@@ -65,6 +79,9 @@ const audioSlice = createSlice({
     setSrcAudio: (state, action: PayloadAction<string>) => {
       state.srcAudio = action.payload
     },
+    setSongDetail: (state, action: PayloadAction<object>) => {
+      state.songDetail = action.payload
+    },
     setCurrentTime: (state, action: PayloadAction<number>) => {
       state.currentTime = action.payload
     },
@@ -89,6 +106,9 @@ const audioSlice = createSlice({
     setOpenLyric: (state, action: PayloadAction<boolean>) => {
       state.isLyric = action.payload
     },
+    updateIndexCardActive: (state, action) => {
+      state.indexCardActive = action.payload;
+    },
   }
 })
 
@@ -106,6 +126,8 @@ export const {
   setPlaylistSong,
   setCurrnetIndexPlaylist,
   setOpenLyric,
+  setSongDetail,
+  updateIndexCardActive
 } = audioSlice.actions
 
 const audioReducer = audioSlice.reducer

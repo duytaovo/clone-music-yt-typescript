@@ -22,20 +22,20 @@ const RepeatControl: React.FC = () => {
       {
         isLoop
         ?
-        <button className="mx-2 my-0 style__buttons" title="Repeat">
+        <button className="mx-2 my-0 " title="Repeat">
           <RepeatIcon  sx={{
-        color:'blue',
-        width:"16px",
-        height:"16px"
+        color:'black',
+        width:"24px",
+        height:"24px"
       }}/>
         </button>
         :
-        <button className="mx-2 my-0 style__buttons" title="Repeat">
+        <button className="mx-2 my-0 " title="Repeat">
           <RepeatIcon  
           sx={{
             // color:'white',
-            width:"16px",
-            height:"16px"
+            width:"24px",
+            height:"24px"
           }}/>
         </button>
       }

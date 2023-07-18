@@ -20,11 +20,11 @@ const RepeatControl: React.FC = () => {
       {
         false
         ?
-        <button className="mx-2 my-0 style__buttons" title="Repeat">
+        <button className="mx-2 my-0 " title="Repeat">
           <RepeatIcon  />
         </button>
         :
-        <button className="mx-2 my-0 style__buttons" title="Repeat">
+        <button className="mx-2 my-0 " title="Repeat">
           <RepeatIcon  />
         </button>
       }

@@ -32,13 +32,13 @@ const NextControl: React.FC = () => {
   return (
     <button
       onClick={handleNextSong}
-      className="mx-2 my-0 style__buttons"
+      className="mx-2 my-0 "
       title="Next Song"
     >
       <ArrowForwardIosIcon sx={{
         // color:'white',
-        width:"16px",
-        height:"16px"
+        width:"24px",
+        height:"24px"
       }}/>
     </button>
   )

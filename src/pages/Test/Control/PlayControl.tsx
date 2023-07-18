@@ -22,7 +22,7 @@ const PlayControl:React.FC<{auRef: HTMLAudioElement | null | undefined}> = ({ au
 
   return (
     <button
-      className={"w-[42px] h-[42px] mx-2 my-0 style__buttons"}
+      className={"w-[42px] h-[42px] mx-2 my-0 "}
       title="Play Song"
       // onClick={ handlePlaySong }
     >

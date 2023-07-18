@@ -2,7 +2,7 @@ import React from "react"
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { useAppDispatch, useAppSelector } from "src/hooks/useRedux";
 import { changeIconPlay, setCurrnetIndexPlaylist, setSongId } from "src/store/slices/audio";
-const PreviousControl: React.FC = () => {
+const PreviousControl = () => {
 
   const currnetIndexPlaylist = useAppSelector((state) => state.audio.currnetIndexPlaylist)
   const playlistSong:any = useAppSelector((state) => state.audio.playlistSong)
@@ -25,7 +25,6 @@ const PreviousControl: React.FC = () => {
       dispatch(setSongId(
         playlistSong[currentIndex].encodeId
       ))
-
       dispatch(changeIconPlay(true))
     }
   }
@@ -33,12 +32,12 @@ const PreviousControl: React.FC = () => {
   return (
     <button
       onClick={handlePreSong}
-      className="mx-2 my-0 style__buttons" title="Previous Song"
+      className="mx-2 my-0 " title="Previous Song"
     >
       <ArrowBackIosIcon  sx={{
         // color:'white',
-        width:"16px",
-        height:"16px"
+        width:"24px",
+        height:"24px"
       }}/>
     </button>
   )

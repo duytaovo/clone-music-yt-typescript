@@ -7,7 +7,6 @@ const PlayControl:React.FC<{auRef: HTMLAudioElement | null | undefined}> = ({ au
 
   const isPlay = useAppSelector((state) => state.audio.isPlay)
   const dispatch = useAppDispatch()
-
   const handlePlaySong = () => {
     if(isPlay === true) {
       dispatch(changeIconPlay( false ))
@@ -24,7 +23,7 @@ const PlayControl:React.FC<{auRef: HTMLAudioElement | null | undefined}> = ({ au
 
   return (
     <button
-      className={"w-[42px] h-[42px] mx-2 my-0 style__buttons"}
+      className={"w-[42px] h-[42px] mx-2 my-0 "}
       title="Play Song"
       onClick={ handlePlaySong }
     >
@@ -33,15 +32,15 @@ const PlayControl:React.FC<{auRef: HTMLAudioElement | null | undefined}> = ({ au
         ? <PauseIcon 
         sx={{
           // color:'white',
-          width:"16px",
-          height:"16px"
+          width:"24px",
+          height:"24px"
         }}
         />
         : <PlayCircleOutlineIcon
         sx={{
           // color:'white',
-          width:"16px",
-          height:"16px"
+          width:"24px",
+          height:"24px"
         }}
         />
       }

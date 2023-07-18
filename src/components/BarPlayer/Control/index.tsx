@@ -1,28 +1,27 @@
-import React from "react"
-import LyricControl from "./LyricControl"
-import NextControl from "./NextControl"
-import PlayControl from "./PlayControl"
-import PreviousControl from "./PreviousControl"
-import RepeatControl from "./RepeatControl"
-import ShuffleControl from "./ShuffleControl"
-import TrackInfo from "./TrackInfo"
-import VolumeControl from "./VolumeControl"
-import VolumeSliderControl from "./VolumeSliderControl"
-import SongSliderControl from "./SongSliderControl"
+import React from 'react'
+import LyricControl from './LyricControl'
+import NextControl from './NextControl'
+import PlayControl from './PlayControl'
+import PreviousControl from './PreviousControl'
+import RepeatControl from './RepeatControl'
+import ShuffleControl from './ShuffleControl'
+import TrackInfo from './TrackInfo'
+import VolumeControl from './VolumeControl'
+import VolumeSliderControl from './VolumeSliderControl'
+import SongSliderControl from './SongSliderControl'
 
-const Control:React.FC<{auRef: HTMLAudioElement | null}> = ({ auRef }) => {
-
+const Control: React.FC<{ auRef: HTMLAudioElement | null }> = ({ auRef }) => {
   return (
     <>
-      {/* <SongSliderControl auRef={auRef}/> */}
+      <SongSliderControl auRef={auRef} />
 
-      <div className="grid grid-cols-3 h-full mx-[10vw] z-[-1]">
+      <div className='z-[-1] mx-[10vw] grid h-full grid-cols-3'>
         {/* Track Info */}
         <TrackInfo />
         {/* End Track Info */}
 
         {/* Mid Controls Button */}
-        <div className="flex justify-center items-center">
+        <div className='flex items-center justify-center'>
           <PreviousControl />
           <PlayControl auRef={auRef} />
           <NextControl />
@@ -30,8 +29,8 @@ const Control:React.FC<{auRef: HTMLAudioElement | null}> = ({ auRef }) => {
         {/* End Mid Controls Button */}
 
         {/* Right Controls Button */}
-        <div className="flex justify-center items-center">
-          {/* <LyricControl /> */}
+        <div className='flex items-center justify-center'>
+          <LyricControl />
           <RepeatControl />
           <ShuffleControl />
           <VolumeControl auRef={auRef} />

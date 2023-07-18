@@ -31,7 +31,7 @@ const PreviousControl: React.FC = () => {
   return (
     <button
       // onClick={handleNextSong}
-      className="mx-2 my-0 style__buttons" title="Previous Song"
+      className="mx-2 my-0 " title="Previous Song"
     >
       <ArrowBackIosIcon  />
     </button>

@@ -15,8 +15,8 @@ const LyricControl:React.FC = () => {
     <div
       onClick={ handleOpenLyrics }
     >
-      <button className="mx-2 my-0 style__buttons" title="Lyric & Karaoke">
-        <IconLyric setColor="var(--color-text)" setWidth="16px" setHeight="16px" />
+      <button className="mx-2 my-0 " title="Lyric & Karaoke">
+        <IconLyric setColor="var(--color-text)" setWidth="24px" setHeight="24px" />
       </button>
     </div>
   )

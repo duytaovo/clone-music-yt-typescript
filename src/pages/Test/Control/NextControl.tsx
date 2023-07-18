@@ -33,7 +33,7 @@ const NextControl: React.FC = () => {
   return (
     <button
       // onClick={handleNextSong}
-      className="mx-2 my-0 style__buttons"
+      className="mx-2 my-0 "
       title="Next Song"
     >
       <ArrowForwardIosIcon/>
