@@ -5,7 +5,6 @@ import NextArrow from '../NextArrow'
 import PrevArrow from '../PreArrow/PreArrow'
 import getBreakpoint from 'src/utils/getBreakpoint'
 import { Item, List } from 'src/types/types.type'
-import MediaControlCard from '../Card'
 import { Key } from 'react'
 import MediaControlCardComponent from './component'
 
@@ -17,14 +16,6 @@ interface Item2 {
 export default function Banner({
   song,
   img,
-  sectionType,
-  viewType,
-  title,
-  link,
-  sectionId,
-  items,
-  itemType,
-  numberItem
 }: Item & Item2) {
   const breakpoints = getBreakpoint([1, 1, 2, 2, 3, 3])
   const settings = {

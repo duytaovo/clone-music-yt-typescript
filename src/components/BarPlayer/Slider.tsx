@@ -46,13 +46,6 @@ const Slider: React.FC<sliderProps> = ({ setWidth, setHeight, percentSlider, get
         onMouseOut={() => handleActiveSliderDotHover(false)}
         ref={sliderRef}
         onMouseDown={(e) => {
-          /*
-            |-------------------|------|----------------|------|
-            ^                   ^      ^                ^
-            |<--Bounding Left-->|      |                |
-            |<-----------clientX------>|                |
-            |<-------------Slider Offset Width--------->|
-          */
 
           if(sliderRef.current) {
 

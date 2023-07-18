@@ -6,7 +6,6 @@ import {
   getAccessTokenFromLS,
   getRefreshTokenFromLS,
   setAccessTokenToLS,
-  setProfileToLS,
   setRefreshTokenToLS
 } from './auth'
 import { isAxiosExpiredTokenError, isAxiosUnauthorizedError } from './utils'

@@ -2,8 +2,7 @@ import { useTheme } from '@mui/material/styles'
 import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
 import CardMedia from '@mui/material/CardMedia'
-import { CardContent, CardHeader, IconButton, Typography } from '@mui/material'
-import PlayArrowIcon from '@mui/icons-material/PlayArrow'
+import { IconButton } from '@mui/material'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
 interface Props {
   song: any
@@ -54,42 +53,6 @@ export default function MediaControlCardComponent({ song, img }: Props) {
         >
           <MoreVertIcon />
         </IconButton>
-        {/* <CardHeader
-          sx={{
-            position: 'absolute',
-            // transform: 'translate(210%,0)',
-            // right: '0%',
-            margin: 'auto',
-            color: 'white',
-            '&:hover': {
-              backgroundColor: 'Black',
-              opacity: [0.9, 0.8, 0.7],
-              color: 'white'
-            }
-          }}
-          action={
-            <IconButton aria-label='settings'>
-              <MoreVertIcon />
-            </IconButton>
-          }
-        /> */}
-        {/* <IconButton
-          aria-label='play/pause'
-          sx={{
-            position: 'absolute',
-            transform: `${`translate(210%,0)`} `,
-            top: '35%',
-            margin: 'auto',
-            color: 'white',
-            '&:hover': {
-              backgroundColor: 'Black',
-              opacity: [0.9, 0.8, 0.7],
-              color: 'white'
-            }
-          }}
-        >
-          <PlayArrowIcon sx={{ height: 38, width: 38 }} />
-        </IconButton> */}
       </Card>
     </div>
   )
