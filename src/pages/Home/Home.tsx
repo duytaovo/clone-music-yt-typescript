@@ -8,7 +8,6 @@ import Tags from 'src/components/Tags/Tags'
 import { useAppDispatch } from 'src/hooks/useRedux'
 import { getChart, getSongs } from 'src/store/slices/song'
 import { AppDispatch, RootState } from 'src/store/store'
-import { List, Song } from 'src/types/types.type'
 import Partner from 'src/components/Partner'
 
 export default function Home() {

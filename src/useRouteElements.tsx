@@ -2,7 +2,6 @@ import path from 'src/constants/path'
 import { useContext, lazy, Suspense } from 'react'
 import { Navigate, Outlet, useRoutes } from 'react-router-dom'
 import MainLayout from './layouts/MainLayout'
-import Test from './pages/Test/Test'
 
 const Home = lazy(() => import('./pages/Home'))
 const Player = lazy(() => import('./pages/Player'))
@@ -35,7 +34,7 @@ export default function useRouteElements() {
           path: path.test,
           element: (
             <Suspense>
-              <Test />
+              {/* <Test /> */}
             </Suspense>
           )
         },
