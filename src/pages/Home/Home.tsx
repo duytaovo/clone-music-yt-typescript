@@ -9,14 +9,18 @@ import { useAppDispatch } from 'src/hooks/useRedux'
 import { getChart, getSongs } from 'src/store/slices/song'
 import { AppDispatch, RootState } from 'src/store/store'
 import Partner from 'src/components/Partner'
+import Sekeleton from 'src/components/Skeleton'
 
 export default function Home() {
   const { songs, error,chart } = useSelector((state: RootState) => state.songs)
+  const { loading} = useSelector((state: RootState) => state.loading)
   const dispatch = useAppDispatch()
   useEffect(() => {
     dispatch(getSongs(''))
     dispatch(getChart(''))
   }, [])
+
+  console.log(chart)
   return (
     <div className='container'>
       <Tags />
@@ -30,7 +34,9 @@ export default function Home() {
           {song.sectionType === 'new-release' &&  <ItemSongHome song={song} />}
           </div>
       ))}
-      {chart !== undefined && <Chart chartHome={chart}/> }
+      {
+        loading>0 ? <Sekeleton/> : <Chart chartHome={chart}/>
+      }
       {songs && <Partner/>}
     </div>
   )
