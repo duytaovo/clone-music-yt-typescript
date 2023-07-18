@@ -24,20 +24,23 @@ export default function Home() {
   return (
     <div className='container'>
       <Tags />
-      {songs.map((song: any, index: number) => (
-        <div
-          key={index}
-        >
-          {' '}
-          {song.sectionType === 'banner' && <Banner numberItem= {3} song={song} img={''} />}
-          {song.sectionType === 'playlist' &&  <Carousel numberItem={5} song={song} img={''}/>}
-          {song.sectionType === 'new-release' &&  <ItemSongHome song={song} />}
-          </div>
-      ))}
       {
-        loading>0 ? <Sekeleton/> : <Chart chartHome={chart}/>
-      }
-      {songs && <Partner/>}
+        loading>0 ? <Sekeleton/> :
+        <div>
+
+          {songs.map((song: any, index: number) => (
+            <div
+              key={index}
+            >
+              {' '}
+              {song.sectionType === 'banner' && <Banner numberItem= {3} song={song} img={''} />}
+              {song.sectionType === 'playlist' &&  <Carousel numberItem={5} song={song} img={''}/>}
+              {song.sectionType === 'new-release' &&  <ItemSongHome song={song} />}
+              </div>
+          ))}
+          <Chart chartHome={chart}/>
+          {songs && <Partner/>}
+        </div>}
     </div>
   )
 }
