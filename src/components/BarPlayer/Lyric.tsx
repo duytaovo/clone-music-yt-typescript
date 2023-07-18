@@ -32,7 +32,7 @@ const Lyric:React.FC<{auRef: HTMLAudioElement | null}> = ({auRef}) => {
   return (
     <>
       <div
-        className={ "fixed inset-0 z-[200] bg-[#4F2B4F] transition-all ease-linear duration-300 " + ( isLyric ? "animate-[lyric-up_1s]" : "hidden" )}
+        className={ "fixed inset-0 z-[200] bg-[#4F2B4F] transition-all ease-in-out duration-300 " + ( isLyric ? "animate-[lyric-up_1s]" : "hidden" )}
         ref={lyrRef}
       >
         {/* Close Button */}
