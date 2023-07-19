@@ -8,8 +8,7 @@ interface Props {
   song: any
   img: any
 }
-export default function MediaControlCardComponent({ song, img }: Props) {
-  const theme = useTheme()
+export default function MediaControlCardComponent({ song }: Props) {
   return (
     <div
       className='

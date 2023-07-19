@@ -1,7 +1,5 @@
-import * as React from 'react'
 import Grid from '@mui/material/Grid'
 import Box from '@mui/material/Box'
-import Typography from '@mui/material/Typography'
 import Skeleton from '@mui/material/Skeleton'
 
 const data = [
@@ -52,7 +50,6 @@ interface MediaProps {
 
 function Media(props: MediaProps) {
   const { loading = false } = props
-  console.log(loading)
   return (
     <Grid container wrap='wrap' sx={{ bgcolor: '#302639' }}>
       {(loading ? Array.from(new Array(8)) : data).map((item, index) => (

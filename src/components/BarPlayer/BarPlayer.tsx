@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { createContext, useContext, useEffect, useRef, useState } from 'react'
 import { useAppDispatch, useAppSelector } from 'src/hooks/useRedux'
 import Control from './Control'
-
+import { useLocation, useNavigate } from 'react-router-dom' ;
 import {
   changeIconPlay,
   setCurrentTime,
@@ -15,19 +15,22 @@ import {
 import { getSongDetail, getSongSound } from 'src/store/slices/playlist'
 import { unwrapResult } from '@reduxjs/toolkit'
 import Lyric from './Lyric'
+import { AppContext } from 'src/contexts/app.context';
 
 interface Props {
   songDetail:any,
 }
 
+
 const BarPlayer = ({ songDetail}: Props) => {
   const srcAudio = useAppSelector((state) => state.audio.srcAudio)
   const isLoop = useAppSelector((state) => state.audio.isLoop)
   const songId = useAppSelector((state) => state.audio.songId)
+  const routes = useAppSelector((state) => state.playlist.routes)
   // const songDetail = useAppSelector((state) => state.audio.songDetail)
   const currnetIndexPlaylist = useAppSelector((state) => state.audio.currnetIndexPlaylist)
   const playlistSong: any = useAppSelector((state) => state.audio.playlistSong)
-
+  
   const dispatch = useAppDispatch()
 
   const audioRef = useRef<HTMLAudioElement | null>(null)
@@ -55,11 +58,30 @@ const BarPlayer = ({ songDetail}: Props) => {
       }
     })()
   }, [dispatch,songId])
+  ///////
+  const { isPlaying, setPlaying } = useContext(AppContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  // Handle click on the music player bar
+  const handleClick = () => {
+    if (isPlaying) {
+      navigate(routes[1]);
+      setPlaying(false);
+    } else {
+      navigate(routes[0]);
+      setPlaying(true);
+    }
+  };
 
+  useEffect(() => {
+    // Replace '/music/song1' with the actual music URL format in your application
+    const isMusicPage = location.pathname.startsWith(routes[1]);
+    setPlaying(isMusicPage);
+  }, [location.pathname, setPlaying]);
   return (
     <>
       {
-        <div className='fixed inset-x-0 bottom-0 font-normal text-white z-[100] flex h-16 flex-col justify-around bg-[#4F1F6F] backdrop-blur-[30px] backdrop-saturate-[180%]'>
+        <div onClick={handleClick} className='fixed inset-x-0 bottom-0 font-normal text-white z-[100] flex h-16 flex-col justify-around bg-[#4F1F6F] backdrop-blur-[30px] backdrop-saturate-[180%]'>
           <Control auRef={audioRef.current} />
         </div>
       }
@@ -69,7 +91,7 @@ const BarPlayer = ({ songDetail}: Props) => {
         src={srcAudio}
         className='hidden'
         loop={isLoop}
-        autoPlay={true}
+        autoPlay={false}
         hidden
         onTimeUpdate={() => {
           if (audioRef.current) {

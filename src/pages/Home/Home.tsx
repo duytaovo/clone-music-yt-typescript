@@ -1,47 +1,61 @@
 import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import Banner from 'src/components/Banner/Banner'
 import { Chart } from 'src/components/Chart/Chart'
 import Carousel from 'src/components/Carousel/Carousel'
 import ItemSongHome from 'src/components/ItemSongHome/ItemSongHome'
 import Tags from 'src/components/Tags/Tags'
 import { useAppDispatch } from 'src/hooks/useRedux'
-import { getChart, getSongs } from 'src/store/slices/song'
-import { AppDispatch, RootState } from 'src/store/store'
+import { getChart, getSongs, setChart, setSongs } from 'src/store/slices/song'
+import { RootState } from 'src/store/store'
 import Partner from 'src/components/Partner'
 import Sekeleton from 'src/components/Skeleton'
 
 export default function Home() {
-  const { songs, error,chart } = useSelector((state: RootState) => state.songs)
-  const { loading} = useSelector((state: RootState) => state.loading)
+  const { songs, chart } = useSelector((state: RootState) => state.songs)
+  const { loading } = useSelector((state: RootState) => state.loading)
+  const [dataSongFrLocal,setDataSongFrLocal] = useState([])
+  const [dataChartFrLocal,setDataChartFrLocal] = useState([])
   const dispatch = useAppDispatch()
   useEffect(() => {
-    dispatch(getSongs(''))
-    dispatch(getChart(''))
-  }, [])
-
-  console.log(chart)
+    
+    const a = (async() =>{
+      const cachedDataSong = localStorage.getItem('cachedDataSong')
+      const cachedDataChart = localStorage.getItem('cachedDataChart')
+      if (cachedDataSong && cachedDataSong?.length > 0 && cachedDataChart) {
+        const parsedDataSong = JSON.parse(cachedDataSong)
+        const parsedDataChart = JSON.parse(cachedDataChart)
+        setDataSongFrLocal(parsedDataSong)
+        setDataChartFrLocal(parsedDataChart)
+      } else {
+        await dispatch(getSongs(''))
+        await dispatch(getChart(''))
+        localStorage.setItem('cachedDataSong', JSON.stringify(songs))
+        localStorage.setItem('cachedDataChart', JSON.stringify(chart))
+      }
+    })
+    a()
+  }, [dispatch])
+  
   return (
     <div className='container'>
       <Tags />
-      {
-        loading>0 ? <Sekeleton/> :
+      {loading > 0 ? (
+        <Sekeleton />
+      ) : (
         <div>
-
-          {songs.map((song: any, index: number) => (
-            <div
-              key={index}
-            >
+          {dataSongFrLocal?.map((song: any, index: number) => (
+            <div key={index}>
               {' '}
-              {song.sectionType === 'banner' && <Banner numberItem= {3} song={song} img={''} />}
-              {song.sectionType === 'playlist' &&  <Carousel numberItem={5} song={song} img={''}/>}
-              {song.sectionType === 'new-release' &&  <ItemSongHome song={song} />}
-              </div>
+              {song.sectionType === 'banner' && <Banner numberItem={3} song={song} img={''} />}
+              {song.sectionType === 'playlist' && <Carousel numberItem={5} song={song} img={''} />}
+              {song.sectionType === 'new-release' && <ItemSongHome song={song} />}
+            </div>
           ))}
-          <Chart chartHome={chart}/>
-          {songs && <Partner/>}
-        </div>}
+          <Chart chartHome={dataChartFrLocal} />
+          {songs && <Partner />}
+        </div>
+      )}
     </div>
   )
 }
-

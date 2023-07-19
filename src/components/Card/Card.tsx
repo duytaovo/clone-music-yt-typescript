@@ -1,17 +1,10 @@
-import { makeStyles, useTheme } from '@mui/material/styles'
-import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
-import CardMedia from '@mui/material/CardMedia'
-import { CardContent, CardHeader, IconButton, Typography } from '@mui/material'
+import {  IconButton, Typography } from '@mui/material'
 import PlayArrowIcon from '@mui/icons-material/PlayArrow'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
-import { StyleHTMLAttributes, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { useParams } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-import { RootState } from 'src/store/store'
-import { useAppDispatch } from 'src/hooks/useRedux'
-import { getPlayList } from 'src/store/slices/playlist'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { useAppDispatch, useAppSelector } from 'src/hooks/useRedux'
+import { addUrlToHistory, removeFirstUrl, updateHistory} from 'src/store/slices/playlist'
 
 interface Props {
   song: any
@@ -20,17 +13,25 @@ interface Props {
 
 export default function MediaControlCard({ song }: Props) {
   const navigate = useNavigate()
+  const routes = useAppSelector((state) => state.playlist.routes)
+  const dispatch = useAppDispatch()
 
+  console.log(routes)
+  
   return (
     <div>
       <Card
         sx={{ display: 'flex', cursor: 'pointer' }}
-        onClick={() => {
+        onClick={async () => {
+          if(`/player/${song.encodeId}` !== routes[0] && `/player/${song.encodeId}` !== routes[1]){
+            dispatch(updateHistory(`/player/${song.encodeId}`))
+          }
           navigate(`/player/${song.encodeId}`)
         }}
       >
-        <div className='relative inline-block'>
-          <img src={song.banner || song.thumbnail} className='relative cursor-pointer ' alt='' />
+        <div className='relative inline-block  group'>
+          <img src={song.banner || song.thumbnail} className='transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110 duration-300 relative hover:opacity-50 hover:shadow-lg cursor-pointer ' alt='' />
+          <div className="">
           <IconButton
             aria-label='play/pause'
             sx={{
@@ -49,6 +50,7 @@ export default function MediaControlCard({ song }: Props) {
           >
             <PlayArrowIcon sx={{ height: 38, width: 38 }} />
           </IconButton>
+          </div>
         </div>
         <IconButton
           sx={{

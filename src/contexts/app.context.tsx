@@ -5,7 +5,11 @@ interface AppContextInterface {
   isAuthenticated: boolean
   setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean>>
   reset: () => void
+  isPlaying: boolean;
+  setPlaying: (isPlaying: boolean) => void;
+
 }
+
 
 export const getInitialAppContext: () => AppContextInterface = () => ({
   isAuthenticated: Boolean(getAccessTokenFromLS()),
@@ -14,7 +18,10 @@ export const getInitialAppContext: () => AppContextInterface = () => ({
   setProfile: () => null,
   extendedPurchases: [],
   setExtendedPurchases: () => null,
-  reset: () => null
+  reset: () => null,
+  isPlaying:false,
+  setPlaying: () => {},
+
 })
 
 const initialAppContext = getInitialAppContext()
@@ -29,6 +36,7 @@ export const AppProvider = ({
   defaultValue?: AppContextInterface
 }) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(defaultValue.isAuthenticated)
+  const [isPlaying, setPlaying] = useState(false);
 
   const reset = () => {
     setIsAuthenticated(false)
@@ -39,7 +47,9 @@ export const AppProvider = ({
       value={{
         isAuthenticated,
         setIsAuthenticated,
-        reset
+        reset,
+        isPlaying, 
+        setPlaying
       }}
     >
       {children}

@@ -26,7 +26,6 @@ const VideoPlayer = ({ playListData, songThumbnail }: { playListData: any; songT
     }
   }
 
-  console.log(like)
   return (
     <div>
       {playListData !== undefined && (

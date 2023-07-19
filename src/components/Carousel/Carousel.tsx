@@ -3,8 +3,7 @@ import 'slick-carousel/slick/slick-theme.css'
 import 'slick-carousel/slick/slick.css'
 import NextArrow from '../NextArrow'
 import PrevArrow from '../PreArrow/PreArrow'
-import getBreakpoint from 'src/utils/getBreakpoint'
-import { Item, List } from 'src/types/types.type'
+import { Item} from 'src/types/types.type'
 import MediaControlCard from '../Card'
 import { Key } from 'react'
 
@@ -16,7 +15,6 @@ interface Item2 {
 export default function Carousel({
   song,
   img,
-  numberItem
 }: Item & Item2) {
   const settings = {
     speed: 500,
@@ -25,7 +23,7 @@ export default function Carousel({
     autoplay:true,
    //  fade:true,
     autoplaySpeed:4000,
-    nextArrow: <NextArrow numberItem={4} currentSlide={song?.items.length}/>,
+    nextArrow: <NextArrow numberItem={5} currentSlide={song?.items.length}/>,
     prevArrow: <PrevArrow />,
    //  responsive: [
    //    {

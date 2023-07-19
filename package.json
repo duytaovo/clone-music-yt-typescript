@@ -52,8 +52,10 @@
     "react-router-dom": "^6.4.3",
     "react-slick": "^0.29.0",
     "react-toastify": "^9.1.1",
+    "react-transition-group": "^4.4.5",
     "react-use-audio-player": "^2.1.0",
     "slick-carousel": "^1.8.1",
+    "styled-components": "^6.0.4",
     "yup": "^0.32.11",
     "zustand": "^4.3.9"
   },

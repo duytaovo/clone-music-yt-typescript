@@ -27,7 +27,12 @@ const songSlice = createSlice({
   name: 'song',
   initialState,
   reducers: {
-    
+    setSongs: (state, action: PayloadAction<string>) => {
+      state.songs = action.payload
+    },
+    setChart: (state, action: PayloadAction<string>) => {
+      state.songs = action.payload
+    },
   },
   extraReducers: builder => {
     // The `builder` callback form is used here because it provides correctly typed reducers from the action creators
@@ -40,7 +45,7 @@ const songSlice = createSlice({
     })
   }
 });
-
+export const {setSongs,setChart} = songSlice.actions
 
 const songReducer = songSlice.reducer;
 export default songReducer
