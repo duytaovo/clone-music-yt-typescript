@@ -6,7 +6,7 @@ import Carousel from 'src/components/Carousel/Carousel'
 import ItemSongHome from 'src/components/ItemSongHome/ItemSongHome'
 import Tags from 'src/components/Tags/Tags'
 import { useAppDispatch } from 'src/hooks/useRedux'
-import { getChart, getSongs, setChart, setSongs } from 'src/store/slices/song'
+import { getChart, getSongs} from 'src/store/slices/song'
 import { RootState } from 'src/store/store'
 import Partner from 'src/components/Partner'
 import Sekeleton from 'src/components/Skeleton'
@@ -36,7 +36,7 @@ export default function Home() {
     })
     a()
   }, [dispatch])
-  
+
   return (
     <div className='container'>
       <Tags />
@@ -53,7 +53,7 @@ export default function Home() {
             </div>
           ))}
           <Chart chartHome={dataChartFrLocal} />
-          {songs && <Partner />}
+          {<Partner />}
         </div>
       )}
     </div>

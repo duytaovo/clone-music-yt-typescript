@@ -1,52 +1,26 @@
 // src/components/AnimatedTransition.tsx
-import React from 'react';
-import styled, { keyframes } from 'styled-components';
-
-const fadeIn = keyframes`
-  from {
-    opacity: 0;
-    transform: translateY(50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-`;
-
-const fadeOut = keyframes`
-  from {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateY(-50px);
-  }
-`;
-
-const TransitionContainer = styled.div`
-  position: relative;
-  width: 100%;
-  height: 100%;
-  animation-duration: 500ms;
-  animation-fill-mode: both;
-
-  &.fade-appear,
-  &.fade-enter {
-    animation-name: ${fadeIn};
-  }
-
-  &.fade-exit {
-    animation-name: ${fadeOut};
-  }
-`;
+import React, { useRef } from 'react'
+import { CSSTransition } from 'react-transition-group'
+import './styles.css'
 
 interface AnimatedTransitionProps {
-  children: React.ReactNode;
+  children: React.ReactNode
 }
 
 const AnimatedTransition: React.FC<AnimatedTransitionProps> = ({ children }) => {
-  return <TransitionContainer>{children}</TransitionContainer>;
-};
+  const nodeRef = useRef(null)
+  return (
+    <CSSTransition
+    nodeRef={nodeRef}
+    in={true}
+    appear={true}
+    timeout={300}
+    classNames="fade"
+    
+  >
+    <div ref={nodeRef}>{children}</div>
+  </CSSTransition>
+  )
+}
 
-export default AnimatedTransition;
+export default AnimatedTransition

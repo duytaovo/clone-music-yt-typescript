@@ -1,4 +1,4 @@
-import { memo, useEffect, useState } from 'react'
+import { memo, useEffect, useRef, useState } from 'react'
 import { Outlet, useParams } from 'react-router-dom'
 import Footer from 'src/components/Footer'
 import Header from 'src/components/Header'
@@ -17,32 +17,41 @@ function MainLayoutInner({ children }: Props) {
   const dispatch = useAppDispatch()
   const songDetail = useAppSelector((state) => state.audio.songDetail)
 
-  const { id } = useParams();
-  
+  const { id } = useParams()
+
   useEffect(() => {
     dispatch(getPlayList(id))
   }, [])
 
   useEffect(() => {
-    (
-      async () => {
-          dispatch(setPlaylistSong(playlist?.data?.data?.data?.song?.items))
-      }
-    )()
+    ;(async () => {
+      dispatch(setPlaylistSong(playlist?.data?.data?.data?.song?.items))
+    })()
   }, [playlist, dispatch])
 
-  const onClick = (value:string) =>{
-    dispatch(setSongId(
-      value
-    ))
-    dispatch(changeIconPlay( true ))
+  const onClick = (value: string) => {
+    dispatch(setSongId(value))
+    dispatch(changeIconPlay(true))
   }
+
+  const ref = useRef<HTMLDivElement>(null)
+
+  const handleOnClick = () => {
+    if (ref.current) {
+      ref.current.classList.remove('animate-[lyric-up_1s]')
+      ref.current.classList.add('animate-[lyric-down_1s]')
+    } else {
+    }
+  }
+
   return (
-    <div className='h-100vh w-[100vw] bg'>
-        <Header />
+    <div className='h-100vh bg w-[100vw]'>
+      <Header />
       {children}
       <Outlet />
-      <BarPlayer  songDetail={songDetail}/>
+      <div ref={ref} onClick={handleOnClick}>
+        <BarPlayer songDetail={songDetail} />
+      </div>
       {/* <Footer /> */}
     </div>
   )

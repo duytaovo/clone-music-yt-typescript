@@ -3,7 +3,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import songApi from 'src/apis/home.api';
 import lyricApi from 'src/apis/lyric.api';
-import { List, Song } from 'src/types/types.type';
 import { payloadCreator } from 'src/utils/utils';
 
 

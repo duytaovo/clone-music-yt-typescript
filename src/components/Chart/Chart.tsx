@@ -1,11 +1,8 @@
-import React from 'react'
 import { ItemChart } from './Component/ItemChart'
 import LineChart from '../LineChart/LineChart'
 
 export const Chart = ({ chartHome }: any) => {
-  const chartStyle = {
-    height: 300, // Chiều cao mong muốn (đơn vị: pixel)
-  };
+
   return (
     <div>
       {chartHome && <div className='bg-[#4f1f6f] mt-5 rounded'>

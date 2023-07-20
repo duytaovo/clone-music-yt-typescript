@@ -1,0 +1,58 @@
+.wipe-appear,
+.wipe-enter {
+  /* opacity: 0; */
+  transform: translateY(100%);
+  animation: wipeInUpEnterAnimation 600ms ease-in-out;
+}
+
+.wipe-exit {
+  /* opacity: 1; */
+  transform: translateY(0);
+  animation: wipeInUpExitAnimation 600ms ease-in-out;
+}
+
+@keyframes wipeInUpEnterAnimation {
+  from {
+    opacity: 0;
+    transform: translateY(0%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(100%);
+  }
+}
+
+@keyframes wipeInUpExitAnimation {
+  from {
+    opacity: 1;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(0%);
+  }
+}
+
+.wipe-appear,
+.wipe-enter {
+  transform: translateY(100%);
+  animation: wipeInUpEnterAnimation 600ms ease-in-out;
+}
+
+.wipe-appear-active,
+.wipe-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 500ms, transform 500ms;
+}
+
+.wipe-exit {
+  transform: translateY(0);
+  animation: wipeInUpExitAnimation 600ms ease-in-out;
+}
+
+.wipe-exit-active {
+  opacity: 0;
+  transform: translateY(-50px);
+  transition: opacity 500ms, transform 500ms;
+}

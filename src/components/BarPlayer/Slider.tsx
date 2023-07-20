@@ -14,25 +14,19 @@ const Slider: React.FC<sliderProps> = ({ setWidth, setHeight, percentSlider, get
 
   const sliderRef = useRef<HTMLDivElement>(null)
 
-  // Active UI Dot Slider Hover
   const [isActiveSliderDotHover, setActiveSliderDotHover] = useState<boolean>(false)
 
-  // Active UI Tooltip Dot Hover
   const [isActiveSliderTooltipHover, setActiveSliderTooltipHover] = useState<boolean>(false)
 
-  // Handler Active Dot Slider Hover
   const handleActiveSliderDotHover = (handle: boolean) => {
     setActiveSliderDotHover(handle)
   }
 
-  // Handler Active Tooltip Dot Hover
   const handleActiveSliderTooltipHover = (handle: boolean) => {
     setActiveSliderTooltipHover(handle)
   }
 
   return (
-    // Slider Bar
-    // w-full || w-[84px]
     <div
       className="my-[-6px] cursor-pointer"
       style={{
@@ -64,7 +58,6 @@ const Slider: React.FC<sliderProps> = ({ setWidth, setHeight, percentSlider, get
           }
 
           const handleMouseMove = (e: MouseEvent) => {
-            // console.log("Mouse Move")
             if(sliderRef.current) {
               let percentSliderWidth  = (
                   (e.clientX - sliderRef.current.getBoundingClientRect().left)
@@ -81,14 +74,11 @@ const Slider: React.FC<sliderProps> = ({ setWidth, setHeight, percentSlider, get
             }
           }
 
-          // Add Event Mouse Move
           window.addEventListener("mousemove", handleMouseMove)
 
-          // Add Event Mouse Up
           window.addEventListener(
             "mouseup",
             () => {
-            // Remove Event Mouse Move
               window.removeEventListener("mousemove", handleMouseMove)
             }
           )
@@ -102,7 +92,6 @@ const Slider: React.FC<sliderProps> = ({ setWidth, setHeight, percentSlider, get
           }}
         >
           {/* React Slider Progress
-            * Change Slider Progress -> width: 23%
           */}
           <div
             className="top-0 left-[0%] absolute z-[1] bg-[#335eea] rounded-[15px]"
@@ -114,7 +103,6 @@ const Slider: React.FC<sliderProps> = ({ setWidth, setHeight, percentSlider, get
           {/* End React Slider Process  */}
 
           {/* React Slider Dot
-            * Change Slider Dot -> left: 23%
           */}
           <div
             className="absolute z-[5] w-3 h-3 top-[50%] translate-x-[-50%] translate-y-[-50%] transition-[left]"
@@ -125,7 +113,7 @@ const Slider: React.FC<sliderProps> = ({ setWidth, setHeight, percentSlider, get
             {/* Dot Handle */}
             <div
               className={"cursor-pointer w-full h-full rounded-full bg-[#fff] box-border " +
-                (isActiveSliderDotHover ? "visible": "invisible")
+                (isActiveSliderDotHover ? "visible": "visible")
               }
               onMouseOver={() => handleActiveSliderTooltipHover(true)}
               onMouseOut={() => handleActiveSliderTooltipHover(false)}
@@ -134,7 +122,7 @@ const Slider: React.FC<sliderProps> = ({ setWidth, setHeight, percentSlider, get
             {/* End Dot Handle */}
             {
               // Dot Tooltip
-              toogleTooltip &&
+              toogleTooltip  &&
               <div className={"top-[-10px] left-1/2 -translate-x-1/2 -translate-y-full absolute " +(isActiveSliderTooltipHover ? "visible" : "invisible")}>
                 <div className="text-sm font-medium whitespace-nowrap px-[6px] py-[2px] min-w-[20px] text-center text-[#000] rounded-[5px] bg-[#fff] box-content">
                   <span>{getDuration(currentTimeSongTooltip || 0)}</span>

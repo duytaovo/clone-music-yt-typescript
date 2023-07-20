@@ -1,10 +1,11 @@
 import Card from '@mui/material/Card'
-import {  IconButton, Typography } from '@mui/material'
+import { IconButton, Typography } from '@mui/material'
 import PlayArrowIcon from '@mui/icons-material/PlayArrow'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from 'src/hooks/useRedux'
-import { addUrlToHistory, removeFirstUrl, updateHistory} from 'src/store/slices/playlist'
+import { addUrlToHistory, updateHistory, updateRouteCurrent, updateRoutePre } from 'src/store/slices/playlist'
+import { useEffect } from 'react'
 
 interface Props {
   song: any
@@ -13,43 +14,42 @@ interface Props {
 
 export default function MediaControlCard({ song }: Props) {
   const navigate = useNavigate()
-  const routes = useAppSelector((state) => state.playlist.routes)
   const dispatch = useAppDispatch()
 
-  console.log(routes)
-  
   return (
     <div>
       <Card
         sx={{ display: 'flex', cursor: 'pointer' }}
-        onClick={async () => {
-          if(`/player/${song.encodeId}` !== routes[0] && `/player/${song.encodeId}` !== routes[1]){
-            dispatch(updateHistory(`/player/${song.encodeId}`))
-          }
+        onClick={() => {
           navigate(`/player/${song.encodeId}`)
+          dispatch(updateRouteCurrent(`/player/${song.encodeId}`))
         }}
       >
-        <div className='relative inline-block  group'>
-          <img src={song.banner || song.thumbnail} className='transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110 duration-300 relative hover:opacity-50 hover:shadow-lg cursor-pointer ' alt='' />
-          <div className="">
-          <IconButton
-            aria-label='play/pause'
-            sx={{
-              position: 'absolute',
-              transform: 'translate(-50%, -50%)',
-              margin: 'auto',
-              top: '50%',
-              left: '50%',
-              color: 'white',
-              '&:hover': {
-                backgroundColor: 'Black',
-                opacity: [0.9, 0.8, 0.7],
-                color: 'white'
-              }
-            }}
-          >
-            <PlayArrowIcon sx={{ height: 38, width: 38 }} />
-          </IconButton>
+        <div className='group relative  inline-block'>
+          <img
+            src={song.banner || song.thumbnail}
+            className='relative cursor-pointer transition delay-100 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 hover:opacity-50 hover:shadow-lg '
+            alt=''
+          />
+          <div className=''>
+            <IconButton
+              aria-label='play/pause'
+              sx={{
+                position: 'absolute',
+                transform: 'translate(-50%, -50%)',
+                margin: 'auto',
+                top: '50%',
+                left: '50%',
+                color: 'white',
+                '&:hover': {
+                  backgroundColor: 'Black',
+                  opacity: [0.9, 0.8, 0.7],
+                  color: 'white'
+                }
+              }}
+            >
+              <PlayArrowIcon sx={{ height: 38, width: 38 }} />
+            </IconButton>
           </div>
         </div>
         <IconButton

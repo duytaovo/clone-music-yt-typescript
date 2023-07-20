@@ -23,10 +23,10 @@ function App() {
   return (
     <HelmetProvider>
       <ErrorBoundary>
-        <AnimatedTransition key={location.pathname}>
+        {/* <AnimatedTransition key={location.pathname}> */}
         <Loading />
         {routeElements}
-        </AnimatedTransition>
+        {/* </AnimatedTransition> */}
 
         <ToastContainer />
       </ErrorBoundary>

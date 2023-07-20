@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import LyricControl from './LyricControl'
 import NextControl from './NextControl'
 import PlayControl from './PlayControl'
@@ -9,8 +9,31 @@ import TrackInfo from './TrackInfo'
 import VolumeControl from './VolumeControl'
 import VolumeSliderControl from './VolumeSliderControl'
 import SongSliderControl from './SongSliderControl'
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
+import { IconButton } from '@mui/material'
+import { AppContext } from 'src/contexts/app.context'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { useAppSelector } from 'src/hooks/useRedux'
 
 const Control: React.FC<{ auRef: HTMLAudioElement | null }> = ({ auRef }) => {
+  const { isPlaying, setPlaying } = useContext(AppContext)
+  const navigate = useNavigate()
+  const location = useLocation()
+  const routes = useAppSelector((state) => state.playlist.routes)
+  const routePre = useAppSelector((state) => state.playlist.routePre)
+  const routeCurrent = useAppSelector((state) => state.playlist.routeCurrent)
+  // Handle click on the music player bar
+  const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    if (isPlaying) {
+      navigate(routeCurrent)
+      setPlaying(false)
+    } else {
+      navigate(routePre)
+      setPlaying(true)
+    }
+  }
+
+
   return (
     <>
       <SongSliderControl auRef={auRef} />
@@ -35,6 +58,20 @@ const Control: React.FC<{ auRef: HTMLAudioElement | null }> = ({ auRef }) => {
           <ShuffleControl />
           <VolumeControl auRef={auRef} />
           <VolumeSliderControl auRef={auRef} />
+          <div onClick={handleClick}>
+            <IconButton
+              sx={{
+                ml: 3,
+                '&:hover': {
+                  backgroundColor: 'Black',
+                  opacity: [0.9, 0.8, 0.7],
+                  color: 'white'
+                }
+              }}
+            >
+              <KeyboardArrowUpIcon sx={{ color: 'white' }} />
+            </IconButton>
+          </div>
         </div>
         {/* End Right Controls Button */}
       </div>
