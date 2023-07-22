@@ -11,16 +11,20 @@ export const getSongSound = createAsyncThunk('playlist/getSongSound', payloadCre
 
 interface SongState {
   playlist: any,
+  idPlayList:string,
   routes:string[],
   routePre:string,
   routeCurrent:string,
+  ref:any,
 }
 
 const initialState: SongState = {
   playlist: [],
+  idPlayList:"",
   routes:["/",""],
   routePre:"/",
-  routeCurrent:""
+  routeCurrent:"",
+  ref:"",
 
 }
 
@@ -48,9 +52,8 @@ const playListSlice = createSlice({
       localStorage.setItem("routePre", action.payload)
 
     },
-    updateRouteCurrent:(state,action:PayloadAction<string>) =>{
-      console.log(action.payload)
-      state.routePre = action.payload
+    updateIdPlayList:(state,action:PayloadAction<string>) =>{
+      state.idPlayList = action.payload
     },
   },
   extraReducers: builder => {
@@ -61,6 +64,6 @@ const playListSlice = createSlice({
   }
 });
 
-export const {addUrlToHistory,removeFirstUrl,updateHistory,updateRoutePre,updateRouteCurrent} = playListSlice.actions
+export const {addUrlToHistory,removeFirstUrl,updateHistory,updateRoutePre,updateIdPlayList} = playListSlice.actions
 const playListReducer = playListSlice.reducer;
 export default playListReducer

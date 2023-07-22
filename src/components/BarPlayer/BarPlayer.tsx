@@ -1,9 +1,10 @@
 import React, { createContext, useContext, useEffect, useRef, useState } from 'react'
 import { useAppDispatch, useAppSelector } from 'src/hooks/useRedux'
 import Control from './Control'
-import { useLocation, useNavigate } from 'react-router-dom' ;
+import { useLocation, useNavigate } from 'react-router-dom'
 import {
   changeIconPlay,
+  setAudioRef,
   setCurrentTime,
   setCurrnetIndexPlaylist,
   setDuration,
@@ -15,24 +16,28 @@ import {
 import { getSongDetail, getSongSound } from 'src/store/slices/playlist'
 import { unwrapResult } from '@reduxjs/toolkit'
 import Lyric from './Lyric'
+import { AppContext } from 'src/contexts/app.context'
 
 interface Props {
-  songDetail:any,
+  songDetail: any
 }
 
-
-const BarPlayer = ({ songDetail}: Props) => {
+const BarPlayer = ({ songDetail }: Props) => {
   const srcAudio = useAppSelector((state) => state.audio.srcAudio)
   const isLoop = useAppSelector((state) => state.audio.isLoop)
   const songId = useAppSelector((state) => state.audio.songId)
-  
+  const { isPlaying, setPlaying } = useContext(AppContext)
+
   // const songDetail = useAppSelector((state) => state.audio.songDetail)
   const currnetIndexPlaylist = useAppSelector((state) => state.audio.currnetIndexPlaylist)
   const playlistSong: any = useAppSelector((state) => state.audio.playlistSong)
-  
-  const dispatch = useAppDispatch()
 
   const audioRef = useRef<HTMLAudioElement | null>(null)
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    dispatch(setAudioRef(audioRef.current));
+  }, [dispatch]);
 
   useEffect(() => {
     ;(async () => {
@@ -40,8 +45,12 @@ const BarPlayer = ({ songDetail}: Props) => {
         if (songId === '') {
           console.log('Song id not found')
         } else {
-          await dispatch(getSongSound(songId)).then(unwrapResult).then(res =>  dispatch(setSrcAudio(res?.data?.data?.data['128'])))
-          await dispatch(getSongDetail(songId)).then(unwrapResult).then(res => dispatch(setSongDetail(res?.data?.data?.data)))
+          await dispatch(getSongSound(songId))
+            .then(unwrapResult)
+            .then((res) => dispatch(setSrcAudio(res?.data?.data?.data['128'])))
+          await dispatch(getSongDetail(songId))
+            .then(unwrapResult)
+            .then((res) => dispatch(setSongDetail(res?.data?.data?.data)))
           // await dispatch(changeIconPlay(true))
           dispatch(
             setInfoSongPlayer({
@@ -56,24 +65,24 @@ const BarPlayer = ({ songDetail}: Props) => {
         console.log(err)
       }
     })()
-  }, [dispatch,songId])
+  }, [dispatch, songId])
   ///////
 
 
   return (
     <>
-      {
-        <div  className='fixed inset-x-0 bottom-0 font-normal text-white z-[100] flex h-16 flex-col justify-around bg-[#4F1F6F] backdrop-blur-[30px] backdrop-saturate-[180%]'>
-            <Control auRef={audioRef.current} />
-        </div>
-      }
+      <div className={`inset-x-0 bottom-0 z-[100] flex h-16 flex-col justify-around bg-[#130C1C] font-normal text-white backdrop-blur-[30px] backdrop-saturate-[180%]
+      transition-all duration-300 fixed`}
+      >
+        <Control auRef={audioRef.current} />
+      </div>
 
       <audio
         ref={audioRef}
         src={srcAudio}
         className='hidden'
         loop={isLoop}
-        autoPlay={false}
+        autoPlay={true}
         hidden
         onTimeUpdate={() => {
           if (audioRef.current) {
@@ -108,7 +117,7 @@ const BarPlayer = ({ songDetail}: Props) => {
         }}
       />
 
-      <Lyric auRef={audioRef.current}/>
+      <Lyric auRef={audioRef.current} />
     </>
   )
 }

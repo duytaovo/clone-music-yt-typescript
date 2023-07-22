@@ -18,23 +18,22 @@ export default function Home() {
   const [dataChartFrLocal,setDataChartFrLocal] = useState([])
   const dispatch = useAppDispatch()
   useEffect(() => {
-    
-    const a = (async() =>{
-      const cachedDataSong = localStorage.getItem('cachedDataSong')
-      const cachedDataChart = localStorage.getItem('cachedDataChart')
-      if (cachedDataSong && cachedDataSong?.length > 0 && cachedDataChart) {
-        const parsedDataSong = JSON.parse(cachedDataSong)
-        const parsedDataChart = JSON.parse(cachedDataChart)
-        setDataSongFrLocal(parsedDataSong)
-        setDataChartFrLocal(parsedDataChart)
-      } else {
+    const getData = (async() =>{
+      // const cachedDataSong = localStorage.getItem('cachedDataSong')
+      // const cachedDataChart = localStorage.getItem('cachedDataChart')
+      // if (cachedDataSong && cachedDataSong?.length > 0 && cachedDataChart) {
+      //   const parsedDataSong = JSON.parse(cachedDataSong)
+      //   const parsedDataChart = JSON.parse(cachedDataChart)
+      //   setDataSongFrLocal(parsedDataSong)
+      //   setDataChartFrLocal(parsedDataChart)
+      // } else {
         await dispatch(getSongs(''))
         await dispatch(getChart(''))
-        localStorage.setItem('cachedDataSong', JSON.stringify(songs))
-        localStorage.setItem('cachedDataChart', JSON.stringify(chart))
-      }
+      //   localStorage.setItem('cachedDataSong', JSON.stringify(songs))
+      //   localStorage.setItem('cachedDataChart', JSON.stringify(chart))
+      // }
     })
-    a()
+    getData()
   }, [dispatch])
 
   return (
@@ -44,7 +43,7 @@ export default function Home() {
         <Sekeleton />
       ) : (
         <div>
-          {dataSongFrLocal?.map((song: any, index: number) => (
+          {songs?.map((song: any, index: number) => (
             <div key={index}>
               {' '}
               {song.sectionType === 'banner' && <Banner numberItem={3} song={song} img={''} />}
@@ -52,7 +51,7 @@ export default function Home() {
               {song.sectionType === 'new-release' && <ItemSongHome song={song} />}
             </div>
           ))}
-          <Chart chartHome={dataChartFrLocal} />
+          <Chart chartHome={chart} />
           {<Partner />}
         </div>
       )}

@@ -10,21 +10,24 @@ const AnimatedBarChart: React.FC = () => {
 
   useEffect(() => {
     // Mô phỏng việc cập nhật dữ liệu sau mỗi khoảng thời gian
-    const interval = setInterval(generateRandomData, 400);
+    const interval = setInterval(generateRandomData, 300);
     return () => clearInterval(interval);
   }, []);
 
   const generateRandomData = () => {
     const newData: DataPoint[] = [];
-    for (let i = 1; i <= 4; i++) {
+    for (let i = 1; i <= 50; i++) {
       newData.push({  value: Math.random() * 500 });
     }
     setData(newData);
   };
 
   return (
-    <BarChart width={50} height={50} data={data}>
-      <Bar dataKey="value" fill="white" animationDuration={400} />
+    <BarChart style={{
+        
+    }}
+    height={100} data={data} width={320}>
+      <Bar dataKey="value" fill="white" animationDuration={300} />
     </BarChart>
   );
 };

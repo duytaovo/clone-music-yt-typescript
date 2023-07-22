@@ -1,58 +1,57 @@
-.wipe-appear,
-.wipe-enter {
-  /* opacity: 0; */
-  transform: translateY(100%);
-  animation: wipeInUpEnterAnimation 600ms ease-in-out;
+/* WaveformIcon.css */
+.waveform-icon {
+  /* Thiết lập các thuộc tính của icon, chẳng hạn như kích thước, màu sắc, ... */
+  position: relative;
+  cursor: pointer;
 }
 
-.wipe-exit {
-  /* opacity: 1; */
-  transform: translateY(0);
-  animation: wipeInUpExitAnimation 600ms ease-in-out;
+.waveform-icon.playing .waveform span {
+  /* Animation cho các sóng khi phát nhạc */
+  animation: waveAnimation 0.5s linear infinite;
 }
 
-@keyframes wipeInUpEnterAnimation {
-  from {
-    opacity: 0;
-    transform: translateY(0%);
+@keyframes waveAnimation {
+  0% {
+    height: 0;
   }
-  to {
-    opacity: 1;
-    transform: translateY(100%);
+  10% {
+    height: 10%;
+  }
+  30% {
+    height: 30%;
+  }
+  50%{
+    height:20%
+  }
+  70%{
+    height:20%
+  }
+  90%{
+    height:20%
+  }
+  100%{
+    height:20%
   }
 }
 
-@keyframes wipeInUpExitAnimation {
-  from {
-    opacity: 1;
-    transform: translateY(100%);
-  }
-  to {
-    opacity: 0;
-    transform: translateY(0%);
-  }
+.waveform {
+  /* Các sóng của biểu tượng sóng */
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
 }
 
-.wipe-appear,
-.wipe-enter {
-  transform: translateY(100%);
-  animation: wipeInUpEnterAnimation 600ms ease-in-out;
-}
-
-.wipe-appear-active,
-.wipe-enter-active {
-  opacity: 1;
-  transform: translateY(0);
-  transition: opacity 500ms, transform 500ms;
-}
-
-.wipe-exit {
-  transform: translateY(0);
-  animation: wipeInUpExitAnimation 600ms ease-in-out;
-}
-
-.wipe-exit-active {
-  opacity: 0;
-  transform: translateY(-50px);
-  transition: opacity 500ms, transform 500ms;
+.waveform span {
+  /* Styling cho các sóng */
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 25%;
+  height: 0;
+  transform-origin: bottom;
+  color:aliceblue;
+  background:white;
 }

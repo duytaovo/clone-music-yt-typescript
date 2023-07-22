@@ -41,3 +41,8 @@ export interface Item {
    items?:any,
    itemType?:string
  }
+
+ export interface Path {
+   pathname?:string,
+   search?:string
+ }

@@ -2,7 +2,6 @@ import { useEffect, useState } from "react"
 import { useAppDispatch } from "./useRedux"
 import { getLyric } from "src/store/slices/song"
 import { unwrapResult } from "@reduxjs/toolkit"
-import { setOpenLyric } from "src/store/slices/audio"
 
 const useLyric = ( songId:string | null): any => {
 

@@ -30,6 +30,7 @@ interface AudioState {
   isLyric: boolean,
   songDetail:any,
   indexCardActive: number,
+  audioRef: any
 
 }
 
@@ -53,8 +54,11 @@ const initialState: AudioState = {
   playlistSong: [],
   isLyric: false,
   songDetail:{},
-  indexCardActive:0
+  indexCardActive:0,
+  audioRef: null,
 }
+
+
 
 const audioSlice = createSlice({
   name: "audio",
@@ -109,6 +113,9 @@ const audioSlice = createSlice({
     updateIndexCardActive: (state, action) => {
       state.indexCardActive = action.payload;
     },
+    setAudioRef:(state,action) =>{
+      state.audioRef=action.payload
+    }
   }
 })
 
@@ -127,7 +134,8 @@ export const {
   setCurrnetIndexPlaylist,
   setOpenLyric,
   setSongDetail,
-  updateIndexCardActive
+  updateIndexCardActive,
+  setAudioRef
 } = audioSlice.actions
 
 const audioReducer = audioSlice.reducer

@@ -31,3 +31,21 @@ body {
     transform: translateY(100%);
   }
 }
+
+@keyframes playlist-up {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0%);
+  }
+}
+
+@keyframes playlist-down {
+  from {
+    transform: translateY(0%);
+  }
+  to {
+    transform: translateY(90%);
+  }
+}

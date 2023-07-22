@@ -6,7 +6,9 @@ import useLyric from 'src/hooks/useLyric'
 import VideoPlayer from '../VideoPlayer'
 import { useSelector } from 'react-redux'
 import { RootState } from 'src/store/store'
-import { Grid } from '@mui/material'
+import { Grid, IconButton } from '@mui/material'
+import { useNavigate } from 'react-router-dom'
+import BarPlayer from './BarPlayer'
 
 const Lyric: React.FC<{ auRef: HTMLAudioElement | null }> = ({ auRef }) => {
   const isLyric = useAppSelector((state) => state.audio.isLyric)
@@ -17,7 +19,6 @@ const Lyric: React.FC<{ auRef: HTMLAudioElement | null }> = ({ auRef }) => {
   const songDetail = useAppSelector((state) => state.audio.songDetail)
 
   const dispatch = useAppDispatch()
-
   const lyrRef = useRef<HTMLDivElement>(null)
 
   const handleCloseLyric = () => {
@@ -38,21 +39,67 @@ const Lyric: React.FC<{ auRef: HTMLAudioElement | null }> = ({ auRef }) => {
     <>
       <div
         className={
-          'fixed inset-0 z-[200] bg-[#4F2B4F] transition-all duration-300 ease-in-out ' +
+          'fixed inset-0 z-[200] bg-[#282350] transition-all duration-300 ease-in-out ' +
           (isLyric ? 'animate-[lyric-up_1s]' : 'hidden')
         }
         ref={lyrRef}
       >
         {/* Close Button */}
-        <Grid container>
-          <Grid>
-            <VideoPlayer playListData={playlist} songThumbnail={songDetail} />
-          </Grid>
-          <Grid>
-            <button
-              className='fixed top-6 right-6 mx-3 my-3 cursor-pointer rounded-[25%] bg-transparent p-2 transition-all duration-200 hover:bg-[#c3cada]'
-              title='Close'
-              onClick={handleCloseLyric}
+        <div className='mb-10 grid h-full grid-flow-col grid-cols-3 py-16'>
+          <VideoPlayer playListData={playlist} songThumbnail={songDetail} />
+          <div className='mx-auto  flex h-full max-w-2xl flex-col overflow-y-auto overflow-x-hidden text-[28px] font-semibold text-[white]'>
+            <div className='mt-[10vh]'></div>
+            {/* Line Lyric */}
+            {lyric &&
+              lyric.map((e: { data: string; startTime: number; endTime: number }, index: number) => {
+                if (e.startTime <= currentTime * 1000 && currentTime * 1000 <= e.endTime) {
+                  document.getElementById(`line-${index}`)?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+                }
+                return (
+                  <div
+                    id={`line-${index}`}
+                    key={index}
+                    className={
+                      'my-[2px] mx-0 box-border rounded-xl px-[18px] py-3 transition-all duration-500 hover:text-[#c3cada] ' +
+                      (e.startTime <= currentTime * 1000 && currentTime * 1000 <= e.endTime
+                        ? 'origin-[center_left] scale-105 text-[yellow]'
+                        : '')
+                    }
+                    onDoubleClick={() => {
+                      if (auRef) {
+                        auRef.currentTime = e.startTime / 1000
+                      }
+                    }}
+                  >
+                    <span
+                      className={
+                        'inline-block cursor-pointer ' +
+                        (e.startTime <= currentTime * 1000 && currentTime * 1000 <= e.endTime
+                          ? 'opacity-100'
+                          : 'opacity-30')
+                      }
+                    >
+                      {e.data}
+                    </span>
+                  </div>
+                )
+              })}
+            {/* End Line Lyric*/}
+          </div>
+          <div
+            className='fixed top-6 right-6 mx-3 my-3 cursor-pointer rounded-[25%] bg-transparent p-2 transition-all duration-200 '
+            onClick={handleCloseLyric}
+          >
+            <IconButton title='Close lyric'
+            sx={
+              {
+                '&:hover': {
+                  backgroundColor: 'Black',
+                  opacity: [0.9, 0.8, 0.7],
+                  color: 'white'
+                }
+              }
+            }
             >
               <ArrowDropDownIcon
                 sx={{
@@ -61,50 +108,9 @@ const Lyric: React.FC<{ auRef: HTMLAudioElement | null }> = ({ auRef }) => {
                   height: '30px'
                 }}
               />
-            </button>
-          </Grid>
-          <Grid>
-            <div className='mx-auto my-0 flex h-full max-w-2xl flex-col overflow-y-auto overflow-x-hidden text-[28px] font-semibold text-[white]'>
-              <div className='mt-[50vh]'></div>
-              {/* Line Lyric */}
-              {lyric &&
-                lyric.map((e: { data: string; startTime: number; endTime: number }, index: number) => {
-                  if (e.startTime <= currentTime * 1000 && currentTime * 1000 <= e.endTime) {
-                    document.getElementById(`line-${index}`)?.scrollIntoView({ behavior: 'smooth', block: 'center' })
-                  }
-                  return (
-                    <div
-                      id={`line-${index}`}
-                      key={index}
-                      className={
-                        'my-[2px] mx-0 box-border rounded-xl px-[18px] py-3 transition-all duration-500 hover:bg-[#c3cada] ' +
-                        (e.startTime <= currentTime * 1000 && currentTime * 1000 <= e.endTime
-                          ? 'origin-[center_left] scale-105'
-                          : '')
-                      }
-                      onDoubleClick={() => {
-                        if (auRef) {
-                          auRef.currentTime = e.startTime / 1000
-                        }
-                      }}
-                    >
-                      <span
-                        className={
-                          'inline-block cursor-pointer ' +
-                          (e.startTime <= currentTime * 1000 && currentTime * 1000 <= e.endTime
-                            ? 'opacity-100'
-                            : 'opacity-30')
-                        }
-                      >
-                        {e.data}
-                      </span>
-                    </div>
-                  )
-                })}
-              {/* End Line Lyric*/}
-            </div>
-          </Grid>
-        </Grid>
+            </IconButton>
+          </div>
+        </div>
         {/* End Close Button */}
         {/* Lyric */}
 

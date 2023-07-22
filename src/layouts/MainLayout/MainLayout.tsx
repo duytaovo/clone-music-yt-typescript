@@ -7,12 +7,14 @@ import BarPlayer from 'src/components/BarPlayer'
 import { useSelector } from 'react-redux'
 import { useAppDispatch, useAppSelector } from 'src/hooks/useRedux'
 import { RootState } from 'src/store/store'
-import { getPlayList, getSongDetail, getSongSound } from 'src/store/slices/playlist'
-import { changeIconPlay, setPlaylistSong, setSongId } from 'src/store/slices/audio'
+import { getPlayList} from 'src/store/slices/playlist'
+import { setPlaylistSong } from 'src/store/slices/audio'
+import useRouteHistory from 'src/hooks/useRoutesHistory'
 interface Props {
   children?: React.ReactNode
 }
 function MainLayoutInner({ children }: Props) {
+  useRouteHistory()
   const { playlist } = useSelector((state: RootState) => state.playlist)
   const dispatch = useAppDispatch()
   const songDetail = useAppSelector((state) => state.audio.songDetail)
@@ -28,11 +30,6 @@ function MainLayoutInner({ children }: Props) {
       dispatch(setPlaylistSong(playlist?.data?.data?.data?.song?.items))
     })()
   }, [playlist, dispatch])
-
-  const onClick = (value: string) => {
-    dispatch(setSongId(value))
-    dispatch(changeIconPlay(true))
-  }
 
   const ref = useRef<HTMLDivElement>(null)
 

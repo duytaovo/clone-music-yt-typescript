@@ -12,28 +12,25 @@ import SongSliderControl from './SongSliderControl'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 import { IconButton } from '@mui/material'
 import { AppContext } from 'src/contexts/app.context'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useAppSelector } from 'src/hooks/useRedux'
 
 const Control: React.FC<{ auRef: HTMLAudioElement | null }> = ({ auRef }) => {
   const { isPlaying, setPlaying } = useContext(AppContext)
   const navigate = useNavigate()
-  const location = useLocation()
-  const routes = useAppSelector((state) => state.playlist.routes)
-  const routePre = useAppSelector((state) => state.playlist.routePre)
-  const routeCurrent = useAppSelector((state) => state.playlist.routeCurrent)
+  const {currentRoute,preRoute} = useAppSelector((state) => state.route.path)
+  
   // Handle click on the music player bar
   const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    if (isPlaying) {
-      navigate(routeCurrent)
+    e.stopPropagation()
+    if (isPlaying && preRoute) {
+      navigate(`${currentRoute?.pathname}`)
       setPlaying(false)
     } else {
-      navigate(routePre)
+      navigate(`${preRoute?.pathname}`)
       setPlaying(true)
     }
   }
-
-
   return (
     <>
       <SongSliderControl auRef={auRef} />
