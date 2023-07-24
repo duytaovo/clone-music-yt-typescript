@@ -10,9 +10,15 @@ import Popover from '@mui/material/Popover'
 
 import './styles.css'
 
+interface HeaderItem {
+  id: number
+  to: string
+  title: string
+}
+
 export default function Header() {
   const { i18n } = useTranslation()
-  const { t } = useTranslation('home')
+  const { t } = useTranslation()
   const currentLanguage = locales[i18n.language as keyof typeof locales]
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null)
 
@@ -26,31 +32,29 @@ export default function Header() {
 
   const open = Boolean(anchorEl)
   const id = open ? 'simple-popover' : undefined
-  const sidebarLink = [
-    {
-      list_top: [
+  const sidebarLink:HeaderItem[] = [
+  
         {
-          tiltle: 'home',
+          title: 'home',
           id: 1,
           to: '/'
         },
         {
-          tiltle: 'discover',
+          title: 'discover',
           id: 2,
           to: '/explore'
         },
         {
-          tiltle: 'library',
+          title: 'library',
           id: 3,
           to: '/library'
         },
         {
-          tiltle: 'upgrade',
+          title: 'upgrade',
           id: 4,
           to: '/'
         }
-      ]
-    }
+   
   ]
 
   const [isScrolled, setIsScrolled] = useState(false)
@@ -74,11 +78,11 @@ export default function Header() {
   }, [])
 
   const renderListLink = () => {
-    return sidebarLink[0].list_top.map((item) => {
+    return sidebarLink.map((item) => {
       return (
         <CustomLink to={item.to} key={item.id}>
-          <div className='inline-block px-5 text-[#c3cada]'>
-            <span className='animate-spin hover:text-blue-500'>{t('header.home')}</span>
+          <div className='inline-block px-5 text-[white]'>
+            <span className='animate-spin hover:text-blue-500'>{t('home')}</span>
           </div>
         </CustomLink>
       )

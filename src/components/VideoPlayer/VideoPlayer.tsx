@@ -5,7 +5,6 @@ import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
 import ShareIcon from '@mui/icons-material/Share'
 import FavoriteIcon from '@mui/icons-material/Favorite'
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
 import img from './imgzing.jpg'
 import PlayCircleFilledIcon from '@mui/icons-material/PlayCircleFilled'
@@ -15,11 +14,12 @@ import { useAppDispatch, useAppSelector } from 'src/hooks/useRedux'
 import AnimatedBarChart from '../AnimationPlayChart'
 import { changeIconPlay } from 'src/store/slices/audio'
 import { RootState } from 'src/store/store'
+import { Button } from '@mui/material'
 
 const VideoPlayer = ({ playListData, songThumbnail }: { playListData: any; songThumbnail: any }) => {
   const today = new Date()
   const time = today.getDate() + ':' + (today.getMonth() + 1) + ':' + today.getFullYear()
-  const {isPlay,audioRef} = useAppSelector((state:RootState) => state.audio)
+  const { isPlay, audioRef } = useAppSelector((state: RootState) => state.audio)
   let [like, setLike] = useState(Number(localStorage.getItem('like')))
   const dispatch = useAppDispatch()
 
@@ -35,34 +35,33 @@ const VideoPlayer = ({ playListData, songThumbnail }: { playListData: any; songT
   const handlePlaySong = () => {
     if (isPlay === true) {
       dispatch(changeIconPlay(false))
-      if(audioRef) {
+      if (audioRef) {
         audioRef.pause()
       }
     } else {
       dispatch(changeIconPlay(true))
-      if(audioRef) {
+      if (audioRef) {
         audioRef.play()
+      }
     }
-  }}
+  }
   return (
     <div>
       {playListData !== undefined && (
         <Card variant='outlined' sx={{ maxWidth: 350, ml: 3, mt: 2, backgroundColor: 'transparent' }}>
-          <div className='relative inline-block group/item hover:-translate-y-1 hover:scale-110 hover:opacity-50 hover:shadow-lg transition delay-100 duration-300 ease-in-out'>
-            <img src={songThumbnail?.thumbnailM || img} className='relative cursor-pointer rounded-lg  w-80' alt='' />
-            <div className="group/edit group-hover/item:visible invisible" onClick={handlePlaySong}>
+          <div className='shadow-box-shadow group/item relative inline-block transition delay-100 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 hover:opacity-50 hover:shadow-box-shadow'>
+            <img src={songThumbnail?.thumbnailM || img} className='relative w-80 cursor-pointer  rounded-lg' alt='' />
+            <div className='group/edit invisible group-hover/item:visible' onClick={handlePlaySong}>
               {isPlay ? (
                 <IconButton
                   aria-label='play/pause'
                   sx={{
                     position: 'absolute',
                     margin: 'auto',
-                    color: '#ffffff',
                     transform: 'translate(-50%, -50%)',
                     top: '50%',
                     left: '50%',
                     '&:hover': {
-                      backgroundColor: 'Black',
                       opacity: [0.9, 0.8, 0.7],
                       color: '#ffffff'
                     }
@@ -81,7 +80,6 @@ const VideoPlayer = ({ playListData, songThumbnail }: { playListData: any; songT
                     top: '50%',
                     left: '50%',
                     '&:hover': {
-                      backgroundColor: 'Black',
                       opacity: [0.9, 0.8, 0.7],
                       color: '#ffffff'
                     }
@@ -97,7 +95,7 @@ const VideoPlayer = ({ playListData, songThumbnail }: { playListData: any; songT
               </div>
             )}
           </div>
-          <CardContent>
+          <CardContent sx={{ display: 'flex', justifyContent: 'space-between',alignItems:"center",flexDirection:"column" }}>
             <Typography
               variant='h6'
               color='#ffffff'
@@ -118,8 +116,34 @@ const VideoPlayer = ({ playListData, songThumbnail }: { playListData: any; songT
             >
               Cập nhật ngày {time}
             </Typography>
+            <div onClick={handlePlaySong}>
+
+            {isPlay ? (
+              <Button
+                sx={{
+                  background: '#9B4DE0',
+                  borderRadius: '20px',
+                  color: '#ffffff',
+                  mt:3
+                }}
+              >
+                Tạm dừng
+              </Button>
+            ) : (
+              <Button
+                sx={{
+                  background: '#9B4DE0',
+                  borderRadius: '20px',
+                  mt:3,
+                  color: '#ffffff',
+                }}
+              >
+                Tiếp tục phát
+              </Button>
+            )}
+            </div>
           </CardContent>
-          <CardActions disableSpacing sx={{ display: 'flex', justifyContent: 'space-between' }}>
+          <CardActions disableSpacing sx={{ display: 'flex', justifyContent: 'center' }}>
             <div>
               <IconButton
                 aria-label='add to favorites'
@@ -160,19 +184,6 @@ const VideoPlayer = ({ playListData, songThumbnail }: { playListData: any; songT
                 <ShareIcon sx={{ color: '#c3cada' }} />
               </IconButton>
             </div>
-            <IconButton
-              aria-label='share'
-              sx={{
-                color: '#ffffff',
-                '&:hover': {
-                  opacity: [0.9, 0.8, 0.7],
-                  color: '#ffffff'
-                },
-                right: 0
-              }}
-            >
-              <ExpandMoreIcon sx={{ color: '#c3cada', fontSize: '30px' }} />
-            </IconButton>
           </CardActions>
         </Card>
       )}

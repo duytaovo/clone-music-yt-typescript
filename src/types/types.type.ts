@@ -1,4 +1,4 @@
-export interface Song {
+export interface Songs {
    singers: string[];
    songName: string;
    category: string;
@@ -46,3 +46,13 @@ export interface Item {
    pathname?:string,
    search?:string
  }
+
+ interface Song {
+   [key: number]: string
+   title: string
+   infoSong: string
+   thumbnail: string
+   artistsNames: string
+   artists: []
+ }
+ 

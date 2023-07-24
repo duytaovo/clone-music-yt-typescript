@@ -24,6 +24,10 @@ const routeMain = [
     path: path.test,
     Component: Test
   },
+  // {
+  //   component: Mv,
+  //   path: 'the-loai-video'
+  // },
   {
     path: '*',
     Component: NotFound

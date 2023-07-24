@@ -2,7 +2,7 @@ import React, { useEffect } from "react"
 import PauseIcon from '@mui/icons-material/Pause';
 import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
 import { useAppDispatch, useAppSelector } from "src/hooks/useRedux";
-import { changeIconPlay, setAudioRef } from "src/store/slices/audio";
+import { changeIconPlay } from "src/store/slices/audio";
 const PlayControl:React.FC<{auRef: HTMLAudioElement | null | undefined}> = ({ auRef }) => {
 
   const isPlay = useAppSelector((state) => state.audio.isPlay)

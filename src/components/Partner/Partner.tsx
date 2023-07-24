@@ -23,7 +23,7 @@ const Partner = () => {
             Đối tác âm nhạc
          </div>
          <div className="w-full">
-            <div className={'flex flex-wrap item-center gap-4 p-5 rounded flex-auto'}>
+            <div className={'flex flex-wrap item-center gap-6 p-5 rounded flex-auto'}>
                {partners.map((partner, index) => (
                   <div
                      key={index}

@@ -1,32 +1,36 @@
-import React, { useState, useEffect } from 'react';
-import { BarChart, Bar } from 'recharts';
-
-interface DataPoint {
-  value: number;
+import PropTypes from 'prop-types'
+import { ReactNode } from 'react'
+import classNames from 'classnames/bind'
+import styles from './styles.css'
+import Loading from '../Loading/Loading'
+interface a {
+  children: ReactNode
+  styles: any
+  className: string
 }
 
-const AnimatedBarChart: React.FC = () => {
-  const [data, setData] = useState<DataPoint[]>([]);
-
-  useEffect(() => {
-    // Mô phỏng việc cập nhật dữ liệu sau mỗi khoảng thời gian
-    const interval = setInterval(generateRandomData, 400);
-    return () => clearInterval(interval);
-  }, []);
-
-  const generateRandomData = () => {
-    const newData: DataPoint[] = [];
-    for (let i = 1; i <= 4; i++) {
-      newData.push({  value: Math.random() * 500 });
-    }
-    setData(newData);
-  };
-
+function Loadingd({ children, styles, className }: any) {
   return (
-    <BarChart width={50} height={50} data={data}>
-      <Bar dataKey="value" fill="white" animationDuration={400} />
-    </BarChart>
-  );
-};
+    <div>
+      <div style={{ display: 'flex', gap: 20, paddingTop: 32 }}>
+        <Loading styles={{ height: '25vh' }} />
+        <Loading styles={{ height: '25vh' }} />
+        <Loading styles={{ height: '25vh' }} />
+      </div>
+      <Loading
+        styles={{
+          width: '100px',
+          height: '100px',
+          borderRadius: 999
+        }}
+      />
+    </div>
+  )
+}
+export default Loadingd
 
-export default AnimatedBarChart;
+Loading.propTypes = {
+  styles: PropTypes.object,
+  className: PropTypes.string,
+  children: PropTypes.node
+}

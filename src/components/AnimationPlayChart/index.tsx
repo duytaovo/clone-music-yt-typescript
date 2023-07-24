@@ -10,14 +10,14 @@ const AnimatedBarChart: React.FC = () => {
 
   useEffect(() => {
     // Mô phỏng việc cập nhật dữ liệu sau mỗi khoảng thời gian
-    const interval = setInterval(generateRandomData, 300);
+    const interval = setInterval(generateRandomData, 400);
     return () => clearInterval(interval);
   }, []);
 
   const generateRandomData = () => {
     const newData: DataPoint[] = [];
     for (let i = 1; i <= 50; i++) {
-      newData.push({  value: Math.random() * 500 });
+      newData.push({  value: Math.random() * 300 });
     }
     setData(newData);
   };
@@ -27,7 +27,7 @@ const AnimatedBarChart: React.FC = () => {
         
     }}
     height={100} data={data} width={320}>
-      <Bar dataKey="value" fill="white" animationDuration={300} />
+      <Bar dataKey="value" fill="white" animationDuration={400} />
     </BarChart>
   );
 };

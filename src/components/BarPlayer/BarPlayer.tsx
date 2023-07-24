@@ -23,9 +23,7 @@ interface Props {
 }
 
 const BarPlayer = ({ songDetail }: Props) => {
-  const srcAudio = useAppSelector((state) => state.audio.srcAudio)
-  const isLoop = useAppSelector((state) => state.audio.isLoop)
-  const songId = useAppSelector((state) => state.audio.songId)
+  const {srcAudio,isLoop,songId, autoPlay} = useAppSelector((state) => state.audio)
   const { isPlaying, setPlaying } = useContext(AppContext)
 
   // const songDetail = useAppSelector((state) => state.audio.songDetail)
@@ -82,7 +80,7 @@ const BarPlayer = ({ songDetail }: Props) => {
         src={srcAudio}
         className='hidden'
         loop={isLoop}
-        autoPlay={true}
+        autoPlay={autoPlay}
         hidden
         onTimeUpdate={() => {
           if (audioRef.current) {

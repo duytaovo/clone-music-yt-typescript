@@ -44,7 +44,7 @@ export default function Tags() {
       return (
         <Link to={item.to} key={item.id}>
           <div className='text-[#c3cada] opacity-60 hover:opacity-100 cursor-pointer p-2 rounded m-2 bg-[rgba(255,255,255,0.1)]'>
-            <span className=' text-white cursor-pointer'>{t(`tag.relax`)}</span>
+            <span className=' text-white cursor-pointer'>{t(`relax`)}</span>
           </div>
         </Link>
       )

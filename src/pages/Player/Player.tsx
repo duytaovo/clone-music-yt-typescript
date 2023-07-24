@@ -35,22 +35,22 @@ const Player = () => {
 
   const lyrRef = useRef<HTMLDivElement>(null)
 
-  const handleCloseLyric = async() => {
-    if (isPlaying == true) {
-      if (lyrRef.current) {
-        lyrRef.current.classList.remove('animate-[playlist-up_1s]')
-        lyrRef.current.classList.add('animate-[playlist-down_1s]')
-      }
-      // setTimeout(() => {
-        setPlaying(false)
-      // }, 1000)
-    } else {
-      setPlaying(true)
-    }
-  }
+  // const handleCloseLyric = async() => {
+  //   if (isPlaying == true) {
+  //     if (lyrRef.current) {
+  //       lyrRef.current.classList.remove('animate-[playlist-up_1s]')
+  //       lyrRef.current.classList.add('animate-[playlist-down_1s]')
+  //     }
+  //     // setTimeout(() => {
+  //       setPlaying(false)
+  //     // }, 1000)
+  //   } else {
+  //     setPlaying(true)
+  //   }
+  // }
   return (
     <div
-      className={'h-[80vh] inset-0 transition-all duration-300 ease-in-out ' + (isPlaying ? 'animate-[playlist-up_1s]':"")}
+      className={'h-screen inset-0 transition-all duration-300 ease-in-out ' + (isPlaying ? 'animate-[playlist-up_1s]':"")}
       ref={lyrRef}
     >
       <Link to={"/"}>

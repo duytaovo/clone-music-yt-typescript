@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from "src/hooks/useRedux";
 import { setLoop } from "src/store/slices/audio";
 const RepeatControl: React.FC = () => {
 
-  const isLoop = useAppSelector((state) => state.audio.isLoop)
+  const {isLoop,currnetIndexPlaylist} = useAppSelector((state) => state.audio)
   const dispath = useAppDispatch()
 
   const handleRepeat = () => {
@@ -24,7 +24,7 @@ const RepeatControl: React.FC = () => {
         ?
         <button className="mx-2 my-0 " title="Repeat">
           <RepeatIcon  sx={{
-        color:'black',
+        color:'blue',
         width:"24px",
         height:"24px"
       }}/>

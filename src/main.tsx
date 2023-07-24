@@ -2,13 +2,13 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from 'src/App'
 import './index.css'
-import { BrowserRouter, useLocation } from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
 import 'src/i18n/i18n'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { AppProvider } from './contexts/app.context'
 import { Provider } from 'react-redux'
 import store from './store/store'
-import AnimatedTransition from './layouts/Animate'
+import { DndProvider } from 'react-dnd'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -19,15 +19,15 @@ const queryClient = new QueryClient({
   }
 })
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>
-        <AppProvider>
-          <Provider store={store}>
+          <AppProvider>
+            <Provider store={store}>
               <App />
-          </Provider>
-        </AppProvider>
+            </Provider>
+          </AppProvider>
       </QueryClientProvider>
     </BrowserRouter>
-  </React.StrictMode>
+  // </React.StrictMode>
 )

@@ -26,7 +26,6 @@ const routeSlice = createSlice({
         currentRoute: Path
     }>) => {
        state.path = action.payload
-       console.log(state.path)
     },
   }
 });

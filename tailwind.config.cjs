@@ -11,6 +11,9 @@ module.exports = {
     extend: {
       colors: {
         orange: '#ee4d2d'
+      },
+      boxShadow: {
+        "box-shadow": "inset 0px -50px 36px rgba(0, 0, 0, 0.35)  "
       }
     }
   },

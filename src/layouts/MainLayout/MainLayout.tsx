@@ -31,24 +31,15 @@ function MainLayoutInner({ children }: Props) {
     })()
   }, [playlist, dispatch])
 
-  const ref = useRef<HTMLDivElement>(null)
-
-  const handleOnClick = () => {
-    if (ref.current) {
-      ref.current.classList.remove('animate-[lyric-up_1s]')
-      ref.current.classList.add('animate-[lyric-down_1s]')
-    } else {
-    }
-  }
 
   return (
     <div className='h-100vh bg w-[100vw]'>
       <Header />
-      {children}
+      {/* {children} */}
       <Outlet />
-      <div ref={ref} onClick={handleOnClick}>
+      {/* <div ref={ref} onClick={handleOnClick}> */}
         <BarPlayer songDetail={songDetail} />
-      </div>
+      {/* </div> */}
       {/* <Footer /> */}
     </div>
   )

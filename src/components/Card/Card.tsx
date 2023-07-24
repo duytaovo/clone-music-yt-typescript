@@ -12,23 +12,23 @@ interface Props {
 }
 
 export default function MediaControlCard({ song }: Props) {
-
+  const navigate = useNavigate()
   return (
     <div>
-      <Link to={`/playlist/${song.encodeId}`}>
         <Card
           sx={{ display: 'flex', cursor: 'pointer' }}
           onClick={() => {
-            // navigate()
+            navigate(`/playlist/${song.encodeId}`)
+            window.scrollTo(0, 0);
           }}
         >
-          <div className='group relative  inline-block'>
+          <div className=' relative inline-block group/item hover:-translate-y-1 hover:scale-110 hover:opacity-50 hover:shadow-lg transition delay-100 duration-300 ease-in-out'>
             <img
               src={song.banner || song.thumbnail}
-              className='relative cursor-pointer transition delay-100 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 hover:opacity-50 hover:shadow-lg '
+              className='relative cursor-pointer rounded-lg  w-80 '
               alt=''
             />
-            <div className=''>
+            <div className='group/edit group-hover/item:visible invisible'>
               <IconButton
                 aria-label='play/pause'
                 sx={{
@@ -71,7 +71,6 @@ export default function MediaControlCard({ song }: Props) {
             {song.title} | {song.artistsNames}
           </Typography>
         </div>
-      </Link>
     </div>
   )
 }

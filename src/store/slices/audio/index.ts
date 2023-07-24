@@ -1,13 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 
-interface songType {
-  [key: number]: string
-  title: string
-  infoSong: string
-  thumbnail: string
-  artistsNames: string
-  artists: []
-}
 
 interface AudioState {
   isPlay: boolean
@@ -30,7 +22,8 @@ interface AudioState {
   isLyric: boolean,
   songDetail:any,
   indexCardActive: number,
-  audioRef: any
+  audioRef: any,
+  isRandom: boolean
 
 }
 
@@ -56,6 +49,7 @@ const initialState: AudioState = {
   songDetail:{},
   indexCardActive:0,
   audioRef: null,
+  isRandom: false,
 }
 
 
@@ -98,6 +92,9 @@ const audioSlice = createSlice({
     setLoop: (state, action: PayloadAction<boolean>) => {
       state.isLoop = action.payload
     },
+    setRandom: (state, action: PayloadAction<boolean>) => {
+      state.isRandom = action.payload
+    },
     setAutoPlay: (state, action: PayloadAction<boolean>) => {
       state.autoPlay = action.payload
     },
@@ -135,7 +132,8 @@ export const {
   setOpenLyric,
   setSongDetail,
   updateIndexCardActive,
-  setAudioRef
+  setAudioRef,
+  setRandom
 } = audioSlice.actions
 
 const audioReducer = audioSlice.reducer

@@ -7,8 +7,6 @@ import VideoPlayer from '../VideoPlayer'
 import { useSelector } from 'react-redux'
 import { RootState } from 'src/store/store'
 import { Grid, IconButton } from '@mui/material'
-import { useNavigate } from 'react-router-dom'
-import BarPlayer from './BarPlayer'
 
 const Lyric: React.FC<{ auRef: HTMLAudioElement | null }> = ({ auRef }) => {
   const isLyric = useAppSelector((state) => state.audio.isLyric)
