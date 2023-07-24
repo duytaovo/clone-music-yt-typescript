@@ -5,5 +5,4 @@
 - change nn
 - id bài hát
 - icon chạy bài hát
-- kéo thả
 -- giao diện lyric

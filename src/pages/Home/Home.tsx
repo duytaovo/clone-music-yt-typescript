@@ -45,53 +45,53 @@ export default function Home() {
         // <Sekeleton />
         <div>
           <div style={{ display: 'flex', gap: 20, paddingTop: 32 }}>
-            <Loading styles={{ height: '25vh' }} />
-            <Loading styles={{ height: '25vh' }} />
-            <Loading styles={{ height: '25vh' }} />
+            <Loading styles={{ height: '25vh' }} children={undefined} className={undefined} />
+            <Loading styles={{ height: '25vh' }} children={undefined} className={undefined} />
+            <Loading styles={{ height: '25vh' }} children={undefined} className={undefined} />
           </div>
           <div className='flex flex-wrap items-center justify-between'>
             <div style={{ display: 'flex', gap: 20, paddingTop: 32 }}>
-              <Loading styles={{ height: '48px', width: '48px' }} />
-              <Loading styles={{ height: '48px', width: '200px' }} />
+              <Loading styles={{ height: '48px', width: '48px' }} children={undefined} className={undefined} />
+              <Loading styles={{ height: '48px', width: '200px' }} children={undefined} className={undefined} />
             </div>
             <div style={{ display: 'flex', gap: 20, paddingTop: 32 }}>
-              <Loading styles={{ height: '48px', width: '48px' }} />
-              <Loading styles={{ height: '48px', width: '200px' }} />
+              <Loading styles={{ height: '48px', width: '48px' }} children={undefined} className={undefined} />
+              <Loading styles={{ height: '48px', width: '200px' }} children={undefined} className={undefined} />
             </div>
             <div style={{ display: 'flex', gap: 20, paddingTop: 32 }}>
-              <Loading styles={{ height: '48px', width: '48px' }} />
-              <Loading styles={{ height: '48px', width: '200px' }} />
+              <Loading styles={{ height: '48px', width: '48px' }} children={undefined} className={undefined} />
+              <Loading styles={{ height: '48px', width: '200px' }} children={undefined} className={undefined} />
             </div>
             <div style={{ display: 'flex', gap: 20, paddingTop: 32 }}>
-              <Loading styles={{ height: '48px', width: '48px' }} />
-              <Loading styles={{ height: '48px', width: '200px' }} />
+              <Loading styles={{ height: '48px', width: '48px' }} children={undefined} className={undefined} />
+              <Loading styles={{ height: '48px', width: '200px' }} children={undefined} className={undefined} />
             </div>
             <div style={{ display: 'flex', gap: 20, paddingTop: 32 }}>
-              <Loading styles={{ height: '48px', width: '48px' }} />
-              <Loading styles={{ height: '48px', width: '200px' }} />
+              <Loading styles={{ height: '48px', width: '48px' }} children={undefined} className={undefined} />
+              <Loading styles={{ height: '48px', width: '200px' }} children={undefined} className={undefined} />
             </div>
             <div style={{ display: 'flex', gap: 20, paddingTop: 32 }}>
-              <Loading styles={{ height: '48px', width: '48px' }} />
-              <Loading styles={{ height: '48px', width: '200px' }} />
+              <Loading styles={{ height: '48px', width: '48px' }} children={undefined} className={undefined} />
+              <Loading styles={{ height: '48px', width: '200px' }} children={undefined} className={undefined} />
             </div>
             <div style={{ display: 'flex', gap: 20, paddingTop: 32 }}>
-              <Loading styles={{ height: '48px', width: '48px' }} />
-              <Loading styles={{ height: '48px', width: '200px' }} />
+              <Loading styles={{ height: '48px', width: '48px' }} children={undefined} className={undefined} />
+              <Loading styles={{ height: '48px', width: '200px' }} children={undefined} className={undefined} />
             </div>
             <div style={{ display: 'flex', gap: 20, paddingTop: 32 }}>
-              <Loading styles={{ height: '48px', width: '48px' }} />
-              <Loading styles={{ height: '48px', width: '200px' }} />
+              <Loading styles={{ height: '48px', width: '48px' }} children={undefined} className={undefined} />
+              <Loading styles={{ height: '48px', width: '200px' }} children={undefined} className={undefined} />
             </div>
           </div>
           <div className='' style={{ display: 'flex', gap: 31, paddingTop: 32,flexWrap:"wrap" }}>
-            <Loading styles={{ height: '20vh',width:"20vw" }} />
-            <Loading styles={{ height: '20vh',width:"20vw" }} />
-            <Loading styles={{ height: '20vh',width:"20vw" }} />
-            <Loading styles={{ height: '20vh',width:"20vw" }} />
-            <Loading styles={{ height: '20vh',width:"20vw" }} />
-            <Loading styles={{ height: '20vh',width:"20vw" }} />
-            <Loading styles={{ height: '20vh',width:"20vw" }} />
-            <Loading styles={{ height: '20vh',width:"20vw" }} />
+            <Loading styles={{ height: '20vh', width: "20vw" }} children={undefined} className={undefined} />
+            <Loading styles={{ height: '20vh', width: "20vw" }} children={undefined} className={undefined} />
+            <Loading styles={{ height: '20vh', width: "20vw" }} children={undefined} className={undefined} />
+            <Loading styles={{ height: '20vh', width: "20vw" }} children={undefined} className={undefined} />
+            <Loading styles={{ height: '20vh', width: "20vw" }} children={undefined} className={undefined} />
+            <Loading styles={{ height: '20vh', width: "20vw" }} children={undefined} className={undefined} />
+            <Loading styles={{ height: '20vh', width: "20vw" }} children={undefined} className={undefined} />
+            <Loading styles={{ height: '20vh', width: "20vw" }} children={undefined} className={undefined} />
            
           </div>
         </div>

@@ -3,8 +3,6 @@ import { IconButton, Typography } from '@mui/material'
 import PlayArrowIcon from '@mui/icons-material/PlayArrow'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
 import { Link, useNavigate } from 'react-router-dom'
-import { useAppDispatch } from 'src/hooks/useRedux'
-import { updateIdPlayList } from 'src/store/slices/playlist'
 
 interface Props {
   song: any

@@ -51,7 +51,7 @@ export const ItemSongPlayer = ({ bg, songDetail, onClick, index, active, id }: P
           }}
         >
           <div
-            className={` ${bg}  border-b-white  ${isFocus ? 'bg-[#302639] shadow-box-shadow' : ''} song-playlist-item-player-${songDetail?.encodeId}`}
+            className={` ${bg} hover:bg-white  ${isFocus ? 'bg-[#302639] shadow-box-shadow' : ''} song-playlist-item-player-${songDetail?.encodeId}`}
             onClick={getIdSong}
           >
             <Link to=''>
