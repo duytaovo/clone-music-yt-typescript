@@ -10,6 +10,7 @@ const ShuffleControl: React.FC = () => {
 
   const onClick = () => {
       dispatch(setRandom(!isRandom))
+
   }
   return (
     <div onClick={onClick}>
@@ -17,7 +18,7 @@ const ShuffleControl: React.FC = () => {
         <button className='mx-2 my-0 ' title='Shuffle'>
           <ShuffleIcon
             sx={{
-              color:'blue',
+              color:'#335EEA',
               width: '24px',
               height: '24px'
             }}

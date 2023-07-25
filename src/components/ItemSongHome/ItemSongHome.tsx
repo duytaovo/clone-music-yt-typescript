@@ -19,11 +19,14 @@ const ItemSongHome = ({ song }: any) => {
                 <img src={song.thumbnail} alt='' className='w-12 h-12 rounded object-contain group-hover:opacity-50'/>
                 <CardContent>
                   <Typography variant='body2' color='' sx={{
+                    fontSize:'16px'
+
                   }}>
                     {song.title}
                   </Typography>
                   <Typography variant='body2' color='' sx={{
-                    color:"#696471"
+                    color:"#A78295",
+                    fontSize:'14px'
                   }}>
                     {song.artistsNames}
                   </Typography>

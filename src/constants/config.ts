@@ -1,12 +1,13 @@
-// const config = {
-//   baseUrl: 'https://apisolfive.app.tranviet.site',
-//   maxSizeUploadAvatar: 1048576 // bytes
-// }
+const config = {
+  baseUrl: 'https://api-ecom.duthanhduoc.com/',
+  maxSizeUploadAvatar: 1048576 // bytes
+}
 
-// export default config
+export default config
 
 
 export const DOMAIN = 'https://apisolfive.app.tranviet.site';
+
 // const DOMAIN = 'http://192.168.2.55:5000';
 
 export const API = {

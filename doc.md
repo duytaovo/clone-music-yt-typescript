@@ -1,8 +1,7 @@
 ---- route
 --- trược
-- đồng bộ
-- active
 - change nn
 - id bài hát
-- icon chạy bài hát
--- giao diện lyric
+- thêm playlist
+- thích nhạc
+- 

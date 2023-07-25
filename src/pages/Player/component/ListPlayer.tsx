@@ -37,7 +37,7 @@ export const ListPlayer = ({ onClick }: Props) => {
 
   return (
     <div className='scrollbar-thumb-rounded h-[70vh] overflow-y-auto'>
-      <div className='flex items-center justify-between text-sm text-[#696471]'>
+      <div className='flex items-center justify-between text-sm text-[#A78295]'>
         <Grid container spacing={2} sx={{ mb: 2, ml: '' }}>
           <Grid item xs={5.5} sx={{ display: 'flex', alignItems: 'center' }}>
             <QueueMusicIcon />

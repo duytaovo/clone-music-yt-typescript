@@ -4,6 +4,7 @@ import appReducer from 'src/app.slice'
 import playListReducer from './slices/playlist'
 import audioReducer from './slices/audio'
 import routeReducer from './slices/route'
+import authReducer from './slices/auth'
 
 export const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
     loading: appReducer,
     audio: audioReducer,
     route: routeReducer,
+    auth:authReducer,
 
   },
   devTools: process.env.NODE_ENV === 'development',

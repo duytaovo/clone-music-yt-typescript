@@ -14,6 +14,13 @@ module.exports = {
       },
       boxShadow: {
         "box-shadow": "inset 0px -50px 36px rgba(0, 0, 0, 0.35)  "
+      },
+      backgroundColor:{
+        bgForm:"#130C1C",
+      },
+      backgroundImage:{
+        bg_chart:'linear-gradient(70deg,#F3AA60, #EF6262, #9681EB, #6527BE)'
+
       }
     }
   },

@@ -4,6 +4,8 @@ const path = {
   test: '/test',
   playlist: '/playlist/:id',
   player: '/player/:id',
+  login:"/login",
+  register:"/register"
 
 } as const
 

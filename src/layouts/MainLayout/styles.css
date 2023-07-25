@@ -1,9 +1,10 @@
-.bg{
-    background-image: linear-gradient(to bottom,#33244d,#170F23);
-    /* background-size: 100vw 90vh; */
-    padding-top: 64px;
-    padding-bottom: 64px;
-    position: absolute;
-    width: 100%;
-    background-color: #170F23;
+.bg {
+  /* background-image: linear-gradient(to bottom,#654b92,#170F23); */
+  /* background-size: 100vw 90vh; */
+  padding-top: 64px;
+  padding-bottom: 64px;
+  position: absolute;
+  width: 100%;
+  /* background-color: #170f23; */
+  background: linear-gradient(45deg,#112D4E, #222831, #393E46, #00ADB5);
 }

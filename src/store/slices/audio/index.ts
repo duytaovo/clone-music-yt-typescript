@@ -42,14 +42,14 @@ const initialState: AudioState = {
   currentTime: 0,
   duration: 0,
   volume: Number(localStorage.getItem("volume")) || 0.5,
-  isLoop: false,
+  isLoop: Boolean(localStorage.getItem("isLoop")),
   autoPlay: false,
   playlistSong: [],
   isLyric: false,
   songDetail:{},
   indexCardActive:0,
   audioRef: null,
-  isRandom: false,
+  isRandom: Boolean(localStorage.getItem("isRandom")),
 }
 
 
@@ -91,9 +91,12 @@ const audioSlice = createSlice({
     },
     setLoop: (state, action: PayloadAction<boolean>) => {
       state.isLoop = action.payload
+      localStorage.setItem("isLoop", String(action.payload))
+
     },
     setRandom: (state, action: PayloadAction<boolean>) => {
       state.isRandom = action.payload
+      localStorage.setItem("isRandom", String(action.payload))
     },
     setAutoPlay: (state, action: PayloadAction<boolean>) => {
       state.autoPlay = action.payload

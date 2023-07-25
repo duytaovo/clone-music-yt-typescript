@@ -14,7 +14,7 @@ import { useAppDispatch, useAppSelector } from 'src/hooks/useRedux'
 import AnimatedBarChart from '../AnimationPlayChart'
 import { changeIconPlay } from 'src/store/slices/audio'
 import { RootState } from 'src/store/store'
-import { Button } from '@mui/material'
+import Button from '../Button'
 
 const VideoPlayer = ({ playListData, songThumbnail }: { playListData: any; songThumbnail: any }) => {
   const today = new Date()
@@ -48,8 +48,8 @@ const VideoPlayer = ({ playListData, songThumbnail }: { playListData: any; songT
   return (
     <div>
       {playListData !== undefined && (
-        <Card variant='outlined' sx={{ maxWidth: 350, ml: 3, mt: 2, backgroundColor: 'transparent' }}>
-          <div className='shadow-box-shadow group/item relative inline-block transition delay-100 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 hover:opacity-50 hover:shadow-box-shadow'>
+        <Card variant='outlined' sx={{ maxWidth: 320, ml: 3, mt: 2, backgroundColor: 'transparent' }}>
+          <div className='group/item relative inline-block shadow-box-shadow transition delay-100 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 hover:opacity-50 hover:shadow-box-shadow'>
             <img src={songThumbnail?.thumbnailM || img} className='relative w-80 cursor-pointer  rounded-lg' alt='' />
             <div className='group/edit invisible group-hover/item:visible' onClick={handlePlaySong}>
               {isPlay ? (
@@ -95,7 +95,9 @@ const VideoPlayer = ({ playListData, songThumbnail }: { playListData: any; songT
               </div>
             )}
           </div>
-          <CardContent sx={{ display: 'flex', justifyContent: 'space-between',alignItems:"center",flexDirection:"column" }}>
+          <CardContent
+            sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexDirection: 'column' }}
+          >
             <Typography
               variant='h6'
               color='#ffffff'
@@ -111,36 +113,21 @@ const VideoPlayer = ({ playListData, songThumbnail }: { playListData: any; songT
               variant='body2'
               color='#ffffff'
               sx={{
-                color: '#696471'
+                color: '#A78295'
               }}
             >
               Cập nhật ngày {time}
             </Typography>
             <div onClick={handlePlaySong}>
-
-            {isPlay ? (
-              <Button
-                sx={{
-                  background: '#9B4DE0',
-                  borderRadius: '20px',
-                  color: '#ffffff',
-                  mt:3
-                }}
-              >
+              {isPlay ? (
+                <Button className='mb-2 flex w-[full] items-center justify-center rounded-[30px] bg-[#9B4DE0] py-3 px-3 mt-3 text-sm uppercase text-white hover:opacity-80'>
                 Tạm dừng
               </Button>
-            ) : (
-              <Button
-                sx={{
-                  background: '#9B4DE0',
-                  borderRadius: '20px',
-                  mt:3,
-                  color: '#ffffff',
-                }}
-              >
-                Tiếp tục phát
-              </Button>
-            )}
+              ) : (
+                <Button className='mb-2 flex w-[full%] items-center justify-center rounded-[30px] bg-[#9B4DE0] py-3 px-3 mt-3  text-sm uppercase text-white hover:opacity-80'>
+                  Tiếp tục phát
+                </Button>
+              )}
             </div>
           </CardContent>
           <CardActions disableSpacing sx={{ display: 'flex', justifyContent: 'center' }}>

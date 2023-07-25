@@ -37,7 +37,7 @@ const Lyric: React.FC<{ auRef: HTMLAudioElement | null }> = ({ auRef }) => {
     <>
       <div
         className={
-          'fixed inset-0 z-[200] bg-[#282350] transition-all duration-300 ease-in-out ' +
+          'fixed inset-0 z-[200] bg-bg_chart transition-all duration-300 ease-in-out ' +
           (isLyric ? 'animate-[lyric-up_1s]' : 'hidden')
         }
         ref={lyrRef}

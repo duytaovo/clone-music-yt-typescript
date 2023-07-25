@@ -1,11 +1,17 @@
 import path from 'src/constants/path'
-import { lazy, Suspense, useRef } from 'react'
-import { Route, RouteObject, Routes, useRoutes } from 'react-router-dom'
+import { lazy, Suspense, useContext, useRef } from 'react'
+import { Outlet, Route, RouteObject, Routes, useRoutes } from 'react-router-dom'
 import MainLayout from './layouts/MainLayout'
 import Test from './pages/Test'
 import Home from './pages/Home'
 import Player from './pages/Player'
 import NotFound from './pages/NotFound'
+import { AppContext } from './contexts/app.context'
+import { useSelector } from 'react-redux'
+import { RootState } from './store/store'
+import { useAppDispatch } from './hooks/useRedux'
+import { updateStatusLogin } from './store/slices/auth'
+import { toast } from 'react-toastify'
 
 // const Home = lazy(() => import('./pages/Home'))
 // const Player = lazy(() => import('./pages/Player'))
@@ -33,6 +39,12 @@ const routeMain = [
     Component: NotFound
   }
 ]
+
+function ProtectedRoute() {
+  const { isAuthenticated, setOpenModal } = useContext(AppContext)
+
+  return isAuthenticated ? <Outlet /> : toast.error('Vui lòng đăng nhập !!!')
+}
 
 export default function useRouteElements() {
   const renderRouter = () => {

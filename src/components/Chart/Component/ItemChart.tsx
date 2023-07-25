@@ -1,5 +1,6 @@
-import { Button, CardContent, Grid, Typography } from '@mui/material'
+import {  CardContent, Grid, Typography } from '@mui/material'
 import React from 'react'
+import Button from 'src/components/Button'
 import ItemSongHome from 'src/components/ItemSongHome/ItemSongHome'
 
 export const ItemChart = ({ dataChart }: any) => {
@@ -8,10 +9,10 @@ export const ItemChart = ({ dataChart }: any) => {
       <div>
         {dataChart?.items?.slice(0, 3)?.map((chart: any, index: number) => (
           <div
-            className='group ml-3.5 flex w-max cursor-pointer flex-wrap justify-between text-[#c3cada] hover:text-blue-500'
+            className='group ml-3.5 flex w-max cursor-pointer flex-wrap justify-between text-[#CBFFA9] hover:text-blue-500'
             key={index}
           >
-            <h4 className='p-6  pl-3 font-sans text-[28px] font-semibold text-[#4FE3C2] line-clamp-1 group-hover:text-blue-500 group-hover:opacity-50'>
+            <h4 className='p-6  pl-3 font-sans text-[28px] font-semibold text-[#EF6262] line-clamp-1 group-hover:text-blue-500 group-hover:opacity-50'>
               {index + 1}
             </h4>
 
@@ -20,19 +21,20 @@ export const ItemChart = ({ dataChart }: any) => {
               <Typography variant='body2' color='' sx={{}}>
                 {chart.title}
               </Typography>
-              <Typography variant='body2' color='' sx={{}}>
+              <Typography
+                variant='body2'
+                color=''
+                sx={{
+                  color: '#A78295'
+                }}
+              >
                 {chart.artistsNames}
               </Typography>
             </CardContent>
           </div>
         ))}
       </div>
-      <Button variant='contained' sx={{
-        border:'solid 1px white',
-        background:'none',
-        mb:2
-
-      }}>
+      <Button className='flex w-[40%] mb-2 items-center justify-center rounded-[30px] bg-[#9B4DE0] py-3  text-sm uppercase text-white hover:opacity-80'>
         Xem thêm
       </Button>
     </div>

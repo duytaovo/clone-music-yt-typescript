@@ -59,7 +59,7 @@ export const ItemSongPlayer = ({ bg, songDetail, onClick, index, active, id }: P
                 <Grid item xs={5.5}>
                   <div className='group flex w-max cursor-pointer flex-wrap justify-between text-sm text-[#c3cada] hover:text-blue-500'>
                     <MusicNoteOutlinedIcon
-                      sx={{ color: '#696471', mr: 1, transform: 'translate(-5px,10px)', fontSize: '25px' }}
+                      sx={{ color: '#A78295', mr: 1, transform: 'translate(-5px,10px)', fontSize: '25px' }}
                     />
                     <img
                       src={songDetail?.thumbnail}
@@ -68,17 +68,17 @@ export const ItemSongPlayer = ({ bg, songDetail, onClick, index, active, id }: P
                     />
                     <div className='pd-3 ml-2'>
                       <p className='text-white line-clamp-2'>{songDetail.title}</p>
-                      <p className='text-sm text-[#696471] line-clamp-2'>{songDetail.artistsNames}</p>
+                      <p className='text-sm text-[#A78295] line-clamp-2'>{songDetail.artistsNames}</p>
                     </div>
                   </div>
                 </Grid>
                 <Grid item xs={4.5}>
-                  <p className='ml-1 cursor-pointer text-sm text-[#696471] line-clamp-1 hover:text-blue-500'>
+                  <p className='ml-1 cursor-pointer text-sm text-[#A78295] line-clamp-1 hover:text-blue-500'>
                     {songDetail?.album?.title}
                   </p>
                 </Grid>
                 <Grid item xs={2}>
-                  <p className='text-center text-sm text-[#696471] line-clamp-1 hover:text-blue-500'>
+                  <p className='text-center text-sm text-[#A78295] line-clamp-1 hover:text-blue-500'>
                     {getDuration(songDetail.duration)}
                   </p>
                 </Grid>
