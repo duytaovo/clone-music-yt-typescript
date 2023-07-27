@@ -103,7 +103,7 @@ export default function Header() {
       return (
         <CustomLink to={item.to} key={item.id}>
           <div className='inline-block px-5 text-[white]'>
-            <span className='animate-spin hover:text-blue-500'>{t(item.title)}</span>
+            <span className='animate-spin hover:text-blue-500'>{t('home')}</span>
           </div>
         </CustomLink>
       )
