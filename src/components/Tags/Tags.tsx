@@ -1,7 +1,6 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
-import { locales } from 'src/i18n/i18n'
 interface HeaderItem {
   id: number
   to: string
