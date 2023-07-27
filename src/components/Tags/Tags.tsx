@@ -2,49 +2,49 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { locales } from 'src/i18n/i18n'
-
+interface HeaderItem {
+  id: number
+  to: string
+  title: any
+}
 export default function Tags() {
   const { t } = useTranslation('home')
 
-  const sidebarLink = [
-    {
-      list_top: [
+  const sidebarLink:HeaderItem[] = [
         {
-          tiltle: 'relax',
+          title: 'relax',
           id: 1,
           to: '/',
         },
         {
-          tiltle: 'recharge',
+          title: 'recharge',
           id: 2,
           to: '/',
         },
         {
-          tiltle: 'doExercise',
+          title: 'doExercise',
           id: 3,
           to: '/',
         },
         {
-          tiltle: 'work',
+          title: 'work',
           id: 4,
           to: '/',
         },
         {
-          tiltle: 'focus',
+          title: 'focus',
           id: 5,
           to: '/',
         },
        
-      ]
-    }
   ]
 
   const renderListLink = () => {
-    return sidebarLink[0].list_top.map((item) => {
+    return sidebarLink.map((item) => {
       return (
         <Link to={item.to} key={item.id}>
           <div className='text-[#c3cada] opacity-60 hover:opacity-100 cursor-pointer p-2 rounded m-2 bg-[rgba(255,255,255,0.1)]'>
-            <span className=' text-white cursor-pointer'>{t(`relax`)}</span>
+            <span className=' text-white cursor-pointer'>{t(item.title)}</span>
           </div>
         </Link>
       )
