@@ -44,7 +44,7 @@ const Component = (song: any) => {
           </div>
         )}
       </div>
-      <div className='p-2'>
+      <div className='p-2 w-[20vw]'>
         <Typography
           variant='body2'
           color=''

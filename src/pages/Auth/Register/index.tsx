@@ -52,7 +52,7 @@ const Register = () => {
         setIsAuthenticated(true)
         setProfile(data.data.data.user)
         setOpenModal(false)
-        toast.success('Tạo tài khoản thành công !!!')
+        toast.success('Tạo tài khoản thành công 😀😊😎')
       },
       onError: (error) => {
         if (isAxiosUnprocessableEntityError<ErrorResponse<Omit<FormData, 'confirm_password'>>>(error)) {

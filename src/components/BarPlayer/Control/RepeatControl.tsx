@@ -21,7 +21,7 @@ const RepeatControl: React.FC = () => {
         ?
         <button className="mx-2 my-0 " title="Repeat">
           <RepeatIcon  sx={{
-        color:'#335EEA',
+        color:'#8062D6',
         width:"24px",
         height:"24px"
       }}/>

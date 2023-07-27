@@ -103,7 +103,7 @@ export default function Header() {
       return (
         <CustomLink to={item.to} key={item.id}>
           <div className='inline-block px-5 text-[white]'>
-            <span className='animate-spin hover:text-blue-500'>{t('home')}</span>
+            <span className='animate-spin hover:text-blue-500'>{t(item.title)}</span>
           </div>
         </CustomLink>
       )
@@ -132,7 +132,7 @@ export default function Header() {
     onSuccess: () => {
       setIsAuthenticated(false)
       setProfile(null)
-      toast.success('Đăng xuất thành công !!!')
+      toast.success('Đăng xuất thành công 😌😣😏')
     }
   })
 
@@ -164,7 +164,7 @@ export default function Header() {
             }}
           >
             <div className='ml-3'>
-              <h6 className="font-normal mt-2 p2">Nghệ sĩ</h6>
+              <h6 className="font-normal mt-2 p2">Nghệ sĩ 😊😍</h6>
               {songSearch?.data.data.data?.artists.map((song: any, index: number) => (
                 <div key={index} className='m-2 ml-0'>
                   <ItemSearch song={song} />
@@ -172,7 +172,7 @@ export default function Header() {
               ))}
             </div>
             <div className='ml-3'>
-              <h6 className="font-normal">Bài hát</h6>
+              <h6 className="font-normal">Bài hát 😋😚</h6>
               {songSearch?.data.data.data?.songs.map((song: any, index: number) => (
                 <div key={index}>
                   <ItemSearch song={song}  />
@@ -180,7 +180,7 @@ export default function Header() {
               ))}
             </div>
             <div className='ml-3'>
-              <h6 className="font-normal">Playlist</h6>
+              <h6 className="font-normal">Playlist 😍🤪</h6>
               {songSearch?.data.data.data?.playlists.map((song: any, index: number) => (
                 <div key={index}>
                   <ItemSearch song={song}  />

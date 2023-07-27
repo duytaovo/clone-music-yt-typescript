@@ -19,7 +19,7 @@ const ShuffleControl: React.FC = () => {
         <button className='mx-2 my-0 ' title='Shuffle'>
           <ShuffleIcon
             sx={{
-              color:'#335EEA',
+              color:'#8062D6',
               width: '24px',
               height: '24px'
             }}

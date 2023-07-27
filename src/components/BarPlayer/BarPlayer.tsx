@@ -41,7 +41,7 @@ const BarPlayer = ({ songDetail }: Props) => {
     ;(async () => {
       try {
         if (songId === '') {
-          toast.error('Bài này không phát được')
+          toast.error('Có lỗi, không phát được 🥹')
           dispatch(setIsLoading(false))
         } else {
           await dispatch(setIsLoading(true))

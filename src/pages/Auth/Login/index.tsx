@@ -46,7 +46,7 @@ const Login = () => {
         setIsAuthenticated(true)
         setProfile(data.data.data.user)
         setOpenModal(false)
-        toast.success('Đăng nhập thành công !!!')
+        toast.success('Đăng nhập thành công 😍😋😙')
       },
       onError: (error) => {
         if (isAxiosUnprocessableEntityError<ErrorResponse<FormData>>(error)) {
@@ -77,7 +77,7 @@ const Login = () => {
       localStorage.setItem('email', String(data.user.email))
       setIsAuthenticated(true)
       setOpenModal(false)
-      toast.success('Đăng nhập thành công !!!')
+      toast.success('Đăng nhập thành công 😍😋😙!!!')
     })
   }
   return (

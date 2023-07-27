@@ -52,8 +52,8 @@ const ItemSongPlayer = ({ bg, songDetail, onClick, index, id }: Props) => {
           }}
         >
           <div
-            className={` ${bg} hover:bg-white ${
-              isFocus ? 'bg-[#302639] shadow-box-shadow' : ''
+            className={` ${bg} hover:bg-[#302639] ${
+              isFocus ? 'bg-[#302639] shadow-box-shadow'  : ''
             } song-playlist-item-player-${songDetail?.encodeId}`}
             onClick={getIdSong}
           >

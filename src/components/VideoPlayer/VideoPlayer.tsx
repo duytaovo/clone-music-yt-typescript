@@ -14,6 +14,8 @@ import AnimatedBarChart from '../AnimationPlayChart'
 import { changeIconPlay } from 'src/store/slices/audio'
 import { RootState } from 'src/store/store'
 import Button from '../Button'
+import { toast } from 'react-toastify'
+import { useSpring , animated} from 'react-spring'
 
 const VideoPlayer = ({ playListData, songThumbnail }: { playListData: any; songThumbnail: any }) => {
   const today = new Date()
@@ -21,14 +23,18 @@ const VideoPlayer = ({ playListData, songThumbnail }: { playListData: any; songT
   const { isPlay, audioRef,isLoading } = useAppSelector((state: RootState) => state.audio)
   let [like, setLike] = useState(Number(localStorage.getItem('like')))
   const dispatch = useAppDispatch()
+  const [liked, setLiked] = useState(false);
+  const springProps = useSpring({ scale: like == 1 ? 1.1 : 1, color:like == 1 ? 'red':'' });
 
   const handleClickLike = () => {
     if (like === 0) {
       setLike(1)
       localStorage.setItem('like', '1')
+      toast.success("Đã thêm vào danh sách bài hát 😝")
     } else {
       setLike(0)
       localStorage.setItem('like', '0')
+      toast.success("Đã bỏ thêm vào danh sách bài hát 😂")
     }
   }
   const handlePlaySong = () => {
@@ -143,19 +149,21 @@ const VideoPlayer = ({ playListData, songThumbnail }: { playListData: any; songT
                 }}
                 onClick={handleClickLike}
               >
+                <animated.div style={springProps}>
+
                 {like === 0 ? (
                   <FavoriteBorderIcon
                     fontSize='small'
-                    className='buttonMark__isChecking'
                     style={{ fontSize: '24px', color: '#ffffff' }}
                   />
                 ) : (
                   <FavoriteIcon
                     fontSize='small'
                     className='buttonMark__isChecking'
-                    style={{ fontSize: '24px', color: '#ffffff' }}
+                    style={{ fontSize: '24px', color: '#FF52A2' }}
                   />
                 )}
+                </animated.div>
               </IconButton>
               <IconButton
                 aria-label='share'

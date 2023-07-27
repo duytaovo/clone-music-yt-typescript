@@ -7,6 +7,7 @@ import { IconButton, Tooltip } from '@mui/material'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import { RootState } from 'src/store/store'
 import AnimatedBarChart from 'src/components/AnimationPlayChart'
+import { toast } from 'react-toastify'
 
 const TrackInfo: React.FC = () => {
   // const info = useAppSelector((state) => state.audio.infoSongPlayer)
@@ -17,9 +18,11 @@ const TrackInfo: React.FC = () => {
   const handleClickLike = () => {
     if (like === 0) {
       setLike(1)
+      toast.success("Đã thêm vào danh sách bài hát 😝")
       localStorage.setItem('like', '1')
     } else {
       setLike(0)
+      toast.success("Đã bỏ thêm vào danh sách bài hát 😂")
       localStorage.setItem('like', '0')
     }
   }
@@ -28,7 +31,7 @@ const TrackInfo: React.FC = () => {
       {/* Thumbnail */}
       {isPlay && isLoading == false && (
         <div className='z-10 absolute top-[30%] '>
-          <AnimatedBarChart numberColumn={5} width={50} height={40} />
+          <AnimatedBarChart numberColumn={10} width={50} height={40} />
         </div>
       )}
       <div className='w-full'>
@@ -75,7 +78,7 @@ const TrackInfo: React.FC = () => {
             <FavoriteIcon
               fontSize='small'
               className='buttonMark__isChecking'
-              style={{ fontSize: '24px', color: 'white' }}
+              style={{ fontSize: '24px', color: '#FF52A2' }}
             />
           )}
         </IconButton>
