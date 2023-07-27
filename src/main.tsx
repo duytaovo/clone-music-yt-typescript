@@ -8,7 +8,6 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { AppProvider } from './contexts/app.context'
 import { Provider } from 'react-redux'
 import store from './store/store'
-import { DndProvider } from 'react-dnd'
 
 const queryClient = new QueryClient({
   defaultOptions: {

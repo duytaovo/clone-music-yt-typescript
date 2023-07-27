@@ -4,15 +4,15 @@ import http from 'src/utils/http'
 const URL = ``
 const playListApi = {
   getPlayList(params: string) {
-    return http.get<SuccessResponse<any>>(`/api/get/playlist/info?id=${params}`, {
+    return http.get<SuccessResponse<any>>(`/v2/api/get/playlist/info?id=${params}`, {
     })
   },
   getDetailSongFromPlayList(params: string) {
-    return http.get<SuccessResponse<any>>(`/api/get/song/info?id=${params}`, {
+    return http.get<SuccessResponse<any>>(`/v2/api/get/song/info?id=${params}`, {
     })
   },
   getSongSound(params: string) {
-    return http.get<SuccessResponse<any>>(`/api/get/song/sound?id=${params}`, {
+    return http.get<SuccessResponse<any>>(`/v2/api/get/song/sound?id=${params}`, {
     })
   },
 }

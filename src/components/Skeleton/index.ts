@@ -1,3 +1,1 @@
-import Sekeleton from "./Skeleton";
-
-export default Sekeleton
+export { default } from './Loading';

@@ -4,8 +4,8 @@ import LinearProgress from '@mui/material/LinearProgress'
 import { RootState } from 'src/store/store'
 
 const Loading = () => {
-  const loading = useSelector((state:RootState) => state.loading.loading)
-  if (loading > 0) {
+  const loading = useSelector((state:RootState) => state.loading.value)
+  if (loading <100) {
     return (
       <div>
         <LinearProgress
@@ -23,4 +23,4 @@ const Loading = () => {
   }
   return null
 }
-export default Loading
+export default React.memo(Loading)

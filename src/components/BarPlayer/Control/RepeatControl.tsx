@@ -1,26 +1,23 @@
-import React from "react"
+import React, { useState } from "react"
 import RepeatIcon from '@mui/icons-material/Repeat';
-import { useAppDispatch, useAppSelector } from "src/hooks/useRedux";
-import { setLoop } from "src/store/slices/audio";
 const RepeatControl: React.FC = () => {
 
-  const {isLoop,currnetIndexPlaylist} = useAppSelector((state) => state.audio)
-  const dispath = useAppDispatch()
-
-  const handleRepeat = () => {
-    if(isLoop) {
-      dispath(setLoop(false))
+  let [isLoop, setIsLoop] = useState(Number(localStorage.getItem('isLoop')))
+  const handleClick = () => {
+    if ((isLoop === 0)) {
+      setIsLoop(1)
+      localStorage.setItem('isLoop', '1')
     } else {
-      dispath(setLoop(true))
+      setIsLoop(0)
+      localStorage.setItem('isLoop', '0')
     }
   }
-
   return(
     <div
-      onClick={handleRepeat}
+      onClick={handleClick}
     >
       {
-        isLoop
+        isLoop == 1
         ?
         <button className="mx-2 my-0 " title="Repeat">
           <RepeatIcon  sx={{

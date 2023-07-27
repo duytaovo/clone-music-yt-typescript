@@ -14,11 +14,11 @@ const useLyric = ( songId:string | null): any => {
         if(songId !== null && songId !== "") {
 
           let dataLyric:any = await dispatch(getLyric(songId)).then(unwrapResult)
-          dataLyric = dataLyric?.data.data.data
+          dataLyric = dataLyric?.data?.data?.data
           let customLyr:{ startTime: number, endTime: number,data: string }[] = []
 
-          dataLyric.sentences &&
-          dataLyric.sentences.forEach((e:{words: []}, i:number) => {
+          dataLyric?.sentences &&
+          dataLyric?.sentences.forEach((e:{words: []}, i:number) => {
             let lineLyric:string = ""
             let sTime: number = 0
             let eTime: number = 0

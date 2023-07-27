@@ -42,6 +42,7 @@ const Login = () => {
   const onSubmit = handleSubmit((data) => {
     loginMutation.mutate(data, {
       onSuccess: (data) => {
+        console.log(data)
         setIsAuthenticated(true)
         setProfile(data.data.data.user)
         setOpenModal(false)

@@ -21,7 +21,6 @@ function App() {
     <HelmetProvider>
       <ErrorBoundary>
         {/* <AnimatedTransition key={location.pathname}> */}
-        <Loading />
         {routeElements}
         {/* </AnimatedTransition> */}
 

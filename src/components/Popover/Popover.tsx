@@ -1,6 +1,7 @@
-import { useState, useRef, useId, type ElementType } from 'react'
-import { useFloating, FloatingPortal, arrow, shift, offset, type Placement } from '@floating-ui/react-dom-interactions'
+import { useState, useRef, useId, type ElementType, useContext } from 'react'
+import { useFloating, FloatingPortal, arrow, shift, offset, type Placement, useClick, useInteractions } from '@floating-ui/react-dom-interactions'
 import { motion, AnimatePresence } from 'framer-motion'
+import { AppContext } from 'src/contexts/app.context'
 
 interface Props {
   children: React.ReactNode
@@ -17,14 +18,18 @@ export default function Popover({
   renderPopover,
   as: Element = 'div',
   initialOpen,
-  placement = 'bottom-end'
+  placement = 'bottom'
 }: Props) {
   const [open, setOpen] = useState(initialOpen || false)
   const arrowRef = useRef<HTMLElement>(null)
-  const { x, y, reference, floating, strategy, middlewareData } = useFloating({
-    middleware: [offset(6), shift(), arrow({ element: arrowRef })],
+  const { x, y, reference, floating,context, strategy, middlewareData } = useFloating({
+    middleware: [offset(8), shift(), arrow({ element: arrowRef })],
     placement: placement
   })
+  const click = useClick(context);
+  const {getReferenceProps, getFloatingProps} = useInteractions([
+    click,
+  ]);
   const id = useId()
   const showPopover = () => {
     setOpen(true)
@@ -33,7 +38,7 @@ export default function Popover({
     setOpen(false)
   }
   return (
-    <Element className={className} ref={reference} onMouseEnter={showPopover} onMouseLeave={hidePopover}>
+    <Element className={className} ref={reference} onFocus={showPopover} onBlur={hidePopover}  {...getReferenceProps()}>
       {children}
       <FloatingPortal id={id}>
         <AnimatePresence>
@@ -42,8 +47,8 @@ export default function Popover({
               ref={floating}
               style={{
                 position: strategy,
-                top: y ?? 0,
-                left: x ?? 0,
+                top: y ?? 'center',
+                left: x ?? 'center',
                 width: 'max-content',
                 transformOrigin: `${middlewareData.arrow?.x}px top`
               }}
@@ -51,6 +56,7 @@ export default function Popover({
               animate={{ opacity: 1, transform: 'scale(1)' }}
               exit={{ opacity: 0, transform: 'scale(0)' }}
               transition={{ duration: 0.2 }}
+              {...getFloatingProps()}
             >
               <span
                 ref={arrowRef}

@@ -5,7 +5,13 @@ interface DataPoint {
   value: number;
 }
 
-const AnimatedBarChart: React.FC = () => {
+interface Props {
+  width:number
+  height:number
+  numberColumn:number
+}
+
+const AnimatedBarChart = ({width,height,numberColumn} :Props) => {
   const [data, setData] = useState<DataPoint[]>([]);
 
   useEffect(() => {
@@ -16,7 +22,7 @@ const AnimatedBarChart: React.FC = () => {
 
   const generateRandomData = () => {
     const newData: DataPoint[] = [];
-    for (let i = 1; i <= 50; i++) {
+    for (let i = 1; i <= numberColumn; i++) {
       newData.push({  value: Math.random() * 300 });
     }
     setData(newData);
@@ -26,7 +32,7 @@ const AnimatedBarChart: React.FC = () => {
     <BarChart style={{
         
     }}
-    height={100} data={data} width={320}>
+    height={height} data={data} width={width}>
       <Bar dataKey="value" fill="white" animationDuration={400} />
     </BarChart>
   );

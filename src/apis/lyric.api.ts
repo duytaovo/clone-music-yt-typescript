@@ -3,7 +3,7 @@ import http from 'src/utils/http'
 
 const lyricApi = {
   getLyric(params: string) {
-    return http.get<SuccessResponse<any>>(`/api/get/song/lyric?id=${params}`, {
+    return http.get<SuccessResponse<any>>(`/v2/api/get/song/lyric?id=${params}`, {
     })
   },
 }

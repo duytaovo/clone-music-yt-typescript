@@ -1,3 +1,3 @@
-import { ItemSongPlayer } from "./ItemSongPlayer";
+import ItemSongPlayer  from "./ItemSongPlayer";
 
 export default ItemSongPlayer

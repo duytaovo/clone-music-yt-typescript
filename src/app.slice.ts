@@ -1,39 +1,87 @@
-import { createSlice } from '@reduxjs/toolkit'
+// import { createSlice } from '@reduxjs/toolkit'
 
-interface Status {
-  status: number
-  loading: number
+// interface Status {
+//   status: number
+//   loading: number
+// }
+
+// const initialState: Status = {
+//   status: 200,
+//   loading: 0
+// }
+
+
+// const app = createSlice({
+//   name: 'app',
+//   initialState,
+//   reducers: {},
+//   extraReducers: builder => {
+//     builder
+//       .addMatcher(
+//         action => action.type.endsWith('/pending'),
+//         state => {
+//           state.loading = state.loading + 1
+//         }
+//       )
+//       .addMatcher(
+//         action =>
+//           action.type.endsWith('/fulfilled') ||
+//           action.type.endsWith('/rejected'),
+//         (state, action) => {
+//           state.status = action.payload.status
+//           state.loading = state.loading - 1
+//         }
+//       )
+//   }
+// })
+
+// const appReducer = app.reducer
+// export default appReducer
+
+import { createSlice } from "@reduxjs/toolkit"
+import { RootState } from "./store/store"
+
+export interface LoadingState {
+  value: number
+  status: "idle" | "loading" | "failed"
 }
 
-const initialState: Status = {
-  status: 200,
-  loading: 0
+const initialState: LoadingState = {
+  value: 0,
+  status: "idle",
 }
 
 
-const app = createSlice({
-  name: 'app',
+export const app = createSlice({
+  name: "loading",
   initialState,
-  reducers: {},
-  extraReducers: builder => {
-    builder
-      .addMatcher(
-        action => action.type.endsWith('/pending'),
-        state => {
-          state.loading = state.loading + 1
-        }
-      )
-      .addMatcher(
-        action =>
-          action.type.endsWith('/fulfilled') ||
-          action.type.endsWith('/rejected'),
-        (state, action) => {
-          state.status = action.payload.status
-          state.loading = state.loading - 1
-        }
-      )
-  }
+  reducers: {
+    changePercentLoading: (state, actions: { payload: number }) => {
+      state.value = actions.payload
+    },
+  },
+  // extraReducers: builder => {
+  //   builder
+  //     .addMatcher(
+  //       action => action.type.endsWith('/pending'),
+  //       state => {
+  //         state.value = state.value + 1
+  //       }
+  //     )
+  //     .addMatcher(
+  //       action =>
+  //         action.type.endsWith('/fulfilled') ||
+  //         action.type.endsWith('/rejected'),
+  //       (state, action) => {
+  //         state.status = action.payload.status
+  //         state.value = state.value - 1
+  //       }
+  //     )
+  // }
 })
 
+export const selectValue = (state: RootState) => state.loading.value
+
+export const { changePercentLoading } = app.actions
 const appReducer = app.reducer
 export default appReducer

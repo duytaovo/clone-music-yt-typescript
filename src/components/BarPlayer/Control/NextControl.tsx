@@ -1,12 +1,12 @@
 import React, { useState } from "react"
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { useAppDispatch, useAppSelector } from "src/hooks/useRedux";
-import { changeIconPlay, setCurrnetIndexPlaylist, setSongDetail, setSongId, updateIndexCardActive } from "src/store/slices/audio";
+import { changeIconPlay, setCurrnetIndexPlaylist, setSongDetail, setSongId } from "src/store/slices/audio";
 import { RootState } from "src/store/store";
 const NextControl: React.FC = () => {
   const playlistSong:any = useAppSelector((state) => state.audio.playlistSong)
 
-  let { currnetIndexPlaylist, isRandom } = useAppSelector((state: RootState) => state.audio)
+  let { currnetIndexPlaylist } = useAppSelector((state: RootState) => state.audio)
   const [randomIndex, setRandomIndex] = useState<number[]>([])
   const list = new Set(randomIndex) // List save random currentIndex and reset at full
   const dispatch = useAppDispatch()
@@ -18,7 +18,6 @@ const NextControl: React.FC = () => {
       playlistSong[currentIndex].encodeId
     ))
     dispatch(changeIconPlay(true))
-    dispatch(updateIndexCardActive(currentIndex))
   }
   //handle random
   const handleRandom = (index: number) => {
@@ -43,7 +42,7 @@ const NextControl: React.FC = () => {
       if(currnetIndexPlaylist === playlistSong.length - 1) {
         currentIndex = 0
       } else {
-        isRandom && handleRandom(currnetIndexPlaylist) 
+        Number(localStorage.getItem('isRandom')) == 1 && handleRandom(currnetIndexPlaylist) 
         currentIndex = currnetIndexPlaylist + 1
 
       }

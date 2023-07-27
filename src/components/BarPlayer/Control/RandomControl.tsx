@@ -1,20 +1,21 @@
 import React, { useState } from 'react'
 import ShuffleIcon from '@mui/icons-material/Shuffle'
-import { RootState } from 'src/store/store'
-import { useAppDispatch, useAppSelector } from 'src/hooks/useRedux'
-import { setRandom } from 'src/store/slices/audio'
 
 const ShuffleControl: React.FC = () => {
-  let {  isRandom } = useAppSelector((state: RootState) => state.audio)
-  const dispatch = useAppDispatch()
 
-  const onClick = () => {
-      dispatch(setRandom(!isRandom))
-
+  let [isRandom, setIsRandom] = useState(Number(localStorage.getItem('isRandom')))
+  const handleClick = () => {
+    if ((isRandom === 0)) {
+      setIsRandom(1)
+      localStorage.setItem('isRandom', '1')
+    } else {
+      setIsRandom(0)
+      localStorage.setItem('isRandom', '0')
+    }
   }
   return (
-    <div onClick={onClick}>
-      {isRandom ? (
+    <div onClick={handleClick}>
+      {isRandom == 1 ? (
         <button className='mx-2 my-0 ' title='Shuffle'>
           <ShuffleIcon
             sx={{

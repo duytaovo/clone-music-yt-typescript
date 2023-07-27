@@ -28,10 +28,6 @@ const authSlice = createSlice({
     },
   },
   extraReducers: builder => {
-    // The `builder` callback form is used here because it provides correctly typed reducers from the action creators
-    // builder.addCase(getPlayList.fulfilled, (state, { payload }) => {
-    //   state.playlist = payload
-    // })
   }
 });
 

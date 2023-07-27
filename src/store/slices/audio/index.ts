@@ -16,14 +16,12 @@ interface AudioState {
   currentTime: number
   duration: number
   volume: number
-  isLoop: boolean
   autoPlay: boolean
   playlistSong: Array<object>
   isLyric: boolean,
   songDetail:any,
-  indexCardActive: number,
   audioRef: any,
-  isRandom: boolean
+  isLoading:boolean
 
 }
 
@@ -42,14 +40,12 @@ const initialState: AudioState = {
   currentTime: 0,
   duration: 0,
   volume: Number(localStorage.getItem("volume")) || 0.5,
-  isLoop: Boolean(localStorage.getItem("isLoop")),
   autoPlay: false,
   playlistSong: [],
   isLyric: false,
   songDetail:{},
-  indexCardActive:0,
   audioRef: null,
-  isRandom: Boolean(localStorage.getItem("isRandom")),
+  isLoading:false
 }
 
 
@@ -89,15 +85,6 @@ const audioSlice = createSlice({
     setVolume: (state, action: PayloadAction<number>) => {
       state.volume = action.payload
     },
-    setLoop: (state, action: PayloadAction<boolean>) => {
-      state.isLoop = action.payload
-      localStorage.setItem("isLoop", String(action.payload))
-
-    },
-    setRandom: (state, action: PayloadAction<boolean>) => {
-      state.isRandom = action.payload
-      localStorage.setItem("isRandom", String(action.payload))
-    },
     setAutoPlay: (state, action: PayloadAction<boolean>) => {
       state.autoPlay = action.payload
     },
@@ -110,11 +97,11 @@ const audioSlice = createSlice({
     setOpenLyric: (state, action: PayloadAction<boolean>) => {
       state.isLyric = action.payload
     },
-    updateIndexCardActive: (state, action) => {
-      state.indexCardActive = action.payload;
-    },
     setAudioRef:(state,action) =>{
       state.audioRef=action.payload
+    },
+    setIsLoading:(state,action) =>{
+      state.isLoading = action.payload
     }
   }
 })
@@ -127,16 +114,14 @@ export const {
   setCurrentTime,
   setDuration,
   setVolume,
-  setLoop,
   setSrcAudio,
   setAutoPlay,
   setPlaylistSong,
   setCurrnetIndexPlaylist,
   setOpenLyric,
   setSongDetail,
-  updateIndexCardActive,
   setAudioRef,
-  setRandom
+  setIsLoading
 } = audioSlice.actions
 
 const audioReducer = audioSlice.reducer

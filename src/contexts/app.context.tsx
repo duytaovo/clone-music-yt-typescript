@@ -29,7 +29,7 @@ export const getInitialAppContext: () => AppContextInterface = () => ({
   isPlaying:false,
   setPlaying: () => {},
   openModal:false,
-  setOpenModal: () => {}
+  setOpenModal: () => {},
 })
 
 const initialAppContext = getInitialAppContext()
@@ -67,8 +67,7 @@ export const AppProvider = ({
         openModal,
         setOpenModal,
         profileWithGG,
-        setProfileWithGG
-
+        setProfileWithGG,
       }}
     >
       {children}

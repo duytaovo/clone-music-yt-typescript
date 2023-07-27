@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useRef, useState } from 'react'
+import React, { createContext, memo, useContext, useEffect, useRef, useState } from 'react'
 import { useAppDispatch, useAppSelector } from 'src/hooks/useRedux'
 import Control from './Control'
 import { useLocation, useNavigate } from 'react-router-dom'
@@ -9,6 +9,7 @@ import {
   setCurrnetIndexPlaylist,
   setDuration,
   setInfoSongPlayer,
+  setIsLoading,
   setSongDetail,
   setSongId,
   setSrcAudio
@@ -16,15 +17,14 @@ import {
 import { getSongDetail, getSongSound } from 'src/store/slices/playlist'
 import { unwrapResult } from '@reduxjs/toolkit'
 import Lyric from './Lyric'
-import { AppContext } from 'src/contexts/app.context'
+import { toast } from 'react-toastify'
 
 interface Props {
   songDetail: any
 }
 
 const BarPlayer = ({ songDetail }: Props) => {
-  const {srcAudio,isLoop,songId, autoPlay} = useAppSelector((state) => state.audio)
-  const { isPlaying, setPlaying } = useContext(AppContext)
+  const {srcAudio,songId, autoPlay} = useAppSelector((state) => state.audio)
 
   // const songDetail = useAppSelector((state) => state.audio.songDetail)
   const currnetIndexPlaylist = useAppSelector((state) => state.audio.currnetIndexPlaylist)
@@ -41,16 +41,18 @@ const BarPlayer = ({ songDetail }: Props) => {
     ;(async () => {
       try {
         if (songId === '') {
-          console.log('Song id not found')
+          toast.error('Bài này không phát được')
+          dispatch(setIsLoading(false))
         } else {
+          await dispatch(setIsLoading(true))
           await dispatch(getSongSound(songId))
             .then(unwrapResult)
+           
             .then((res) => dispatch(setSrcAudio(res?.data?.data?.data['128'])))
           await dispatch(getSongDetail(songId))
             .then(unwrapResult)
             .then((res) => dispatch(setSongDetail(res?.data?.data?.data)))
-          // await dispatch(changeIconPlay(true))
-          dispatch(
+          await dispatch(
             setInfoSongPlayer({
               title: songDetail?.title,
               thumbnail: songDetail?.thumbnail,
@@ -58,6 +60,7 @@ const BarPlayer = ({ songDetail }: Props) => {
               artists: songDetail?.artists
             })
           )
+          await dispatch(setIsLoading(false))
         }
       } catch (err) {
         console.log(err)
@@ -79,7 +82,7 @@ const BarPlayer = ({ songDetail }: Props) => {
         ref={audioRef}
         src={srcAudio}
         className='hidden'
-        loop={isLoop}
+        loop={Number(localStorage.getItem('isLoop')) == 1}
         autoPlay={autoPlay}
         hidden
         onTimeUpdate={() => {
@@ -93,7 +96,7 @@ const BarPlayer = ({ songDetail }: Props) => {
           }
         }}
         onEnded={() => {
-          if (!isLoop) {
+          if (Number(localStorage.getItem('isLoop')) == 0) {
             dispatch(setCurrentTime(0))
             dispatch(changeIconPlay(false))
 
@@ -120,4 +123,4 @@ const BarPlayer = ({ songDetail }: Props) => {
   )
 }
 
-export default BarPlayer
+export default memo(BarPlayer)

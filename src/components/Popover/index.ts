@@ -1,3 +1,3 @@
-import Popover from './Popover'
+import PopoverSearch from './Popover'
 
-export default Popover
+export default PopoverSearch

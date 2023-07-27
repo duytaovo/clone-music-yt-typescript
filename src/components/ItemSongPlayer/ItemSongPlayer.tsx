@@ -1,28 +1,29 @@
 import { Grid } from '@mui/material'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from 'src/hooks/useRedux'
-import { changeIconPlay, setAutoPlay, setCurrnetIndexPlaylist, updateIndexCardActive } from 'src/store/slices/audio'
+import { changeIconPlay, setAutoPlay } from 'src/store/slices/audio'
 import getDuration from 'src/utils/getDuration'
 import MusicNoteOutlinedIcon from '@mui/icons-material/MusicNoteOutlined'
-import { useEffect } from 'react'
+import { memo, useEffect } from 'react'
 import { Draggable } from 'react-beautiful-dnd'
+import Loader from '../Loader'
 
 interface Props {
   bg: any
   songDetail: any
   onClick: (value: string) => void
   index: number
-  active: number
-  id: string,
+  id: string
 }
-export const ItemSongPlayer = ({ bg, songDetail, onClick, index, active, id }: Props) => {
+
+const ItemSongPlayer = ({ bg, songDetail, onClick, index, id }: Props) => {
   const dispatch = useAppDispatch()
   const songId = useAppSelector((state) => state.audio.songId)
   const isFocus = songId == songDetail?.encodeId
+  const { isLoading } = useAppSelector((state) => state.audio)
 
   const getIdSong = async () => {
     onClick && onClick(songDetail.encodeId)
-    dispatch(updateIndexCardActive(index))
     dispatch(changeIconPlay(true))
     dispatch(setAutoPlay(true))
   }
@@ -51,7 +52,9 @@ export const ItemSongPlayer = ({ bg, songDetail, onClick, index, active, id }: P
           }}
         >
           <div
-            className={` ${bg} hover:bg-white  ${isFocus ? 'bg-[#302639] shadow-box-shadow' : ''} song-playlist-item-player-${songDetail?.encodeId}`}
+            className={` ${bg} hover:bg-white ${
+              isFocus ? 'bg-[#302639] shadow-box-shadow' : ''
+            } song-playlist-item-player-${songDetail?.encodeId}`}
             onClick={getIdSong}
           >
             <Link to=''>
@@ -61,11 +64,22 @@ export const ItemSongPlayer = ({ bg, songDetail, onClick, index, active, id }: P
                     <MusicNoteOutlinedIcon
                       sx={{ color: '#A78295', mr: 1, transform: 'translate(-5px,10px)', fontSize: '25px' }}
                     />
-                    <img
-                      src={songDetail?.thumbnail}
-                      alt=''
-                      className='h-12 w-12 rounded object-contain group-hover:opacity-50'
-                    />
+                    <div className='relative'>
+                      <img
+                        src={songDetail?.thumbnail}
+                        alt=''
+                        className='relative h-12 w-12 rounded object-contain group-hover:opacity-50'
+                      />
+                      {isFocus && isLoading == true && (
+                        <div
+                          className='
+      absolute z-10  translate-x-[-50%] translate-y-[-50%] top-[50%] left-[65%]
+      '
+                        >
+                          <Loader />
+                        </div>
+                      )}
+                    </div>
                     <div className='pd-3 ml-2'>
                       <p className='text-white line-clamp-2'>{songDetail.title}</p>
                       <p className='text-sm text-[#A78295] line-clamp-2'>{songDetail.artistsNames}</p>
@@ -90,3 +104,5 @@ export const ItemSongPlayer = ({ bg, songDetail, onClick, index, active, id }: P
     </Draggable>
   )
 }
+
+export default memo(ItemSongPlayer)

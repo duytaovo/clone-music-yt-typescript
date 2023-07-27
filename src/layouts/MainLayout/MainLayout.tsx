@@ -10,6 +10,7 @@ import { RootState } from 'src/store/store'
 import { getPlayList} from 'src/store/slices/playlist'
 import { setPlaylistSong } from 'src/store/slices/audio'
 import useRouteHistory from 'src/hooks/useRoutesHistory'
+import Loading from 'src/components/Loading'
 interface Props {
   children?: React.ReactNode
 }
@@ -34,6 +35,7 @@ function MainLayoutInner({ children }: Props) {
 
   return (
     <div className='h-100vh bg w-[100vw]'>
+      <Loading />
       <Header />
       {/* {children} */}
       <Outlet />
