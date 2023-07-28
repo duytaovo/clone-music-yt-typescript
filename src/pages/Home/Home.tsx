@@ -32,10 +32,10 @@ export default function Home() {
 
   return (
     <div className='container'>
-       <Helmet>
+       {/* <Helmet>
         <title>Trang chủ | Music Youtube By Võ Duy Tạo</title>
         <meta name='description' content='Trang profile cá nhân' />
-      </Helmet>
+      </Helmet> */}
       <Tags />
       {value < 100 ? (
         // <Sekeleton />
