@@ -9,7 +9,6 @@ import Test from './pages/Test'
 import { AppContext } from './contexts/app.context'
 import { toast } from 'react-toastify'
 import Profile from './pages/User/pages/Profile'
-import UserLayout from './pages/User/layouts/UserLayout'
 
 const Home = lazy(() => import('./pages/Home'))
 const Player = lazy(() => import('./pages/Player'))
