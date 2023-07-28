@@ -19,7 +19,7 @@ module.exports = {
         bgForm:"#130C1C",
       },
       backgroundImage:{
-        bg_chart:'linear-gradient(70deg,#F3AA60, #EF6262, #9681EB, #6527BE)'
+        bg_chart:'linear-gradient(70deg,#4A55A2, #7895CB, #A0BFE0, #C5DFF8)'
 
       }
     }

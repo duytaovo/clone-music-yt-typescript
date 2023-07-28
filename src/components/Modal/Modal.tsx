@@ -32,7 +32,7 @@ const style = {
   // backgroundSize:"100vw 100vh",
   // background: 'linear-gradient(to bottom, #FF9B9B, #FFD6A5, #FFFEC4,#CBFFA9)'
   // background: 'linear-gradient(to bottom, #000000, #CF0A0A, #DC5F00,#EEEEEE)'
-  background: 'linear-gradient(70deg,#F3AA60, #EF6262, #9681EB, #6527BE)'
+  background: 'linear-gradient(70deg,#4A55A2, #7895CB, #A0BFE0, #C5DFF8)'
 }
 
 export default function TransitionsModal() {

@@ -34,7 +34,7 @@ export const ItemChart = ({ dataChart }: any) => {
           </div>
         ))}
       </div>
-      <Button className='flex w-[40%] mb-2 items-center justify-center rounded-[30px] bg-[#9B4DE0] py-3  text-sm uppercase text-white hover:opacity-80'>
+      <Button className='flex w-[40%] mb-2 items-center justify-center rounded-[30px] bg-[#75C2F6] py-3  text-sm uppercase text-white hover:opacity-80'>
         Xem thêm
       </Button>
     </div>

@@ -5,6 +5,9 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import ErrorBoundary from './components/ErrorBoundary'
 import { HelmetProvider } from 'react-helmet-async'
 import Loading from './components/Loading'
+import { useContext, useEffect } from 'react'
+import { LocalStorageEventTarget } from './utils/auth'
+import { AppContext } from './contexts/app.context'
 
 /**
  * Khi url thay đổi thì các component nào dùng các hook như
@@ -16,7 +19,14 @@ import Loading from './components/Loading'
 
 function App() {
   const routeElements = useRouteElements()
+  const { reset } = useContext(AppContext)
 
+  useEffect(() => {
+    LocalStorageEventTarget.addEventListener('clearLS', reset)
+    return () => {
+      LocalStorageEventTarget.removeEventListener('clearLS', reset)
+    }
+  }, [reset])
   return (
     <HelmetProvider>
       <ErrorBoundary>

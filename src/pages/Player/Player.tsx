@@ -10,6 +10,7 @@ import { getPlayList } from 'src/store/slices/playlist'
 import { setPlaylistSong, setSongId } from 'src/store/slices/audio'
 import { AppContext } from 'src/contexts/app.context'
 import { changePercentLoading } from 'src/app.slice'
+import { Helmet } from 'react-helmet-async'
 
 const Player = () => {
   const { playlist } = useSelector((state: RootState) => state.playlist)
@@ -60,6 +61,10 @@ const Player = () => {
       }
       ref={lyrRef}
     >
+      <Helmet>
+        <title>PlayList | Music Youtube By Võ Duy Tạo</title>
+        <meta name='description' content='Trang play list phát nhạc' />
+      </Helmet>
 
       <Link to={'/'}>
         <button

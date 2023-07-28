@@ -42,7 +42,6 @@ const Login = () => {
   const onSubmit = handleSubmit((data) => {
     loginMutation.mutate(data, {
       onSuccess: (data) => {
-        console.log(data)
         setIsAuthenticated(true)
         setProfile(data.data.data.user)
         setOpenModal(false)
@@ -109,7 +108,7 @@ const Login = () => {
         <div className='mt-3'>
           <Button
             type='submit'
-            className='flex w-full items-center justify-center rounded-[30px] bg-[#9B4DE0] py-4 px-2 text-sm uppercase text-white hover:opacity-80'
+            className='flex w-full items-center justify-center rounded-[30px] bg-[#75C2F6] py-4 px-2 text-sm uppercase text-white hover:opacity-80'
             isLoading={loginMutation.isLoading}
             disabled={loginMutation.isLoading}
           >
@@ -125,7 +124,7 @@ const Login = () => {
         <span className='mt-3 flex items-center justify-center text-[#000]'>Hoặc</span>
         <div className='mt-3 flex items-center justify-center'>
           <Button
-            className='w-[50%] items-center justify-center rounded-[30px] bg-[#9B4DE0]  py-4 px-2 text-sm uppercase text-white hover:opacity-80'
+            className='w-[50%] items-center justify-center rounded-[30px] bg-[#75C2F6]  py-4 px-2 text-sm uppercase text-white hover:opacity-80'
             onClick={handleClickLoginWithGG}
           >
             <div className='flex items-center  justify-center gap-3 hover:opacity-80'>

@@ -3,17 +3,19 @@ import { lazy, Suspense, useContext, useMemo, useRef } from 'react'
 import { Outlet, Route, RouteObject, Routes, useRoutes } from 'react-router-dom'
 import MainLayout from './layouts/MainLayout'
 import Test from './pages/Test'
-import Home from './pages/Home'
-import Player from './pages/Player'
-import NotFound from './pages/NotFound'
+// import Home from './pages/Home'
+// import Player from './pages/Player'
+// import NotFound from './pages/NotFound'
 import { AppContext } from './contexts/app.context'
 import { toast } from 'react-toastify'
+import Profile from './pages/User/pages/Profile'
+import UserLayout from './pages/User/layouts/UserLayout'
 
-// const Home = lazy(() => import('./pages/Home'))
-// const Player = lazy(() => import('./pages/Player'))
-// const NotFound = lazy(() => import('./pages/NotFound'))
+const Home = lazy(() => import('./pages/Home'))
+const Player = lazy(() => import('./pages/Player'))
+const NotFound = lazy(() => import('./pages/NotFound'))
 
-const routeMain =[
+const routeMain = [
   {
     path: path.home,
     Component: Home
@@ -22,17 +24,20 @@ const routeMain =[
     path: path.playlist,
     Component: Player
   },
-  {
-    path: path.test,
-    Component: Test
-  },
   // {
-  //   component: Mv,
-  //   path: 'the-loai-video'
+  //   path: path.test,
+  //   Component: Test
   // },
   {
     path: '*',
     Component: NotFound
+  }
+]
+
+const routeUser = [
+  {
+    path: path.profile,
+    Component: Profile
   }
 ]
 
@@ -46,15 +51,34 @@ export default function useRouteElements() {
   const renderRouter = useMemo(() => {
     return routeMain.map(({ path, Component }, index) => {
       let Page = Component
-      return <Route path={path} element={<Page />} key={index} />
+      return (
+          <Route
+          key={index}
+            path={path}
+            element={
+              <Suspense>
+                <Page />
+              </Suspense>
+            }
+          />
+      )
     })
-  },[path])
+  }, [path])
+
+  const renderRouterUser = useMemo(() => {
+    return routeUser.map(({ path, Component }, index) => {
+      return <Route path={path} element={<Component />} key={index} />
+    })
+  }, [path])
 
   const routeElements = (
     <>
       <Routes>
         <Route path='' element={<MainLayout />}>
           {renderRouter}
+        </Route>
+        <Route path={path.user} element={<MainLayout />}>
+          {renderRouterUser}
         </Route>
       </Routes>
     </>

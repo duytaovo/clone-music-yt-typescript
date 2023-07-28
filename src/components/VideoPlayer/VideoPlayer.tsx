@@ -125,11 +125,11 @@ const VideoPlayer = ({ playListData, songThumbnail }: { playListData: any; songT
             </Typography>
             <div onClick={handlePlaySong}>
               {isPlay ? (
-                <Button className='mb-2 flex w-[full] items-center justify-center rounded-[30px] bg-[#9B4DE0] py-3 px-3 mt-3 text-sm uppercase text-white hover:opacity-80'>
+                <Button className='mb-2 flex w-[full] items-center justify-center rounded-[30px] bg-[#75C2F6] py-3 px-3 mt-3 text-sm uppercase text-white hover:opacity-80'>
                 Tạm dừng
               </Button>
               ) : (
-                <Button className='mb-2 flex w-[full%] items-center justify-center rounded-[30px] bg-[#9B4DE0] py-3 px-3 mt-3  text-sm uppercase text-white hover:opacity-80'>
+                <Button className='mb-2 flex w-[full%] items-center justify-center rounded-[30px] bg-[#75C2F6] py-3 px-3 mt-3  text-sm uppercase text-white hover:opacity-80'>
                   Tiếp tục phát
                 </Button>
               )}

@@ -17,6 +17,9 @@ import useQueryConfig from 'src/hooks/useQueryConfig'
 import songApi from 'src/apis/home.api'
 import PopoverSearch from '../Popover'
 import ItemSearch from '../ItemSongSearch'
+import { useNavigate } from 'react-router-dom'
+import { getAvatarUrl } from 'src/utils/utils'
+import { useDebounce } from 'usehooks-ts'
 
 interface HeaderItem {
   id: number
@@ -49,18 +52,19 @@ const sidebarLink: HeaderItem[] = [
 export default function Header() {
   const { i18n } = useTranslation()
   const { t } = useTranslation()
-  const queryConfig = useQueryConfig()
   const currentLanguage = locales[i18n.language as keyof typeof locales]
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null)
   const [anchorElProfile, setAnchorElProfile] = useState<HTMLButtonElement | null>(null)
-  const { setIsAuthenticated, setProfile, setOpenModal, isAuthenticated } = useContext(AppContext)
+  const { setIsAuthenticated, setProfile,profile, setOpenModal, isAuthenticated } = useContext(AppContext)
   const open = Boolean(anchorEl)
   const openProfile = Boolean(anchorElProfile)
   const id = open ? 'simple-popover' : undefined
   const idProfile = open ? 'profile' : undefined
   const [isScrolled, setIsScrolled] = useState(false)
   const [valueSearch, setValueSearch] = useState('Son tung')
+  const debouncedValue = useDebounce<string>(valueSearch, 300)
 
+  const navigate = useNavigate()
   const handleOpenModal = () => {
     setOpenModal(true)
   }
@@ -119,11 +123,11 @@ export default function Header() {
   }
 
   const { data: songSearch } = useQuery({
-    queryKey: ['songs_search', valueSearch],
+    queryKey: ['songs_search', debouncedValue],
     queryFn: () => {
-      return songApi.getSearchSong(valueSearch)
+      return songApi.getSearchSong(debouncedValue)
     },
-    enabled: valueSearch !== '',
+    enabled: debouncedValue !== '',
     keepPreviousData: true,
     staleTime: 3 * 60 * 1000
   })
@@ -208,7 +212,7 @@ export default function Header() {
               <div className='mr-2 h-6 w-6 flex-shrink-0'>
                 <img
                   src={
-                    'https://scontent.fsgn5-2.fna.fbcdn.net/v/t39.30808-6/358377922_1290654018553376_1336021502511303709_n.jpg?_nc_cat=105&cb=99be929b-3346023f&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=qP6EzdUhZOAAX_8mUfW&_nc_ht=scontent.fsgn5-2.fna&oh=00_AfCXEak_ej90-fhvoJ6Z23AhSBQn3I6AjcbJ29Y662zo0w&oe=64C382C5'
+                    `${getAvatarUrl(profile?.avatar)|| 'https://scontent.fsgn5-2.fna.fbcdn.net/v/t39.30808-6/358377922_1290654018553376_1336021502511303709_n.jpg?_nc_cat=105&cb=99be929b-3346023f&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=qP6EzdUhZOAAX_8mUfW&_nc_ht=scontent.fsgn5-2.fna&oh=00_AfCXEak_ej90-fhvoJ6Z23AhSBQn3I6AjcbJ29Y662zo0w&oe=64C382C5'}`
                   }
                   alt='avatar'
                   className='h-full w-full rounded-full object-cover'
@@ -228,7 +232,10 @@ export default function Header() {
             >
               <div className='relative mr-5 rounded-sm border border-gray-200 bg-white shadow-md'>
                 <div className='flex flex-col py-2 pr-2 pl-3'>
-                  <button className='py-2 px-3 text-left hover:text-blue-500'>Tài khoản của tôi</button>
+                  
+                  <button className='py-2 px-3 text-left hover:text-blue-500'
+                  onClick = {() => navigate('/user/profile')}
+                  >Tài khoản của tôi</button>
                   <button className='mt-2 py-2 px-3 text-left hover:text-blue-500' onClick={handleLogout}>
                     Đăng xuất
                   </button>

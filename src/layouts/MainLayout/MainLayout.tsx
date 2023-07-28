@@ -1,6 +1,5 @@
 import { memo, useEffect, useRef, useState } from 'react'
 import { Outlet, useParams } from 'react-router-dom'
-import Footer from 'src/components/Footer'
 import Header from 'src/components/Header'
 import './styles.css'
 import BarPlayer from 'src/components/BarPlayer'

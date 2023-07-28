@@ -11,6 +11,7 @@ import { RootState } from 'src/store/store'
 import Partner from 'src/components/Partner'
 import Loading from '../../components/Skeleton/Loading'
 import { changePercentLoading } from 'src/app.slice'
+import { Helmet } from 'react-helmet-async'
 
 export default function Home() {
   const { songs, chart } = useSelector((state: RootState) => state.songs)
@@ -31,6 +32,10 @@ export default function Home() {
 
   return (
     <div className='container'>
+       <Helmet>
+        <title>Trang chủ | Music Youtube By Võ Duy Tạo</title>
+        <meta name='description' content='Trang profile cá nhân' />
+      </Helmet>
       <Tags />
       {value < 100 ? (
         // <Sekeleton />
@@ -43,35 +48,35 @@ export default function Home() {
           <div className='flex flex-wrap items-center justify-between'>
             <div style={{ display: 'flex', gap: 20, paddingTop: 32 }}>
               <Loading styles={{ height: '48px', width: '48px' }} children={undefined} className={undefined} />
-              <Loading styles={{ height: '48px', width: '200px' }} children={undefined} className={undefined} />
+              <Loading styles={{ height: '48px', width: '220px' }} children={undefined} className={undefined} />
             </div>
             <div style={{ display: 'flex', gap: 20, paddingTop: 32 }}>
               <Loading styles={{ height: '48px', width: '48px' }} children={undefined} className={undefined} />
-              <Loading styles={{ height: '48px', width: '200px' }} children={undefined} className={undefined} />
+              <Loading styles={{ height: '48px', width: '220px' }} children={undefined} className={undefined} />
             </div>
             <div style={{ display: 'flex', gap: 20, paddingTop: 32 }}>
               <Loading styles={{ height: '48px', width: '48px' }} children={undefined} className={undefined} />
-              <Loading styles={{ height: '48px', width: '200px' }} children={undefined} className={undefined} />
+              <Loading styles={{ height: '48px', width: '220px' }} children={undefined} className={undefined} />
             </div>
             <div style={{ display: 'flex', gap: 20, paddingTop: 32 }}>
               <Loading styles={{ height: '48px', width: '48px' }} children={undefined} className={undefined} />
-              <Loading styles={{ height: '48px', width: '200px' }} children={undefined} className={undefined} />
+              <Loading styles={{ height: '48px', width: '220px' }} children={undefined} className={undefined} />
             </div>
             <div style={{ display: 'flex', gap: 20, paddingTop: 32 }}>
               <Loading styles={{ height: '48px', width: '48px' }} children={undefined} className={undefined} />
-              <Loading styles={{ height: '48px', width: '200px' }} children={undefined} className={undefined} />
+              <Loading styles={{ height: '48px', width: '220px' }} children={undefined} className={undefined} />
             </div>
             <div style={{ display: 'flex', gap: 20, paddingTop: 32 }}>
               <Loading styles={{ height: '48px', width: '48px' }} children={undefined} className={undefined} />
-              <Loading styles={{ height: '48px', width: '200px' }} children={undefined} className={undefined} />
+              <Loading styles={{ height: '48px', width: '220px' }} children={undefined} className={undefined} />
             </div>
             <div style={{ display: 'flex', gap: 20, paddingTop: 32 }}>
               <Loading styles={{ height: '48px', width: '48px' }} children={undefined} className={undefined} />
-              <Loading styles={{ height: '48px', width: '200px' }} children={undefined} className={undefined} />
+              <Loading styles={{ height: '48px', width: '220px' }} children={undefined} className={undefined} />
             </div>
             <div style={{ display: 'flex', gap: 20, paddingTop: 32 }}>
               <Loading styles={{ height: '48px', width: '48px' }} children={undefined} className={undefined} />
-              <Loading styles={{ height: '48px', width: '200px' }} children={undefined} className={undefined} />
+              <Loading styles={{ height: '48px', width: '220px' }} children={undefined} className={undefined} />
             </div>
           </div>
           <div className='' style={{ display: 'flex', gap: 31, paddingTop: 32, flexWrap: 'wrap' }}>
