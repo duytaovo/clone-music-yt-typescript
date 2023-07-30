@@ -4,7 +4,7 @@ import http from 'src/utils/http'
 
 const URLHome = '/v2/api/get/home'
 const URLCHART = '/v2/api/get/charthome'
-
+const URLSONGSEARCH = '/v2/api/get/song/search?id='
 const songApi = {
 
   getSongs() {
@@ -16,7 +16,7 @@ const songApi = {
     })
   },
   getSearchSong(params:any){
-    return http.get<SuccessResponse<any>>(`/v2/api/get/song/search?id=${params}`, {
+    return http.get<SuccessResponse<any>>(`${URLSONGSEARCH}${params}`, {
     })
   }
 }

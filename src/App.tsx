@@ -30,10 +30,7 @@ function App() {
   return (
     <HelmetProvider>
       <ErrorBoundary>
-        {/* <AnimatedTransition key={location.pathname}> */}
         {routeElements}
-        {/* </AnimatedTransition> */}
-
         <ToastContainer />
       </ErrorBoundary>
       <ReactQueryDevtools initialIsOpen={false} />

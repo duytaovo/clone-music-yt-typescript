@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect} from 'react'
 import { useSelector } from 'react-redux'
 import Banner from 'src/components/Banner/Banner'
 import { Chart } from 'src/components/Chart/Chart'
@@ -32,10 +32,10 @@ export default function Home() {
 
   return (
     <div className='container'>
-       {/* <Helmet>
+       <Helmet>
         <title>Trang chủ | Music Youtube By Võ Duy Tạo</title>
         <meta name='description' content='Trang profile cá nhân' />
-      </Helmet> */}
+      </Helmet>
       <Tags />
       {value < 100 ? (
         // <Sekeleton />

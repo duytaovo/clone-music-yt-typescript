@@ -1,5 +1,5 @@
 import { Grid } from '@mui/material'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, createSearchParams, useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from 'src/hooks/useRedux'
 import { changeIconPlay, setAutoPlay } from 'src/store/slices/audio'
 import getDuration from 'src/utils/getDuration'
@@ -7,6 +7,8 @@ import MusicNoteOutlinedIcon from '@mui/icons-material/MusicNoteOutlined'
 import { memo, useEffect } from 'react'
 import { Draggable } from 'react-beautiful-dnd'
 import Loader from '../Loader'
+import path from 'src/constants/path'
+import useQueryConfig from 'src/hooks/useQueryConfig'
 
 interface Props {
   bg: any
@@ -18,12 +20,23 @@ interface Props {
 
 const ItemSongPlayer = ({ bg, songDetail, onClick, index, id }: Props) => {
   const dispatch = useAppDispatch()
+  const queryConfig = useQueryConfig()
   const songId = useAppSelector((state) => state.audio.songId)
   const isFocus = songId == songDetail?.encodeId
-  const { isLoading } = useAppSelector((state) => state.audio)
-
+  const { isLoading,idPlayList } = useAppSelector((state) => state.audio)
+  const navigate = useNavigate()
   const getIdSong = async () => {
     onClick && onClick(songDetail.encodeId)
+    navigate({
+      pathname: path.player,
+      search: createSearchParams(
+        {
+          ...queryConfig,
+          idPlayList,
+          id:songId
+        }
+      ).toString()
+    })
     dispatch(changeIconPlay(true))
     dispatch(setAutoPlay(true))
   }

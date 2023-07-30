@@ -1,17 +1,15 @@
 import path from 'src/constants/path'
 import { lazy, Suspense, useContext, useMemo, useRef } from 'react'
-import { Outlet, Route, RouteObject, Routes, useRoutes } from 'react-router-dom'
+import { Navigate, Outlet, Route, RouteObject, Routes, useRoutes } from 'react-router-dom'
 import MainLayout from './layouts/MainLayout'
 import Test from './pages/Test'
-// import Home from './pages/Home'
-// import Player from './pages/Player'
-// import NotFound from './pages/NotFound'
 import { AppContext } from './contexts/app.context'
 import { toast } from 'react-toastify'
 import Profile from './pages/User/pages/Profile'
+import Player from './pages/Player'
 
 const Home = lazy(() => import('./pages/Home'))
-const Player = lazy(() => import('./pages/Player'))
+const PlayList = lazy(() => import('./pages/PlayList'))
 const NotFound = lazy(() => import('./pages/NotFound'))
 
 const routeMain = [
@@ -21,12 +19,16 @@ const routeMain = [
   },
   {
     path: path.playlist,
+    Component: PlayList
+  },
+  {
+    path: path.player,
     Component: Player
   },
-  // {
-  //   path: path.test,
-  //   Component: Test
-  // },
+  {
+    path: path.test,
+    Component: Test
+  },
   {
     path: '*',
     Component: NotFound
@@ -43,7 +45,13 @@ const routeUser = [
 function ProtectedRoute() {
   const { isAuthenticated, setOpenModal } = useContext(AppContext)
 
-  return isAuthenticated ? <Outlet /> : toast.error('Vui lòng đăng nhập !!!')
+  return isAuthenticated ? <Outlet /> : <>{toast.error('Vui lòng đăng nhập !!!')}</>
+}
+
+function RejectedRoute() {
+  const { isAuthenticated } = useContext(AppContext)
+  
+  return !isAuthenticated ? <Outlet /> : <Navigate to='/' />
 }
 
 export default function useRouteElements() {
@@ -74,9 +82,12 @@ export default function useRouteElements() {
     <>
       <Routes>
         <Route path='' element={<MainLayout />}>
+          <Route element={<RejectedRoute/>}></Route>
           {renderRouter}
         </Route>
         <Route path={path.user} element={<MainLayout />}>
+        <Route element={<ProtectedRoute/>}></Route>
+          
           {renderRouterUser}
         </Route>
       </Routes>

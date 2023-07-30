@@ -10,7 +10,6 @@ import AnimatedBarChart from 'src/components/AnimationPlayChart'
 import { toast } from 'react-toastify'
 
 const TrackInfo: React.FC = () => {
-  // const info = useAppSelector((state) => state.audio.infoSongPlayer)
   const songDetail = useAppSelector((state) => state.audio.songDetail)
   const { isPlay, isLoading } = useAppSelector((state: RootState) => state.audio)
 
@@ -34,7 +33,7 @@ const TrackInfo: React.FC = () => {
           <AnimatedBarChart numberColumn={10} width={50} height={40} />
         </div>
       )}
-      <div className='w-full'>
+      <div className=''>
         <img src={songDetail?.thumbnail || img} alt={songDetail?.title} className='relative h-[46px] rounded-[5px]' />
       </div>
       {/* End Thumbnail */}

@@ -55,4 +55,15 @@ export interface Item {
    artistsNames: string
    artists: []
  }
+
+ export interface SongDetailConfig{
+   id?: string,
+   idPlayList?: string
+ }
  
+ export interface IPath {
+   hash?: string
+   key?: string
+   pathname?: string
+   search?: string
+ }

@@ -3,8 +3,7 @@ import 'slick-carousel/slick/slick-theme.css'
 import 'slick-carousel/slick/slick.css'
 import NextArrow from '../NextArrow'
 import PrevArrow from '../PreArrow/PreArrow'
-import getBreakpoint from 'src/utils/getBreakpoint'
-import { Item, List } from 'src/types/types.type'
+import { Item } from 'src/types/types.type'
 import { Key } from 'react'
 import MediaControlCardComponent from './component'
 
@@ -17,7 +16,6 @@ export default function Banner({
   song,
   img,
 }: Item & Item2) {
-  const breakpoints = getBreakpoint([1, 1, 2, 2, 3, 3])
   const settings = {
     speed: 500,
     infinite: false,
@@ -27,29 +25,6 @@ export default function Banner({
     autoplaySpeed:4000,
     nextArrow: <NextArrow numberItem={3} currentSlide={song?.items.length}/>,
     prevArrow: <PrevArrow />,
-   //  responsive: [
-   //    {
-   //      breakpoint: 640,
-   //      settings: {
-   //        slidesToShow: 1,
-   //        slidesToScroll: 1
-   //      }
-   //    },
-   //    {
-   //      breakpoint: 1289,
-   //      settings: {
-   //        slidesToShow: 2,
-   //        slidesToScroll: 2
-   //      }
-   //    },
-   //    {
-   //      breakpoint: 1920,
-   //      settings: {
-   //        slidesToShow: 3,
-   //        slidesToScroll: 3
-   //      }
-   //    }
-   //  ]
   }
 
   return (

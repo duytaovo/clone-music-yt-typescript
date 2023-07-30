@@ -4,7 +4,8 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 interface AudioState {
   isPlay: boolean
   isMute: boolean
-  songId: string
+  songId: string,
+  nameId:string,
   currnetIndexPlaylist: number
   infoSongPlayer: {
     title: string
@@ -21,7 +22,9 @@ interface AudioState {
   isLyric: boolean,
   songDetail:any,
   audioRef: any,
-  isLoading:boolean
+  isLoading:boolean,
+  playlist: any,
+  idPlayList:string,
 
 }
 
@@ -29,6 +32,7 @@ const initialState: AudioState = {
   isPlay: false,
   isMute: false,
   songId: localStorage.getItem("songId") || "",
+  nameId: localStorage.getItem("nameId") || "",
   currnetIndexPlaylist: 0,
   infoSongPlayer: {
     title: "",
@@ -45,7 +49,9 @@ const initialState: AudioState = {
   isLyric: false,
   songDetail:{},
   audioRef: null,
-  isLoading:false
+  isLoading:false,
+  playlist: [],
+  idPlayList:localStorage.getItem("idPlayList") || "",
 }
 
 
@@ -63,6 +69,10 @@ const audioSlice = createSlice({
     setSongId: (state, action: PayloadAction<string>) => {
       state.songId = action.payload
       localStorage.setItem("songId", action.payload)
+    },
+    setNameId: (state, action: PayloadAction<string>) => {
+      state.songId = action.payload
+      localStorage.setItem("nameId", action.payload)
     },
     setInfoSongPlayer: (state, action: PayloadAction<object>) => {
       state.infoSongPlayer = {
@@ -102,7 +112,11 @@ const audioSlice = createSlice({
     },
     setIsLoading:(state,action) =>{
       state.isLoading = action.payload
-    }
+    },
+    updateIdPlayList:(state,action:PayloadAction<string>) =>{
+      state.idPlayList = action.payload
+      localStorage.setItem("idPlayList", action.payload)
+    },
   }
 })
 
@@ -121,7 +135,9 @@ export const {
   setOpenLyric,
   setSongDetail,
   setAudioRef,
-  setIsLoading
+  setIsLoading,
+  updateIdPlayList,
+  setNameId
 } = audioSlice.actions
 
 const audioReducer = audioSlice.reducer

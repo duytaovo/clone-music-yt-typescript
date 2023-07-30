@@ -8,7 +8,7 @@ const NextControl: React.FC = () => {
 
   let { currnetIndexPlaylist } = useAppSelector((state: RootState) => state.audio)
   const [randomIndex, setRandomIndex] = useState<number[]>([])
-  const list = new Set(randomIndex) // List save random currentIndex and reset at full
+  const list = new Set(randomIndex) 
   const dispatch = useAppDispatch()
 
   const handleSetIndexChange = (currentIndex: number) => {
@@ -25,7 +25,6 @@ const NextControl: React.FC = () => {
     const songsLength = playlistSong.length
     do {
       random = Math.ceil(Math.random() * playlistSong.length)
-      setRandomIndex((prev) => [...prev, random])
     } while (list.has(random))
     currnetIndexPlaylist = random
     setRandomIndex((prev) => [...prev, index])

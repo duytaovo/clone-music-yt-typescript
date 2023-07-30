@@ -1,5 +1,5 @@
-import { CardContent, Grid, Typography } from '@mui/material'
-import React, { memo, useState } from 'react'
+import {  Grid, Typography } from '@mui/material'
+import { memo} from 'react'
 import { useAppDispatch, useAppSelector } from 'src/hooks/useRedux'
 import { changeIconPlay, setAutoPlay, setSongId } from 'src/store/slices/audio'
 import Loader from '../Loader'

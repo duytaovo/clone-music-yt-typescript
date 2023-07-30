@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useContext, useState } from 'react'
+import React, {  useContext } from 'react'
 import { useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import Button from 'src/components/Button'
@@ -71,7 +71,6 @@ const Login = () => {
     e.preventDefault()
     e.stopPropagation()
     signInWithPopup(auth, provider).then((data) => {
-      console.log(data)
       setProfileWithGG(data.user.email)
       localStorage.setItem('email', String(data.user.email))
       setIsAuthenticated(true)

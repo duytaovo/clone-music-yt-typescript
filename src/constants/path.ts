@@ -3,8 +3,8 @@ const path = {
   user: '/user',
   profile: '/user/profile',
   test: '/test',
-  playlist: '/playlist/:id',
-  player: '/player/:id',
+  playlist: '/playlist/:name',
+  player: '/player/',
   login:"/login",
   register:"/register"
 

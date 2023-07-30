@@ -5,8 +5,9 @@ import useQueryParams from './useQueryParams'
 export default function useQueryConfig() {
   const queryParams = useQueryParams()
   const queryConfig = omitBy(
-    {
-      id: queryParams.id || '',
+    { 
+      id: queryParams.id || localStorage.getItem('songId'),
+      idPlayList:queryParams.idPlayList || localStorage.getItem('idPlayList')
     },
     isUndefined
   )

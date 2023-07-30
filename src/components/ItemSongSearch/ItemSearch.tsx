@@ -1,5 +1,4 @@
-import { CardContent, Grid, Typography } from '@mui/material'
-import React from 'react'
+import { Typography } from '@mui/material'
 import { useAppDispatch, useAppSelector } from 'src/hooks/useRedux'
 import { changeIconPlay, setAutoPlay, setSongId } from 'src/store/slices/audio'
 
@@ -18,7 +17,7 @@ const ItemSearch = ({ song }: any) => {
     <div
       onClick={onClick}
       className={`${
-        isFocus ? 'bg-[#302639] shadow-box-shadow' : ''
+        isFocus ? 'bg-[#302639] shadow-box-shadow text-white' : ''
       } group mr-2 flex cursor-pointer items-center justify-start rounded hover:bg-[#302639]`}
     >
       <img src={song?.thumbnail} alt='' className=' h-12 w-12 rounded object-contain group-hover:opacity-50' />

@@ -30,7 +30,7 @@ export class Http {
       timeout: 10000,
       headers: {
         'Content-Type': 'application/json',
-        'expire-access-token': 60 * 60 * 24, // 1 ngày
+        'expire-access-token': 60*60*24, // 1 ngày
         'expire-refresh-token': 60 * 60 * 24 * 160 // 160 ngày
       }
     })
@@ -75,12 +75,6 @@ export class Http {
           toast.error(message + '🥹')
         }
 
-        // Lỗi Unauthorized (401) có rất nhiều trường hợp
-        // - Token không đúng
-        // - Không truyền token
-        // - Token hết hạn*
-
-        // Nếu là lỗi 401
         if (isAxiosUnauthorizedError<ErrorResponse<{ name: string; message: string }>>(error)) {
           const config = error.response?.config || {}
           const { url } = config
@@ -101,11 +95,6 @@ export class Http {
               return this.instance({ ...config, headers: { ...config.headers, authorization: access_token } })
             })
           }
-
-          // Còn những trường hợp như token không đúng
-          // không truyền token,
-          // token hết hạn nhưng gọi refresh token bị fail
-          // thì tiến hành xóa local storage và toast message
 
           clearLS()
           this.accessToken = ''

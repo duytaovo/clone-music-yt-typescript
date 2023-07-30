@@ -1,7 +1,6 @@
 //@ts-nocheck
 import { BsChevronRight } from "react-icons/bs";
 import { CustomArrowProps } from "react-slick";
-import useBreakpoint from "src/hooks/useBreakpoint";
 
 interface NextArrowProps {
   props?: CustomArrowProps;
@@ -17,11 +16,8 @@ const NextArrow: React.FC<NextArrowProps> = (props) => {
     onClick,
     currentSlide,
     slideCount,
-    breakpoints,
-    customClassName,
     numberItem
   } = props;
-  // const item = useBreakpoint(breakpoints);
   const disabled = slideCount - numberItem === currentSlide;
 
   return (

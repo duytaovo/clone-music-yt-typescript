@@ -1,5 +1,5 @@
 import { AuthResponse } from 'src/types/auth.type'
-import http, { http_auth } from 'src/utils/http'
+import { http_auth } from 'src/utils/http'
 
 export const URL_LOGIN = 'login'
 export const URL_REGISTER = 'register'

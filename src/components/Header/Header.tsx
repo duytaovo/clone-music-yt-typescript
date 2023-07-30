@@ -13,7 +13,6 @@ import { AppContext } from 'src/contexts/app.context'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import authApi from 'src/apis/auth.api'
 import { toast } from 'react-toastify'
-import useQueryConfig from 'src/hooks/useQueryConfig'
 import songApi from 'src/apis/home.api'
 import PopoverSearch from '../Popover'
 import ItemSearch from '../ItemSongSearch'
@@ -169,7 +168,7 @@ export default function Header() {
           >
             <div className='ml-3'>
               <h6 className="font-normal mt-2 p2">Nghệ sĩ 😊😍</h6>
-              {songSearch?.data.data.data?.artists.map((song: any, index: number) => (
+              {songSearch?.data?.data?.data?.artists?.map((song: any, index: number) => (
                 <div key={index} className='m-2 ml-0'>
                   <ItemSearch song={song} />
                 </div>
@@ -177,7 +176,7 @@ export default function Header() {
             </div>
             <div className='ml-3'>
               <h6 className="font-normal">Bài hát 😋😚</h6>
-              {songSearch?.data.data.data?.songs.map((song: any, index: number) => (
+              {songSearch?.data?.data?.data?.songs?.map((song: any, index: number) => (
                 <div key={index}>
                   <ItemSearch song={song}  />
                 </div>
@@ -185,7 +184,7 @@ export default function Header() {
             </div>
             <div className='ml-3'>
               <h6 className="font-normal">Playlist 😍🤪</h6>
-              {songSearch?.data.data.data?.playlists.map((song: any, index: number) => (
+              {songSearch?.data?.data?.data?.playlists?.map((song: any, index: number) => (
                 <div key={index}>
                   <ItemSearch song={song}  />
                 </div>

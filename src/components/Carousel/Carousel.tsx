@@ -25,29 +25,6 @@ export default function Carousel({
     autoplaySpeed:4000,
     nextArrow: <NextArrow numberItem={5} currentSlide={song?.items.length}/>,
     prevArrow: <PrevArrow />,
-   //  responsive: [
-   //    {
-   //      breakpoint: 640,
-   //      settings: {
-   //        slidesToShow: 1,
-   //        slidesToScroll: 1
-   //      }
-   //    },
-   //    {
-   //      breakpoint: 1289,
-   //      settings: {
-   //        slidesToShow: 2,
-   //        slidesToScroll: 2
-   //      }
-   //    },
-   //    {
-   //      breakpoint: 1920,
-   //      settings: {
-   //        slidesToShow: 3,
-   //        slidesToScroll: 3
-   //      }
-   //    }
-   //  ]
   }
   
   return (

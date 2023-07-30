@@ -3,6 +3,9 @@ import { IconButton, Typography } from '@mui/material'
 import PlayArrowIcon from '@mui/icons-material/PlayArrow'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
 import { Link, useNavigate } from 'react-router-dom'
+import { useAppDispatch } from 'src/hooks/useRedux'
+import { updateIdPlayList } from 'src/store/slices/playlist'
+import { generateNameId } from 'src/utils/utils'
 
 interface Props {
   song: any
@@ -10,13 +13,19 @@ interface Props {
 }
 
 export default function MediaControlCard({ song }: Props) {
+  const dispatch = useAppDispatch()
   const navigate = useNavigate()
+  
   return (
     <div>
         <Card
           sx={{ display: 'flex', cursor: 'pointer' }}
           onClick={() => {
-            navigate(`/playlist/${song.encodeId}`)
+            dispatch(updateIdPlayList(song?.encodeId))
+            navigate(`/playlist/${generateNameId({
+              name: song?.title,
+              id: song?.encodeId
+            })}`)
             window.scrollTo(0, 0);
           }}
         >

@@ -1,7 +1,6 @@
 import {  CardContent, Grid, Typography } from '@mui/material'
 import React from 'react'
 import Button from 'src/components/Button'
-import ItemSongHome from 'src/components/ItemSongHome/ItemSongHome'
 
 export const ItemChart = ({ dataChart }: any) => {
   return (

@@ -2,39 +2,31 @@ import React, { memo, useContext, useEffect, useRef } from 'react'
 import { Grid } from '@mui/material'
 import { ListPlayer } from './component/ListPlayer'
 import VideoPlayer from 'src/components/VideoPlayer'
-import { Link, createSearchParams, useNavigate } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { RootState } from 'src/store/store'
 import { useAppDispatch, useAppSelector } from 'src/hooks/useRedux'
-import { _getPlayList, getPlayList } from 'src/store/slices/playlist'
+import { getPlayList } from 'src/store/slices/playlist'
 import { setPlaylistSong, setSongId } from 'src/store/slices/audio'
 import { AppContext } from 'src/contexts/app.context'
 import { changePercentLoading } from 'src/app.slice'
 import { Helmet } from 'react-helmet-async'
-import { SongDetailConfig } from 'src/types/types.type'
-import useQueryConfig from 'src/hooks/useQueryConfig'
-import path from 'src/constants/path'
-import { generateName } from 'src/utils/utils'
+import { getIdFromNameId } from 'src/utils/utils'
 
-const Player = () => {
-  const { playlist, idPlayList } = useSelector((state: RootState) => state.playlist)
-  // const { nameId } = useSelector((state: RootState) => state.audio)
+const PlayList = () => {
+  const { playlist } = useSelector((state: RootState) => state.playlist)
   const { value } = useSelector((state: RootState) => state.loading)
   const dispatch = useAppDispatch()
   const songDetail = useAppSelector((state) => state.audio.songDetail)
   const { isPlaying, setPlaying } = useContext(AppContext)
+  const { name } = useParams()
+  const idPlayList = getIdFromNameId(name as string)
   const lyrRef = useRef<HTMLDivElement>(null)
-  const queryConfig = useQueryConfig()
-  const navigate = useNavigate()
-  
+
   useEffect(() => {
     const getData = async () => {
       dispatch(changePercentLoading(30))
       await dispatch(getPlayList(idPlayList))
-      navigate({
-        pathname: path.player,
-        search: createSearchParams({ ...queryConfig,idPlayList }).toString()
-      })
       dispatch(changePercentLoading(100))
     }
 
@@ -64,7 +56,6 @@ const Player = () => {
       setPlaying(true)
     }
   }
-
   return (
     <div
       className={
@@ -92,13 +83,9 @@ const Player = () => {
           /> */}
         </button>
       </Link>
-      <Grid
-        container
-        spacing={2}
-        sx={{
-          mt: 2
-        }}
-      >
+      <Grid container spacing={2} sx={{
+        mt:2
+      }}>
         <Grid
           item
           xs={4}
@@ -117,4 +104,4 @@ const Player = () => {
   )
 }
 
-export default memo(Player)
+export default memo(PlayList)

@@ -1,6 +1,4 @@
 //@ts-nocheck
-import useBreakpoint from "@/hooks/(utils)/useBreakpoint";
-import clsx from "clsx";
 import { BsChevronLeft } from "react-icons/bs";
 import { CustomArrowProps } from "react-slick";
 
