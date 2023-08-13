@@ -6,7 +6,7 @@ import { Link, createSearchParams, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { RootState } from 'src/store/store'
 import { useAppDispatch, useAppSelector } from 'src/hooks/useRedux'
-import { _getPlayList, getPlayList } from 'src/store/slices/playlist'
+import { getPlayList } from 'src/store/slices/playlist'
 import { setPlaylistSong, setSongId } from 'src/store/slices/audio'
 import { AppContext } from 'src/contexts/app.context'
 import { changePercentLoading } from 'src/app.slice'
@@ -14,7 +14,6 @@ import { Helmet } from 'react-helmet-async'
 import { SongDetailConfig } from 'src/types/types.type'
 import useQueryConfig from 'src/hooks/useQueryConfig'
 import path from 'src/constants/path'
-import { generateName } from 'src/utils/utils'
 
 const Player = () => {
   const { playlist, idPlayList } = useSelector((state: RootState) => state.playlist)
@@ -26,14 +25,14 @@ const Player = () => {
   const lyrRef = useRef<HTMLDivElement>(null)
   const queryConfig = useQueryConfig()
   const navigate = useNavigate()
-  
+
   useEffect(() => {
     const getData = async () => {
       dispatch(changePercentLoading(30))
       await dispatch(getPlayList(idPlayList))
       navigate({
         pathname: path.player,
-        search: createSearchParams({ ...queryConfig,idPlayList }).toString()
+        search: createSearchParams({ ...queryConfig, idPlayList }).toString()
       })
       dispatch(changePercentLoading(100))
     }
