@@ -7,6 +7,8 @@ import { AppContext } from './contexts/app.context'
 import { toast } from 'react-toastify'
 import Profile from './pages/User/pages/Profile'
 import Player from './pages/Player'
+import { ChatProvider } from './contexts/ChatContext'
+import { Room } from './pages/Room/Room'
 
 const Home = lazy(() => import('./pages/Home'))
 const PlayList = lazy(() => import('./pages/PlayList'))
@@ -50,7 +52,7 @@ function ProtectedRoute() {
 
 function RejectedRoute() {
   const { isAuthenticated } = useContext(AppContext)
-  
+
   return !isAuthenticated ? <Outlet /> : <Navigate to='/' />
 }
 
@@ -59,15 +61,15 @@ export default function useRouteElements() {
     return routeMain.map(({ path, Component }, index) => {
       let Page = Component
       return (
-          <Route
+        <Route
           key={index}
-            path={path}
-            element={
-              <Suspense>
-                <Page />
-              </Suspense>
-            }
-          />
+          path={path}
+          element={
+            <Suspense>
+              <Page />
+            </Suspense>
+          }
+        />
       )
     })
   }, [path])
@@ -82,14 +84,22 @@ export default function useRouteElements() {
     <>
       <Routes>
         <Route path='' element={<MainLayout />}>
-          <Route element={<RejectedRoute/>}></Route>
+          <Route element={<RejectedRoute />}></Route>
           {renderRouter}
         </Route>
         <Route path={path.user} element={<MainLayout />}>
-        <Route element={<ProtectedRoute/>}></Route>
-          
+          <Route element={<ProtectedRoute />}></Route>
+
           {renderRouterUser}
         </Route>
+        <Route
+          path='/room/:id'
+          element={
+            <ChatProvider>
+              <Room />
+            </ChatProvider>
+          }
+        />
       </Routes>
     </>
   )
