@@ -1,7 +1,6 @@
 import React, { memo, useContext, useEffect, useRef } from 'react'
 import { Grid } from '@mui/material'
 import { ListPlayer } from './component/ListPlayer'
-import VideoPlayer from 'src/components/VideoPlayer'
 import { Link, createSearchParams, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { RootState } from 'src/store/store'
@@ -14,6 +13,7 @@ import { Helmet } from 'react-helmet-async'
 import { SongDetailConfig } from 'src/types/types.type'
 import useQueryConfig from 'src/hooks/useQueryConfig'
 import path from 'src/constants/path'
+import VideoPlayerSong from 'src/components/VideoPlayer/VideoPlayer'
 
 const Player = () => {
   const { playlist, idPlayList } = useSelector((state: RootState) => state.playlist)
@@ -105,7 +105,7 @@ const Player = () => {
             ml: 2
           }}
         >
-          {<VideoPlayer playListData={playlist} songThumbnail={songDetail} />}
+          {<VideoPlayerSong playListData={playlist} songThumbnail={songDetail} />}
         </Grid>
         <Grid item xs={7.5}>
           {<ListPlayer onClick={onClick} valueLoading={value} />}

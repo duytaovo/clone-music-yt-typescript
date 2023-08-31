@@ -3,10 +3,11 @@ import { useAppDispatch, useAppSelector } from 'src/hooks/useRedux'
 import { setOpenLyric } from 'src/store/slices/audio'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
 import useLyric from 'src/hooks/useLyric'
-import VideoPlayer from '../VideoPlayer'
+// import VideoPlayer from '../VideoPlayer'
 import { useSelector } from 'react-redux'
 import { RootState } from 'src/store/store'
 import { Grid, IconButton } from '@mui/material'
+import VideoPlayerSong from '../VideoPlayer/VideoPlayer'
 
 const Lyric: React.FC<{ auRef: HTMLAudioElement | null }> = ({ auRef }) => {
   const isLyric = useAppSelector((state) => state.audio.isLyric)
@@ -44,7 +45,7 @@ const Lyric: React.FC<{ auRef: HTMLAudioElement | null }> = ({ auRef }) => {
       >
         {/* Close Button */}
         <div className='mb-10 grid h-full grid-flow-col grid-cols-3 py-16'>
-          <VideoPlayer playListData={playlist} songThumbnail={songDetail} />
+          <VideoPlayerSong playListData={playlist} songThumbnail={songDetail} />
           <div className='mx-auto  flex h-full max-w-2xl flex-col overflow-y-auto overflow-x-hidden text-[28px] font-semibold text-[white]'>
             <div className='mt-[10vh]'></div>
             {/* Line Lyric */}
@@ -88,16 +89,15 @@ const Lyric: React.FC<{ auRef: HTMLAudioElement | null }> = ({ auRef }) => {
             className='fixed top-6 right-6 mx-3 my-3 cursor-pointer rounded-[25%] bg-transparent p-2 transition-all duration-200 '
             onClick={handleCloseLyric}
           >
-            <IconButton title='Close lyric'
-            sx={
-              {
+            <IconButton
+              title='Close lyric'
+              sx={{
                 '&:hover': {
                   backgroundColor: 'Black',
                   opacity: [0.9, 0.8, 0.7],
                   color: 'white'
                 }
-              }
-            }
+              }}
             >
               <ArrowDropDownIcon
                 sx={{

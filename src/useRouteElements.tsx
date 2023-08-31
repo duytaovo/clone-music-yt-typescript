@@ -9,6 +9,7 @@ import Profile from './pages/User/pages/Profile'
 import Player from './pages/Player'
 import { ChatProvider } from './contexts/ChatContext'
 import { Room } from './pages/Room/Room'
+import { Join } from './components/Join'
 
 const Home = lazy(() => import('./pages/Home'))
 const PlayList = lazy(() => import('./pages/PlayList'))
@@ -41,6 +42,10 @@ const routeUser = [
   {
     path: path.profile,
     Component: Profile
+  },
+  {
+    path: path.roomChat,
+    Component: Join
   }
 ]
 

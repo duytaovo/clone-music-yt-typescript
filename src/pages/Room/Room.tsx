@@ -18,7 +18,9 @@ export const Room = () => {
   const { toggleChat, chat } = useContext(ChatContext)
 
   useEffect(() => {
-    if (stream) ws.emit('join-room', { roomId: id, peerId: userId, userName })
+    if (stream) {
+      ws.emit('join-room', { roomId: id, peerId: userId, userName })
+    }
   }, [id, userId, stream, userName])
 
   useEffect(() => {
@@ -26,7 +28,6 @@ export const Room = () => {
   }, [id, setRoomId])
 
   const screenSharingVideo = screenSharingId === userId ? screenStream : peers[screenSharingId]?.stream
-
   const { [screenSharingId]: sharing, ...peersToShow } = peers
   return (
     <div className='flex min-h-screen flex-col'>

@@ -8,6 +8,9 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { AppProvider } from './contexts/app.context'
 import { Provider } from 'react-redux'
 import store from './store/store'
+import { UserProvider } from './contexts/UserContext'
+import { ChatProvider } from './contexts/ChatContext'
+import { RoomProvider } from './contexts/RoomContext'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -19,14 +22,20 @@ const queryClient = new QueryClient({
 })
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   // <React.StrictMode>
-    <BrowserRouter>
-      <QueryClientProvider client={queryClient}>
-          <AppProvider>
-            <Provider store={store}>
-              <App />
-            </Provider>
-          </AppProvider>
-      </QueryClientProvider>
-    </BrowserRouter>
+  <BrowserRouter>
+    <QueryClientProvider client={queryClient}>
+      <AppProvider>
+        <RoomProvider>
+          <ChatProvider>
+            <UserProvider>
+              <Provider store={store}>
+                <App />
+              </Provider>
+            </UserProvider>
+          </ChatProvider>
+        </RoomProvider>
+      </AppProvider>
+    </QueryClientProvider>
+  </BrowserRouter>
   // </React.StrictMode>
 )

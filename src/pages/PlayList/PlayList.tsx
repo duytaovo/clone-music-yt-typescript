@@ -1,7 +1,6 @@
 import React, { memo, useContext, useEffect, useRef } from 'react'
 import { Grid } from '@mui/material'
 import { ListPlayer } from './component/ListPlayer'
-import VideoPlayer from 'src/components/VideoPlayer'
 import { Link, useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { RootState } from 'src/store/store'
@@ -12,6 +11,7 @@ import { AppContext } from 'src/contexts/app.context'
 import { changePercentLoading } from 'src/app.slice'
 import { Helmet } from 'react-helmet-async'
 import { getIdFromNameId } from 'src/utils/utils'
+import VideoPlayerSong from 'src/components/VideoPlayer/VideoPlayer'
 
 const PlayList = () => {
   const { playlist } = useSelector((state: RootState) => state.playlist)
@@ -83,9 +83,13 @@ const PlayList = () => {
           /> */}
         </button>
       </Link>
-      <Grid container spacing={2} sx={{
-        mt:2
-      }}>
+      <Grid
+        container
+        spacing={2}
+        sx={{
+          mt: 2
+        }}
+      >
         <Grid
           item
           xs={4}
@@ -93,7 +97,7 @@ const PlayList = () => {
             ml: 2
           }}
         >
-          {<VideoPlayer playListData={playlist} songThumbnail={songDetail} />}
+          {<VideoPlayerSong playListData={playlist} songThumbnail={songDetail} />}
         </Grid>
         <Grid item xs={7.5}>
           {<ListPlayer onClick={onClick} valueLoading={value} />}

@@ -31,7 +31,7 @@ function MainLayoutInner({ children }: Props) {
 
   return (
     <div className='h-100vh bg w-[100vw]'>
-      <Loading />
+      {/* <Loading /> */}
       <Header />
       <Outlet />
       <BarPlayer songDetail={songDetail} />
